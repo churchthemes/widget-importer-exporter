@@ -13,14 +13,21 @@
 // No direct access
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/******************************************
+ * IMPORT/EXPORT PAGE
+ ******************************************/
+
 /**
  * Add import/export page under Tools
+ *
+ * Also enqueue JavaScript for this page only.
  *
  * @since 0.1
  */
 function wie_add_import_export_page() {
 
-	add_management_page(
+	// Add page
+	$page_hook = add_management_page(
 		__( 'Widget Importer & Exporter', 'widget-importer-exporter' ), // page title
 		__( 'Widget Import/Export', 'widget-importer-exporter' ), // menu title
 		'manage_options', // capability
@@ -28,9 +35,24 @@ function wie_add_import_export_page() {
 		'wie_import_export_page_content' // callback for displaying page content
 	);
 
+	// Enqueue JavaScript
+ 	add_action( 'admin_print_scripts-' . $page_hook, 'wie_enqueue_import_export_scripts' );
+
 }
 
 add_action( 'admin_menu', 'wie_add_import_export_page' ); // register post type
+
+/**
+ * Enqueue JavaScript for import/export page
+ *
+ * @since 0.1
+ */
+function wie_enqueue_import_export_scripts() {
+	wp_enqueue_script( 'wie-main', WIE_URL . '/js/import-export.js', array( 'jquery' ), WIE_VERSION ); // bust cache on update
+}
+
+add_action( 'wp_enqueue_scripts', 'wie_enqueue_scripts' );
+
 
 /**
  * Import/export page content

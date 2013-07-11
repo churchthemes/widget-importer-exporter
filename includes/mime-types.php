@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * Make sure the WordPress install will accept .json uploads.
  *
- * @since 0.9
+ * @since 0.1
  * @param array $mime_types Currently uploadable mime types
  * @return array Mime types with additions
  */

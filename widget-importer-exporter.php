@@ -172,7 +172,7 @@ class Widget_Importer_Exporter {
 			'admin' => array(
 			
 				// Functions
-				//WIE_INC_DIR . '/export.php',
+				WIE_INC_DIR . '/export.php',
 				//WIE_INC_DIR . '/import.php',
 				WIE_INC_DIR . '/mime-types.php',
 				WIE_INC_DIR . '/page.php'
