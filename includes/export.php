@@ -108,6 +108,8 @@ function wie_generate_export_data() {
  *
  * Triggered by URL like /wp-admin/tools.php?page=widget-importer-exporter&export=1
  *
+ * The data is JSON with .wie extension in order not to confuse export files with other plugins.
+ *
  * @since 0.1
  */
 function wie_send_export_file() {
@@ -116,13 +118,13 @@ function wie_send_export_file() {
 	if ( ! empty( $_GET['export'] ) ) {
 
 		// Build filename
-		// Single Site: yoursite.com-widgets.json
-		// Multisite: site.multisite.com-widgets.json or multisite.com-site-widgets.json
+		// Single Site: yoursite.com-widgets.wie
+		// Multisite: site.multisite.com-widgets.wie or multisite.com-site-widgets.wie
 		$site_url = site_url( '', 'http' );
 		$site_url = trim( $site_url, '/\\' ); // remove trailing slash
 		$filename = str_replace( 'http://', '', $site_url ); // remove http://
 		$filename = str_replace( array( '/', '\\' ), '-', $filename ); // replace slashes with -
-		$filename .= '-widgets.json'; // append
+		$filename .= '-widgets.wie'; // append
 		$filename = apply_filters( 'wie_export_filename', $filename );
 
 		// Generate export file contents

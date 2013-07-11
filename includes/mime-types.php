@@ -14,9 +14,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Add mime type for JSON files
+ * Add mime type for upload
  *
- * Make sure the WordPress install will accept .json uploads.
+ * Make sure the WordPress install will accept .wie uploads.
  *
  * @since 0.1
  * @param array $mime_types Currently uploadable mime types
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function wie_add_mime_types( $mime_types ) {
 
-	$mime_types['json']= 'application/json';
+	$mime_types['wie']= 'application/json';
 
 	return $mime_types;
 
