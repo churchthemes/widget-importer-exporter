@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function wie_add_mime_types( $mime_types ) {
 
-	$mime_types['wie']= 'application/json';
+	$mime_types['wie'] = 'application/json';
 
 	return $mime_types;
 
