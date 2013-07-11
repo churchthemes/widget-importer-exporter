@@ -88,7 +88,7 @@ function wie_import_export_page_content() {
 		<h3 class="title"><?php _ex( 'Export Widgets', 'heading', 'widget-importer-exporter' ); ?></h3>
 
 		<p>
-			<?php _e( 'Click below to generate an importable .json file.', 'widget-importer-exporter' ); ?>
+			<?php _e( 'Click below to generate a .json file for all active widgets.', 'widget-importer-exporter' ); ?>
 		</p>
 
 		<p class="submit">

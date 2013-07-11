@@ -14,18 +14,92 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Generate export file contents
+ * Generate export data
  *
  * @since 0.1
+ * @global array $wp_registered_widget_controls
  * @return string Export file contents
  */
-function wie_generate_export_contents() {
+function wie_generate_export_data() {
 
-	// Make file contents
-	$contents = 'whatever';
+	global $wp_registered_widget_controls;
+
+	// Get all widget ID bases
+	// Surely there is a better way to get this data?
+	$widget_controls = $wp_registered_widget_controls;
+	$widget_id_bases = array();
+	foreach ( $widget_controls as $widget ) {
+
+		// Gather unique ID bases into array
+		if ( ! empty( $widget['id_base'] ) && ! in_array( $widget['id_base'], $widget_id_bases ) ) { // no dupes
+			$widget_id_bases[] = $widget['id_base'];
+		}
+
+	}
+
+	// Get all widget instances for each ID base
+	$widget_instances = array();
+	foreach ( $widget_id_bases as $id_base ) {
+
+		// Get all instances for this ID base
+		$instances = get_option( 'widget_' . $id_base );
+
+		// Have instances
+		if ( ! empty( $instances ) ) {
+
+			// Loop instances
+			foreach ( $instances as $instance_id => $instance_data ) {
+
+				// Key is ID (not _multiwidget)
+				if ( is_numeric( $instance_id ) ) {
+					$unique_instance_id = $id_base . '-' . $instance_id;
+					$widget_instances[$unique_instance_id] = $instance_data;
+				}
+
+			}
+
+		}
+
+	}
+
+	// Gather sidebars with their widget instances
+	$sidebars_widgets = get_option( 'sidebars_widgets' ); // get sidebars and their unique widgets IDs
+	$sidebars_widget_instances = array();
+	foreach ( $sidebars_widgets as $sidebar_id => $widget_ids ) {
+
+		// Skip inactive widgets
+		if ( 'wp_inactive_widgets' == $sidebar_id ) {
+			continue;
+		}
+
+		// Skip if no data or not an array (array_version)
+		if ( ! is_array( $widget_ids ) || empty( $widget_ids ) ) {
+			continue;
+		}
+
+		// Loop widget IDs for this sidebar
+		foreach ( $widget_ids as $widget_id ) {
+
+			// Is there an instance for this widget ID?
+			if ( isset( $widget_instances[$widget_id] ) ) {
+
+				// Add to array
+				$sidebars_widget_instances[$sidebar_id][$widget_id] = $widget_instances[$widget_id];
+
+			}
+
+		}
+
+	}
+
+	// Filter pre-encoded data
+	$data = apply_filters( 'wie_unencoded_export_data', $sidebars_widget_instances );
+
+	// Encode the data for file contents
+	$encoded_data = json_encode( $data );
 
 	// Return contents
-	return apply_filters( 'wie_generate_export_contents', $contents );
+	return apply_filters( 'wie_generate_export_data', $encoded_data );
 
 }
 
@@ -52,7 +126,7 @@ function wie_send_export_file() {
 		$filename = apply_filters( 'wie_export_filename', $filename );
 
 		// Generate export file contents
-		$file_contents = wie_generate_export_contents();
+		$file_contents = wie_generate_export_data();
 		$filesize = strlen( $file_contents );
 
 		// Headers to prompt "Save As"
