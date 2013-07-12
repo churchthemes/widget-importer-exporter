@@ -17,32 +17,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Generate export data
  *
  * @since 0.1
- * @global array $wp_registered_widget_controls
  * @return string Export file contents
  */
 function wie_generate_export_data() {
 
-	global $wp_registered_widget_controls;
+	// Get all available widgets site supports
+	$available_widgets = wie_available_widgets();
 
-	// Get all widget ID bases
-	// Surely there is a better way to get this data?
-	$widget_controls = $wp_registered_widget_controls;
-	$widget_id_bases = array();
-	foreach ( $widget_controls as $widget ) {
-
-		// Gather unique ID bases into array
-		if ( ! empty( $widget['id_base'] ) && ! in_array( $widget['id_base'], $widget_id_bases ) ) { // no dupes
-			$widget_id_bases[] = $widget['id_base'];
-		}
-
-	}
-
-	// Get all widget instances for each ID base
+	// Get all widget instances for each widget
 	$widget_instances = array();
-	foreach ( $widget_id_bases as $id_base ) {
+	foreach ( $available_widgets as $widget_data ) {
 
 		// Get all instances for this ID base
-		$instances = get_option( 'widget_' . $id_base );
+		$instances = get_option( 'widget_' . $widget_data['id_base'] );
 
 		// Have instances
 		if ( ! empty( $instances ) ) {
@@ -52,7 +39,7 @@ function wie_generate_export_data() {
 
 				// Key is ID (not _multiwidget)
 				if ( is_numeric( $instance_id ) ) {
-					$unique_instance_id = $id_base . '-' . $instance_id;
+					$unique_instance_id = $widget_data['id_base'] . '-' . $instance_id;
 					$widget_instances[$unique_instance_id] = $instance_data;
 				}
 
