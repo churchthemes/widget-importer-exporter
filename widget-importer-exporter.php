@@ -43,7 +43,7 @@ class Widget_Importer_Exporter {
 	/**
 	 * Constructor
 	 *
-	 * Add actions for methods that set constants, load translation and load includes.
+	 * Add actions for methods that define constants, load translation and load includes.
 	 *
 	 * @since 0.1
 	 * @access public
@@ -103,7 +103,6 @@ class Widget_Importer_Exporter {
 
 		// Plugin details
 		define( 'WIE_VERSION', 		$this->plugin_data['Version'] );					// plugin version
-		define( 'WIE_NAME', 		$this->plugin_data['Name'] );						// plugin name
 		define( 'WIE_FILE', 		__FILE__ );											// plugin's main file path
 		define( 'WIE_DIR', 			dirname( plugin_basename( WIE_FILE ) ) );			// plugin's directory
 		define( 'WIE_PATH',			untrailingslashit( plugin_dir_path( WIE_FILE ) ) );	// plugin's directory path
@@ -112,7 +111,6 @@ class Widget_Importer_Exporter {
 		// Directories
 		define( 'WIE_INC_DIR',		'includes' );	// includes directory
 		define( 'WIE_CSS_DIR', 		'css' );		// stylesheets directory
-		define( 'WIE_JS_DIR', 		'js' );			// JavaScript directory
 		define( 'WIE_LANG_DIR', 	'languages' );	// languages directory
 
 	}

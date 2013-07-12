@@ -11,11 +11,7 @@
 	font-weight: bold;
 }
 
-/* Widget name */
-
-.wie-import-results-widget-name {
-
-}
+/* Widget instance title */
 
 .wie-import-results-widget-title {
 	font-style: italic;
@@ -23,12 +19,8 @@
 
 /* Message (sidebar and widget) */
 
-.wie-import-results-message {
-
-}
-
 .wie-import-results-message-success {
-	color: green;
+	color: #1c8a1f;
 }
 
 .wie-import-results-message-warning {
@@ -36,7 +28,7 @@
 }
 
 .wie-import-results-message-error {
-	color: red;
+	color: #cc2626;
 }
 
 /* Empty row after each sidebar/widget set */

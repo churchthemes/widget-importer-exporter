@@ -13,10 +13,6 @@
 // No direct access
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/******************************************
- * IMPORT/EXPORT CONTROLS
- ******************************************/
-
 /**
  * Add import/export page under Tools
  *
@@ -35,7 +31,7 @@ function wie_add_import_export_page() {
 		'wie_import_export_page_content' // callback for displaying page content
 	);
 
-	// Enqueue Stylesheet
+	// Enqueue stylesheet
  	add_action( 'admin_print_styles-' . $page_hook, 'wie_enqueue_styles' );
 
 }
@@ -43,12 +39,12 @@ function wie_add_import_export_page() {
 add_action( 'admin_menu', 'wie_add_import_export_page' ); // register post type
 
 /**
- * Enqueue Stylesheets for import/export page
+ * Enqueue stylesheets for import/export page
  *
  * @since 0.1
  */
 function wie_enqueue_styles() {
-	wp_enqueue_style( 'wie-main', WIE_URL . '/css/style.css', false, WIE_VERSION ); // bust cache on update
+	wp_enqueue_style( 'wie-main', WIE_URL . '/' . WIE_CSS_DIR . '/style.css', false, WIE_VERSION ); // bust cache on update
 }
 
 /**

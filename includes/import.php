@@ -37,7 +37,7 @@ function wie_upload_import_file() {
 			);
 		}
 
-		// Check and move file to uploads dir
+		// Check and move file to uploads dir, get file data
 		// Will show die with WP errors if necessary (file too large, quota exceeded, etc.)
 		$overrides = array( 'test_form' => false );
 		$file_data = wp_handle_upload( $uploaded_file, $overrides );
@@ -61,7 +61,7 @@ add_action( 'load-tools_page_widget-importer-exporter', 'wie_upload_import_file'
 /**
  * Process import file
  *
- * This parses a file and imports its widgets.
+ * This parses a file and triggers importation of its widgets.
  *
  * @since 0.3
  * @param string $file Path to .wie file uploaded
