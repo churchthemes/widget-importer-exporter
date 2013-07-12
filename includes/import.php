@@ -99,7 +99,7 @@ function wie_process_import_file( $file ) {
  * @since 0.4
  * @global array $wp_registered_sidebars
  * @param object $data JSON widget data from .wie file
- * @return string Results HTML
+ * @return array Results array
  */
 function wie_import_data( $data ) {
 
@@ -119,7 +119,7 @@ function wie_import_data( $data ) {
 	$available_widgets = wie_available_widgets();
 
 	// Begin results
-	$results = '';
+	$results = array();
 
 	// Loop import data's sidebars
 	foreach ( $data as $sidebar_id => $widgets ) {
@@ -137,24 +137,24 @@ function wie_import_data( $data ) {
 			$sidebar_message = '';
 		} else {
 			$sidebar_available = false;
-			$sidebar_message = __( 'Current theme does not support this sidebar. Widgets will be imported as Inactive.' );
+			$sidebar_message = __( 'Theme does not support sidebar', 'widget-importer-exporter' );
 		}
 
-		$results .= '<p>';
-
-		// Result for this sidebar
-		/* translators: %1$s is sidebar name, %2$s is result message */
-		$results .= sprintf(
-			__( '<b>%1$s</b> - <i>%2$s</i>', 'widget-importer-exporter' ),
-			! empty( $wp_registered_sidebars[$sidebar_id]['name'] ) ? $wp_registered_sidebars[$sidebar_id]['name'] : $sidebar_id, // show sidebar name if site has sidebar
-			$sidebar_message
-		);
+		// Result for sidebar
+		$results[$sidebar_id]['name'] = ! empty( $wp_registered_sidebars[$sidebar_id]['name'] ) ? $wp_registered_sidebars[$sidebar_id]['name'] : $sidebar_id; // show sidebar name if site has sidebar
+		$results[$sidebar_id]['message'] = $sidebar_message;
 
 		// Loop widgets
 		foreach ( $widgets as $widget_instance_id => $widget ) {
 
 			$fail = false;
-			$widget_message = 'Imported successfully';
+
+			// Default success message
+			if ( $sidebar_available ) {
+				$widget_message = __( 'Imported', 'widget-importer-exporter' );
+			} else {
+				$widget_message = __( 'Imported to Inactive', 'widget-importer-exporter' );
+			}
 
 			// Get id_base (remove -# from end) and instance ID number
 			$id_base = preg_replace( '/-[0-9]+$/', '', $widget_instance_id );
@@ -163,7 +163,7 @@ function wie_import_data( $data ) {
 			// Does site support this widget?
 			if ( ! $fail && ! isset( $available_widgets[$id_base] ) ) {
 				$fail = true;
-				$widget_message = __( 'Site does not support this widget', 'widget-importer-exporter' ); // explain why widget not imported
+				$widget_message = __( 'Site does not support widget', 'widget-importer-exporter' ); // explain why widget not imported
 			}
 
 			// Does widget with identical settings already exist in same sidebar?
@@ -177,20 +177,12 @@ function wie_import_data( $data ) {
 
 				// Remember if $sidebar_available is FALSE, add to INACTIVE sidebarwp_inactive_widgets
 
-			// Result for this widget instance composed of instance title and widget name or ID
-			/* translators: %1$s is widget instance title, %2$s is widget name or ID, %3$s is result message */
-			$instance_result = sprintf(
-				__( '<b>%1$s</b> (%2$s) - <i>%3$s</i>', 'widget-importer-exporter' ),
-				$widget->title ? $widget->title : __( 'No Title', 'widget-importer-exporter' ), // show "No Title" if widget instance is untitled
-				isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base, // widget name or ID if name not available (not supported by site)
-				$widget_message
-			);
-
-			$results .= '<div class="wie-results-widget">' . $instance_result . '</div>';
+			// Result for widget instance
+			$results[$sidebar_id]['widgets'][$widget_instance_id]['widget_name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
+			$results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = $widget->title ? $widget->title : __( 'No Title', 'widget-importer-exporter' ); // show "No Title" if widget instance is untitled
+			$results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 
 		}
-
-		$results .= '</p>';
 
 	}
 
@@ -249,7 +241,7 @@ function wie_show_import_results() {
 	</p>
 
 	<p>
-		<?php echo $wie_import_results; ?>
+		<pre><?php print_r( $wie_import_results ); ?></pre>
 	</p>
 
 	<?php
