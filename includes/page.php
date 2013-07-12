@@ -151,7 +151,7 @@ function wie_show_import_results() {
 	<p>
 		<?php
 		printf(
-			__( 'You can manage <a href="%s">Widgets</a> or <a href="%s">Go Back</a>.', 'widget-importer-exporter' ),
+			__( 'You can manage your <a href="%s">Widgets</a> or <a href="%s">Go Back</a>.', 'widget-importer-exporter' ),
 			admin_url( 'widgets.php' ),
 			admin_url( basename( $_SERVER['PHP_SELF'] ) . '?page=' . $_GET['page'] )
 		);

@@ -115,6 +115,9 @@ function wie_import_data( $data ) {
 		);
 	}
 
+	// Hook before import
+	do_action( 'wie_before_import' );
+
 	// Get all available widgets site supports
 	$available_widgets = wie_available_widgets();
 
@@ -238,6 +241,9 @@ function wie_import_data( $data ) {
 		}
 
 	}
+
+	// Hook after import
+	do_action( 'wie_after_import' );
 
 	// Return results
 	return apply_filters( 'wie_import_results', $results );
