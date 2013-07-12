@@ -14,7 +14,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /******************************************
- * IMPORT/EXPORT PAGE
+ * IMPORT/EXPORT CONTROLS
  ******************************************/
 
 /**
@@ -110,6 +110,67 @@ function wie_import_export_page_content() {
 		</p>
 
 	</div>
+
+	<?php
+
+}
+
+/******************************************
+ * IMPORT RESULTS
+ ******************************************/
+
+/**
+ * Have import results to show?
+ * 
+ * @since 0.3
+ * @global string $wie_import_results
+ * @return bool True if have import results to show
+ */
+function wie_have_import_results() {
+
+	global $wie_import_results;
+
+	if ( ! empty( $wie_import_results ) ) {
+		return true;
+	}
+
+	return false;
+
+}
+
+/**
+ * Show import results
+ *
+ * This is shown in place of import/export page's regular content.
+ *
+ * @since 0.3
+ * @global string $wie_import_results
+ */
+function wie_show_import_results() {
+
+	global $wie_import_results;
+
+	if ( ! wie_have_import_results() ) {
+		return;
+	}
+
+	?>
+
+	<h3 class="title"><?php _e( 'Import Results', 'widget-importer-exporter' ); ?></h3>
+
+	<p>
+		<?php
+		printf(
+			__( 'You can manage <a href="%s">Widgets</a> or <a href="%s">Go Back</a>.', 'widget-importer-exporter' ),
+			admin_url( 'widgets.php' ),
+			admin_url( basename( $_SERVER['PHP_SELF'] ) . '?page=' . $_GET['page'] )
+		);
+		?>
+	</p>
+
+	<p>
+		<pre><?php print_r( $wie_import_results ); ?></pre>
+	</p>
 
 	<?php
 
