@@ -178,7 +178,7 @@ function wie_import_data( $data ) {
 
 				// Get existing widgets in this sidebar
 				$sidebars_widgets = get_option( 'sidebars_widgets' );
-				$sidebar_widgets = $sidebars_widgets[$sidebar_id];
+				$sidebar_widgets = isset( $sidebars_widgets[$sidebar_id] ) ? $sidebars_widgets[$sidebar_id] : array();
 
 				// Loop widgets with ID base
 				$single_widget_instances = ! empty( $widget_instances[$id_base] ) ? $widget_instances[$id_base] : array();
