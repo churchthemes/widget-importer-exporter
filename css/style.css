@@ -19,6 +19,10 @@
 
 /* Message (sidebar and widget) */
 
+.wie-import-results-sidebar .wie-import-results-message {
+	font-weight: bold;
+}
+
 .wie-import-results-message-success {
 	color: #1c8a1f;
 }
