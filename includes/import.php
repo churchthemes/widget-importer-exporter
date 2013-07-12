@@ -143,10 +143,12 @@ function wie_import_data( $data ) {
 		// Otherwise add widgets to inactive, and say so
 		if ( isset( $wp_registered_sidebars[$sidebar_id] ) ) {
 			$sidebar_available = true;
+			$use_sidebar_id = $sidebar_id;
 			$sidebar_message_type = 'success';
 			$sidebar_message = '';
 		} else {
 			$sidebar_available = false;
+			$use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
 			$sidebar_message_type = 'error';
 			$sidebar_message = __( 'Sidebar does not exist in theme', 'widget-importer-exporter' );
 		}
@@ -178,7 +180,7 @@ function wie_import_data( $data ) {
 
 				// Get existing widgets in this sidebar
 				$sidebars_widgets = get_option( 'sidebars_widgets' );
-				$sidebar_widgets = isset( $sidebars_widgets[$sidebar_id] ) ? $sidebars_widgets[$sidebar_id] : array();
+				$sidebar_widgets = isset( $sidebars_widgets[$use_sidebar_id] ) ? $sidebars_widgets[$use_sidebar_id] : array(); // check Inactive if that's where will go
 
 				// Loop widgets with ID base
 				$single_widget_instances = ! empty( $widget_instances[$id_base] ) ? $widget_instances[$id_base] : array();
@@ -217,7 +219,6 @@ function wie_import_data( $data ) {
 				// Assign widget instance to sidebar
 				$sidebars_widgets = get_option( 'sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
 				$new_instance_id = $id_base . '-' . $new_instance_id_number; // use ID number from new widget instance
-				$use_sidebar_id = $sidebar_available ? $sidebar_id : 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
 				$sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
 				update_option( 'sidebars_widgets', $sidebars_widgets ); // save the amended data
 
