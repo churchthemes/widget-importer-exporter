@@ -142,7 +142,7 @@ function wie_show_import_results() {
 
 	?>
 
-	<h3 class="title"><?php _e( 'Import Results', 'widget-importer-exporter' ); ?></h3>
+	<h3 class="title"><?php _ex( 'Import Results', 'heading', 'widget-importer-exporter' ); ?></h3>
 
 	<p>
 		<?php

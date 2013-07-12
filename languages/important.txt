@@ -1,0 +1,6 @@
+Do not add your own translations to this directory. They will be lost during plugin updates.
+The only .mo files that should be loaded from here are pre-made translations that come with
+the plugin (if any are included).
+
+Store your translations at wp-content/languages/plugins/widget-importer-exporter-$locale.mo
+(e.g. widget-importer-exporter-en_US.mo) to keep them safe from loss during updates.
