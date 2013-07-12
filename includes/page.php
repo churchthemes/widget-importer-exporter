@@ -115,10 +115,6 @@ function wie_import_export_page_content() {
 
 }
 
-/******************************************
- * IMPORT RESULTS
- ******************************************/
-
 /**
  * Have import results to show?
  * 
@@ -150,10 +146,6 @@ function wie_show_import_results() {
 
 	global $wie_import_results;
 
-	if ( ! wie_have_import_results() ) {
-		return;
-	}
-
 	?>
 
 	<h3 class="title"><?php _e( 'Import Results', 'widget-importer-exporter' ); ?></h3>
@@ -168,9 +160,46 @@ function wie_show_import_results() {
 		?>
 	</p>
 
-	<p>
-		<pre><?php print_r( $wie_import_results ); ?></pre>
-	</p>
+	<table id="wie-import-results">
+
+		<?php
+		// Loop sidebars
+		$results = $wie_import_results;
+		foreach ( $results as $sidebar ) :
+		?>
+
+			<tr>
+				<td colspan="2" class="wie-import-results-sidebar-name">
+					<?php echo $sidebar['name']; // sidebar name if theme supports it; otherwise ID ?>
+				</td>
+				<td class="wie-import-results-sidebar-message wie-import-results-sidebar-message-<?php echo $sidebar['message-type']; ?>">
+					<?php echo $sidebar['message']; // sidebar may not exist in theme ?>
+				</td>
+			</tr>
+
+			<?php
+			// Loop widgets
+			foreach ( $sidebar['widgets'] as $widget ) :
+			?>
+
+			<tr>
+				<td class="wie-import-results-widget-name">
+					<?php echo $widget['name']; // widget name or ID if name not available (not supported by site) ?>
+				</td>
+				<td class="wie-import-results-widget-title">
+					<?php echo $widget['title']; // shows "No Title" if widget instance is untitled ?>
+				</td>
+				<td class="wie-import-results-widget-message wie-import-results-widget-message-<?php echo $widget['message-type']; ?>">
+					<?php echo $widget['message']; // sidebar may not exist in theme ?>
+				</td>
+			</tr>
+
+			<?php endforeach; ?>
+
+
+		<?php endforeach; ?>
+
+	</table>
 
 	<?php
 
