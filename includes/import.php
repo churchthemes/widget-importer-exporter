@@ -134,12 +134,12 @@ function wie_import_data( $data ) {
 		// Otherwise add widgets to inactive, and say so
 		if ( isset( $wp_registered_sidebars[$sidebar_id] ) ) {
 			$sidebar_available = true;
-			$sidebar_message_type = 'standard';
+			$sidebar_message_type = 'success';
 			$sidebar_message = '';
 		} else {
 			$sidebar_available = false;
 			$sidebar_message_type = 'error';
-			$sidebar_message = __( 'Theme does not support sidebar', 'widget-importer-exporter' );
+			$sidebar_message = __( 'Sidebar does not exist in theme', 'widget-importer-exporter' );
 		}
 
 		// Result for sidebar
@@ -155,10 +155,10 @@ function wie_import_data( $data ) {
 
 			// Default success message
 			if ( $sidebar_available ) {
-				$widget_message_type = 'standard';
+				$widget_message_type = 'success';
 				$widget_message = __( 'Imported', 'widget-importer-exporter' );
 			} else {
-				$widget_message_type = 'info';
+				$widget_message_type = 'warning';
 				$widget_message = __( 'Imported to Inactive', 'widget-importer-exporter' );
 			}
 
@@ -177,7 +177,7 @@ function wie_import_data( $data ) {
 			$instances = get_option( 'widget_' . $id_base ); // get all instances for this ID base
 			if ( ! $fail && isset( $instances[$instance_id_number] ) && (array) $widget == $instances[$instance_id_number] ) {
 				$fail = true;
-				$widget_message_type = 'info';
+				$widget_message_type = 'warning';
 				$widget_message = __( 'Widget already exists', 'widget-importer-exporter' ); // explain why widget not imported
 			}
 

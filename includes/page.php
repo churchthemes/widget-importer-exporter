@@ -166,11 +166,11 @@ function wie_show_import_results() {
 		foreach ( $results as $sidebar ) :
 		?>
 
-			<tr>
+			<tr class="wie-import-results-sidebar">
 				<td colspan="2" class="wie-import-results-sidebar-name">
 					<?php echo $sidebar['name']; // sidebar name if theme supports it; otherwise ID ?>
 				</td>
-				<td class="wie-import-results-sidebar-message wie-import-results-sidebar-message-<?php echo $sidebar['message-type']; ?>">
+				<td class="wie-import-results-sidebar-message wie-import-results-message wie-import-results-message-<?php echo $sidebar['message_type']; ?>">
 					<?php echo $sidebar['message']; // sidebar may not exist in theme ?>
 				</td>
 			</tr>
@@ -180,20 +180,23 @@ function wie_show_import_results() {
 			foreach ( $sidebar['widgets'] as $widget ) :
 			?>
 
-			<tr>
+			<tr class="wie-import-results-widget">
 				<td class="wie-import-results-widget-name">
 					<?php echo $widget['name']; // widget name or ID if name not available (not supported by site) ?>
 				</td>
 				<td class="wie-import-results-widget-title">
 					<?php echo $widget['title']; // shows "No Title" if widget instance is untitled ?>
 				</td>
-				<td class="wie-import-results-widget-message wie-import-results-widget-message-<?php echo $widget['message-type']; ?>">
+				<td class="wie-import-results-widget-message wie-import-results-message wie-import-results-message-<?php echo $widget['message_type']; ?>">
 					<?php echo $widget['message']; // sidebar may not exist in theme ?>
 				</td>
 			</tr>
 
 			<?php endforeach; ?>
 
+			<tr class="wie-import-results-space">
+				<td colspan="100%"></td>
+			</tr>
 
 		<?php endforeach; ?>
 
