@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Add import/export page under Tools
  *
- * Also enqueue JavaScript for this page only.
+ * Also enqueue Stylesheet for this page only.
  *
  * @since 0.1
  */
@@ -35,23 +35,21 @@ function wie_add_import_export_page() {
 		'wie_import_export_page_content' // callback for displaying page content
 	);
 
-	// Enqueue JavaScript
- 	add_action( 'admin_print_scripts-' . $page_hook, 'wie_enqueue_import_export_scripts' );
+	// Enqueue Stylesheet
+ 	add_action( 'admin_print_styles-' . $page_hook, 'wie_enqueue_styles' );
 
 }
 
 add_action( 'admin_menu', 'wie_add_import_export_page' ); // register post type
 
 /**
- * Enqueue JavaScript for import/export page
+ * Enqueue Stylesheets for import/export page
  *
  * @since 0.1
  */
-function wie_enqueue_import_export_scripts() {
-	wp_enqueue_script( 'wie-main', WIE_URL . '/js/import-export.js', array( 'jquery' ), WIE_VERSION ); // bust cache on update
+function wie_enqueue_styles() {
+	wp_enqueue_style( 'wie-main', WIE_URL . '/css/style.css', false, WIE_VERSION ); // bust cache on update
 }
-
-add_action( 'wp_enqueue_scripts', 'wie_enqueue_scripts' );
 
 /**
  * Import/export page content
