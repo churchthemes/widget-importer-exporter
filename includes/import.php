@@ -118,6 +118,12 @@ function wie_import_data( $data ) {
 	// Get all available widgets site supports
 	$available_widgets = wie_available_widgets();
 
+	// Get all existing widget instances
+	$widget_instances = array();
+	foreach ( $available_widgets as $widget_data ) {
+		$widget_instances[$widget_data['id_base']] = get_option( 'widget_' . $widget_data['id_base'] );
+	}
+
 	// Begin results
 	$results = array();
 
@@ -153,15 +159,6 @@ function wie_import_data( $data ) {
 
 			$fail = false;
 
-			// Default success message
-			if ( $sidebar_available ) {
-				$widget_message_type = 'success';
-				$widget_message = __( 'Imported', 'widget-importer-exporter' );
-			} else {
-				$widget_message_type = 'warning';
-				$widget_message = __( 'Imported to Inactive', 'widget-importer-exporter' );
-			}
-
 			// Get id_base (remove -# from end) and instance ID number
 			$id_base = preg_replace( '/-[0-9]+$/', '', $widget_instance_id );
 			$instance_id_number = str_replace( $id_base . '-', '', $widget_instance_id );
@@ -174,17 +171,63 @@ function wie_import_data( $data ) {
 			}
 
 			// Does widget with identical settings already exist in same sidebar?
-			$instances = get_option( 'widget_' . $id_base ); // get all instances for this ID base
-			if ( ! $fail && isset( $instances[$instance_id_number] ) && (array) $widget == $instances[$instance_id_number] ) {
-				$fail = true;
-				$widget_message_type = 'warning';
-				$widget_message = __( 'Widget already exists', 'widget-importer-exporter' ); // explain why widget not imported
+			if ( ! $fail && isset( $widget_instances[$id_base] ) ) {
+
+				// Get existing widgets in this sidebar
+				$sidebars_widgets = get_option( 'sidebars_widgets' );
+				$sidebar_widgets = $sidebars_widgets[$sidebar_id];
+
+				// Loop widgets with ID base
+				$single_widget_instances = ! empty( $widget_instances[$id_base] ) ? $widget_instances[$id_base] : array();
+				foreach ( $single_widget_instances as $check_id => $check_widget ) {
+
+					// Is widget in same sidebar and has identical settings?
+					if ( in_array( "$id_base-$check_id", $sidebar_widgets ) && (array) $widget == $check_widget ) {
+
+						$fail = true;
+						$widget_message_type = 'warning';
+						$widget_message = __( 'Widget already exists', 'widget-importer-exporter' ); // explain why widget not imported
+
+						break;
+
+					}
+	
+				}
+
 			}
 
-			// Add widget to sidebar
+			// No failure
+			if ( ! $fail ) {
 
-				// Remember if $sidebar_available is FALSE, add to INACTIVE sidebarwp_inactive_widgets
+				// Add widget instance
+				$single_widget_instances = get_option( 'widget_' . $id_base ); // all instances for that widget ID base, get fresh every time
+				$single_widget_instances = ! empty( $single_widget_instances ) ? $single_widget_instances : array( '_multiwidget' => 1 ); // start fresh if have to
+				$single_widget_instances[] = (array) $widget; // add it
 
+					// Get the key it was given
+					end( $single_widget_instances );
+					$new_instance_id_number = key( $single_widget_instances );
+
+					// Update option with new widget
+					update_option( 'widget_' . $id_base, $single_widget_instances );
+
+				// Assign widget instance to sidebar
+				$sidebars_widgets = get_option( 'sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
+				$new_instance_id = $id_base . '-' . $new_instance_id_number; // use ID number from new widget instance
+				$use_sidebar_id = $sidebar_available ? $sidebar_id : 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
+				$sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
+				update_option( 'sidebars_widgets', $sidebars_widgets ); // save the amended data
+
+				// Success message
+				if ( $sidebar_available ) {
+					$widget_message_type = 'success';
+					$widget_message = __( 'Imported', 'widget-importer-exporter' );
+				} else {
+					$widget_message_type = 'warning';
+					$widget_message = __( 'Imported to Inactive', 'widget-importer-exporter' );
+				}
+
+			}
 
 			// Result for widget instance
 			$results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)

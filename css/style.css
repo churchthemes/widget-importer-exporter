@@ -14,22 +14,25 @@
 /* Widget name */
 
 .wie-import-results-widget-name {
-	font-weight: bold;
-	color: #888;
+
+}
+
+.wie-import-results-widget-title {
+	font-style: italic;
 }
 
 /* Message (sidebar and widget) */
 
 .wie-import-results-message {
-	font-style: italic;
+
 }
 
 .wie-import-results-message-success {
 	color: green;
 }
 
-.wie-import-results-message-info {
-	color: orange;
+.wie-import-results-message-warning {
+	color: #eb860f;
 }
 
 .wie-import-results-message-error {
