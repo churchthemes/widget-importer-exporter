@@ -87,8 +87,26 @@ function wie_process_import_file( $file ) {
 	// Delete import file
 	unlink( $file );
 
+	// Import the widget data
+	// Make results available for display on import/export page
+	$wie_import_results = wie_import_data( $data );
+
+}
+
+/**
+ * Import widget JSON data
+ * 
+ * @since 0.4
+ * @global array $wp_registered_sidebars
+ * @param object $data JSON widget data from .wie file
+ * @return string Results HTML
+ */
+function wie_import_data( $data ) {
+
+	global $wp_registered_sidebars;
+
 	// Have valid data?
-	// If no data or could not decode
+	// If no data or could was not decoded
 	if ( empty( $data ) || ! is_object( $data ) ) {
 		wp_die(
 			__( 'Import data could not be read. Please try a different file.', 'widget-importer-exporter' ),
@@ -97,16 +115,88 @@ function wie_process_import_file( $file ) {
 		);
 	}
 
-	// Loop sidebars
-	foreach ( $data as $sidebar => $widgets ) {
+	// Get all available widgets site supports
+	$available_widgets = wie_available_widgets();
+
+	// Begin results
+	$results = '';
+
+	// Loop import data's sidebars
+	foreach ( $data as $sidebar_id => $widgets ) {
+
+		// Skip inactive widgets
+		// (should not be in export file)
+		if ( 'wp_inactive_widgets' == $sidebar_id ) {
+			continue;
+		}
+
+		// Check if sidebar is available on this site
+		// Otherwise add widgets to inactive, and say so
+		if ( isset( $wp_registered_sidebars[$sidebar_id] ) ) {
+			$sidebar_available = true;
+			$sidebar_message = '';
+		} else {
+			$sidebar_available = false;
+			$sidebar_message = __( 'Current theme does not support this sidebar. Widgets will be imported as Inactive.' );
+		}
+
+		$results .= '<p>';
+
+		// Result for this sidebar
+		/* translators: %1$s is sidebar name, %2$s is result message */
+		$results .= sprintf(
+			__( '<b>%1$s</b> - <i>%2$s</i>', 'widget-importer-exporter' ),
+			! empty( $wp_registered_sidebars[$sidebar_id]['name'] ) ? $wp_registered_sidebars[$sidebar_id]['name'] : $sidebar_id, // show sidebar name if site has sidebar
+			$sidebar_message
+		);
 
 		// Loop widgets
+		foreach ( $widgets as $widget_instance_id => $widget ) {
 
+			$fail = false;
+			$widget_message = 'Imported successfully';
+
+			// Get id_base (remove -# from end) and instance ID number
+			$id_base = preg_replace( '/-[0-9]+$/', '', $widget_instance_id );
+			$instance_id_number = str_replace( $id_base . '-', '', $widget_instance_id );
+
+			// Does site support this widget?
+			if ( ! $fail && ! isset( $available_widgets[$id_base] ) ) {
+				$fail = true;
+				$widget_message = __( 'Site does not support this widget', 'widget-importer-exporter' ); // explain why widget not imported
+			}
+
+			// Does widget with identical settings already exist in same sidebar?
+			$instances = get_option( 'widget_' . $id_base ); // get all instances for this ID base
+			if ( ! $fail && isset( $instances[$instance_id_number] ) && (array) $widget == $instances[$instance_id_number] ) {
+				$fail = true;
+				$widget_message = __( 'Widget already exists', 'widget-importer-exporter' ); // explain why widget not imported
+			}
+
+			// Add widget to sidebar
+
+				// Remember if $sidebar_available is FALSE, add to INACTIVE sidebarwp_inactive_widgets
+
+			// Result for this widget instance composed of instance title and widget name or ID
+			/* translators: %1$s is widget instance title, %2$s is widget name or ID, %3$s is result message */
+			$instance_result = sprintf(
+				__( '<b>%1$s</b> (%2$s) - <i>%3$s</i>', 'widget-importer-exporter' ),
+				$widget->title ? $widget->title : __( 'No Title', 'widget-importer-exporter' ), // show "No Title" if widget instance is untitled
+				isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base, // widget name or ID if name not available (not supported by site)
+				$widget_message
+			);
+
+			$results .= '<div class="wie-results-widget">' . $instance_result . '</div>';
+
+		}
+
+		$results .= '</p>';
 
 	}
 
-	// Make results available for display on import/export page
-	$wie_import_results = print_r( $data, true );
+	// Return results
+	return apply_filters( 'wie_import_results', $results );
+
 }
 
 /**
