@@ -53,7 +53,6 @@ function wie_enqueue_import_export_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'wie_enqueue_scripts' );
 
-
 /**
  * Import/export page content
  *
@@ -68,6 +67,14 @@ function wie_import_export_page_content() {
 		<?php screen_icon(); ?>
 
 		<h2><?php _e( 'Widget Importer & Exporter', 'widget-importer-exporter' ); ?></h2>
+
+		<?php
+		// Show import results if have them
+		if ( wie_have_import_results() ) {
+			wie_show_import_results();
+			return; // don't show content below
+		}
+		?>
 
 		<h3 class="title"><?php _ex( 'Import Widgets', 'heading', 'widget-importer-exporter' ); ?></h3>
 
@@ -84,6 +91,13 @@ function wie_import_export_page_content() {
 			<?php submit_button( _x( 'Import Widgets', 'button', 'widget-importer-exporter' ) ); ?>
 
 		</form>
+
+		<?php if ( ! empty( $wie_import_results ) ) : ?>
+			<p id="wie-import-results">
+				<?php echo $wie_import_results; ?>
+			</p>
+			<br />
+		<?php endif; ?>
 
 		<h3 class="title"><?php _ex( 'Export Widgets', 'heading', 'widget-importer-exporter' ); ?></h3>
 
