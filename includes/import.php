@@ -106,7 +106,7 @@ function wie_import_data( $data ) {
 	global $wp_registered_sidebars;
 
 	// Have valid data?
-	// If no data or could was not decoded
+	// If no data or could not decode
 	if ( empty( $data ) || ! is_object( $data ) ) {
 		wp_die(
 			__( 'Import data could not be read. Please try a different file.', 'widget-importer-exporter' ),
@@ -150,7 +150,7 @@ function wie_import_data( $data ) {
 			$sidebar_available = false;
 			$use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
 			$sidebar_message_type = 'error';
-			$sidebar_message = __( 'Sidebar does not exist in theme', 'widget-importer-exporter' );
+			$sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'widget-importer-exporter' );
 		}
 
 		// Result for sidebar
