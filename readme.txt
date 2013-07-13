@@ -32,7 +32,7 @@ Please jump on [GitHub](https://github.com/stevengliebe/widget-importer-exporter
 
 Please see [Installing Plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins) in the WordPress Codex.
 
-After activation, go to *Tools > Import/Export Widgets*
+After activation, go to *Tools > Widget Import/Export*
 
 == Screenshots ==
 
