@@ -60,4 +60,4 @@ After activation, go to *Tools > Import/Export Widgets*
 * Minor clean up
 
 = 0.1 =
-* First release - export onl
+* First release - export only
