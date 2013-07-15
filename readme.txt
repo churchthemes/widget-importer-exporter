@@ -36,8 +36,8 @@ After activation, go to *Tools > Widget Import/Export*
 
 == Screenshots ==
 
-1. The main import/export screen.
-2. Results from an import.
+1. Main import/export screen
+2. Results from an import
 
 == Changelog ==
 
