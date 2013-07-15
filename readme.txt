@@ -3,7 +3,7 @@ Contributors: stevengliebe, churchthemes
 Tags: widgets, widget, importer, exporter, import, export, backup
 Requires at least: 3.5
 Tested up to: 3.5.2
-Stable tag: 0.7
+Stable tag: 0.8
 License: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 Import and export your widgets.
@@ -24,7 +24,7 @@ Widget Importer & Exporter can create an export file (in JSON format with .wie e
 
 = Developers =
 
-The ``wie_before_import`` action fires after a file is uploaded but before the data is imported. ``wie_after_import`` fires after the data is imported. Various filters are used throughout (browse the code). Let me know if you need more actions or filters.
+The ``wie_before_import`` action fires after a file is uploaded but before the data is imported. ``wie_after_import`` fires after the data is imported. Other filters are used throughout. Let me know if you need more actions or filters.
 
 Please jump on [GitHub](https://github.com/stevengliebe/widget-importer-exporter) to report issues and follow development.
 
@@ -40,6 +40,9 @@ After activation, go to *Tools > Widget Import/Export*
 2. Results from an import
 
 == Changelog ==
+
+= 0.8 =
+* Add wie_widget_settings filter
 
 = 0.7 =
 * Various fixes, improvements
