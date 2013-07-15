@@ -175,6 +175,10 @@ function wie_import_data( $data ) {
 				$widget_message = __( 'Site does not support widget', 'widget-importer-exporter' ); // explain why widget not imported
 			}
 
+			// Filter to modify settings before import
+			// Do before identical check because changes may make it identical to end result (such as URL replacements)
+			$widget = apply_filters( 'wie_widget_settings', $widget );
+
 			// Does widget with identical settings already exist in same sidebar?
 			if ( ! $fail && isset( $widget_instances[$id_base] ) ) {
 
