@@ -2,7 +2,7 @@
 Contributors: stevengliebe, churchthemes
 Tags: widgets, widget, importer, exporter, import, export, backup
 Requires at least: 3.5
-Tested up to: 3.5.2
+Tested up to: 3.6
 Stable tag: trunk
 License: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -48,26 +48,4 @@ After activation, go to *Tools > Widget Import/Export*
 
 == Changelog ==
 
-= 0.8 =
-* Add wie_widget_settings filter
-
-= 0.7 =
-* Various fixes, improvements
-
-= 0.6 =
-* Import hooks, translation file, code clean up
-
-= 0.5 =
-* Finished importing
-
-= 0.4 =
-* Import error checking and results table
-
-= 0.3 =
-* Uploading finished
-
-= 0.2 =
-* Minor clean up
-
-= 0.1 =
-* First release - export only
+See [release tags](https://github.com/stevengliebe/widget-importer-exporter/tags) on GitHub.
