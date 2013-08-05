@@ -22,6 +22,13 @@ Importation takes into consideration sidebars not existing in the current theme 
 
 Widget Importer & Exporter can create an export file (in JSON format with .wie extension) out of currently active widgets. This file can be imported into other sites using this plugin or used to restore widgets to the same site later.
 
+= Translations =
+
+The following translations are included.
+
+* English (default)
+* Spanish (es_ES) by [Eduardo Larequi](http://www.labitacoradeltigre.com/)
+
 = Developers =
 
 The ``wie_before_import`` action fires after a file is uploaded but before the data is imported. ``wie_after_import`` fires after the data is imported. Other filters are used throughout. Let me know if you need more actions or filters.
