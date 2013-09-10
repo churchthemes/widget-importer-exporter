@@ -48,4 +48,4 @@ After activation, go to *Tools > Widget Import/Export*
 
 == Changelog ==
 
-See [release tags](https://github.com/stevengliebe/widget-importer-exporter/tags) on GitHub.
+See [releases](https://github.com/stevengliebe/widget-importer-exporter/releases) on GitHub.
