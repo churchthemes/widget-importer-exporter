@@ -217,6 +217,14 @@ function wie_import_data( $data ) {
 					end( $single_widget_instances );
 					$new_instance_id_number = key( $single_widget_instances );
 
+					// If key is 0, make it 1
+					// When 0, an issue can occur where adding a widget causes data from other widget to load, and the widget doesn't stick (reload wipes it)
+					if ( '0' === strval( $new_instance_id_number ) ) {
+						$new_instance_id_number = 1;
+						$single_widget_instances[$new_instance_id_number] = $single_widget_instances[0];
+						unset( $single_widget_instances[0] );
+					}
+
 					// Move _multiwidget to end of array for uniformity
 					if ( isset( $single_widget_instances['_multiwidget'] ) ) {
 						$multiwidget = $single_widget_instances['_multiwidget'];
