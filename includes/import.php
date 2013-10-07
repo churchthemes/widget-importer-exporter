@@ -217,6 +217,13 @@ function wie_import_data( $data ) {
 					end( $single_widget_instances );
 					$new_instance_id_number = key( $single_widget_instances );
 
+					// Move _multiwidget to end of array for uniformity
+					if ( isset( $single_widget_instances['_multiwidget'] ) ) {
+						$multiwidget = $single_widget_instances['_multiwidget'];
+						unset( $single_widget_instances['_multiwidget'] );
+						$single_widget_instances['_multiwidget'] = $multiwidget;
+					}
+
 					// Update option with new widget
 					update_option( 'widget_' . $id_base, $single_widget_instances );
 
