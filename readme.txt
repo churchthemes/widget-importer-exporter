@@ -2,7 +2,7 @@
 Contributors: stevengliebe, churchthemes
 Tags: widgets, widget, importer, exporter, import, export, backup
 Requires at least: 3.5
-Tested up to: 3.6
+Tested up to: 3.7
 Stable tag: trunk
 License: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
