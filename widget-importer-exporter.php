@@ -123,11 +123,7 @@ class Widget_Importer_Exporter {
 	 * 
 	 * First it will check to see if the MO file exists in wp-content/languages/plugins.
 	 * If not, then the 'languages' direcory inside the plugin will be used.
-	 * It is ideal to keep translation files outside of the plugin to avoid loss during updates.
-	 *
-	 * To Do: load_plugin_textdomain() will presumably be updated as load_theme_textdomain() was to 
-	 * natively support external loading from WP_LANG_DIR. When this is so, simplify this function.
-	 * http://core.trac.wordpress.org/changeset/22346
+	 * It is ideal to keep translation files outside of the plugin to avoid loss during updates.\
 	 *
 	 * @since 0.1
 	 * @access public
@@ -140,15 +136,15 @@ class Widget_Importer_Exporter {
 		// WordPress core locale filter
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
-		// Does external MO file exist? Load it
-		// This is ideal since it is not wiped out by plugin updates
+		// WordPress 3.6 and earlier don't auto-load from wp-content/languages, so check and load manually
+		// http://core.trac.wordpress.org/changeset/22346
 		$external_mofile = WP_LANG_DIR . '/plugins/'. $domain . '-' . $locale . '.mo';
-		if ( file_exists( $external_mofile ) ) {
+		if ( get_bloginfo( 'version' ) <= 3.6 && file_exists( $external_mofile ) ) { // external translation exists
 			load_textdomain( $domain, $external_mofile );
 		}
 
-		// Otherwise use MO file stored in plugin
-		// This is not ideal except for pre-made, unedited translations included with the plugin
+		// Load normally
+		// Either using WordPress 3.7+ or older version with external translation
 		else {
 			$languages_dir = WIE_DIR . '/' . trailingslashit( WIE_LANG_DIR ); // ensure trailing slash
 			load_plugin_textdomain( $domain, false, $languages_dir );

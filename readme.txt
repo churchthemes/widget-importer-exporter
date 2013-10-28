@@ -5,6 +5,8 @@ Requires at least: 3.5
 Tested up to: 3.7
 Stable tag: trunk
 License: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+Text Domain: widget-importer-exporter
+Domain Path: /languages
 
 Import and export your widgets.
 
