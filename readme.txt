@@ -35,6 +35,13 @@ The ``wie_before_import`` action fires after a file is uploaded but before the d
 
 Please jump on [GitHub](https://github.com/stevengliebe/widget-importer-exporter) to report issues and follow development.
 
+= Follow me =
+
+* Find my blog at [stevengliebe.com](http://stevengliebe.com)
+* Follow me on Twitter ([@stevengliebe](https://twitter.com/stevengliebe))
+
+This project is made possible by [churchthemes.com](http://churchthemes.com) ([@churchthemes](https://twitter.com/churchthemes)).
+
 == Installation ==
 
 Please see [Installing Plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins) in the WordPress Codex.
