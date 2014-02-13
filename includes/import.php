@@ -117,6 +117,7 @@ function wie_import_data( $data ) {
 
 	// Hook before import
 	do_action( 'wie_before_import' );
+	$data = apply_filters( 'wie_import_data', $data );
 
 	// Get all available widgets site supports
 	$available_widgets = wie_available_widgets();
