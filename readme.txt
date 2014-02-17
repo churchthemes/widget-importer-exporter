@@ -2,7 +2,7 @@
 Contributors: stevengliebe, churchthemes
 Tags: widgets, widget, importer, exporter, import, export, backup
 Requires at least: 3.5
-Tested up to: 3.8
+Tested up to: 3.8.1
 Stable tag: trunk
 License: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ The following translations are included.
 
 = Developers =
 
-The ``wie_before_import`` action fires after a file is uploaded but before the data is imported. ``wie_after_import`` fires after the data is imported. Other filters are used throughout. Let me know if you need more actions or filters.
+The ``wie_before_import`` action fires after a file is uploaded but before the data is imported. ``wie_after_import`` fires after the data is imported. The ``wie_import_data`` filter can be used to filter data before it is imported. Other filters are used throughout. Submit a pull request on [GitHub](https://github.com/stevengliebe/widget-importer-exporter) if you need more hooks.
 
 Please jump on [GitHub](https://github.com/stevengliebe/widget-importer-exporter) to report issues and follow development.
 
