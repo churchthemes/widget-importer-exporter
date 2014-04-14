@@ -49,6 +49,12 @@ Please see [Installing Plugins](http://codex.wordpress.org/Managing_Plugins#Inst
 
 After activation, go to *Tools > Widget Import/Export*
 
+== Frequently Asked Questions ==
+
+= Why does the JSON export file use a .wie extension? =
+
+The export file contains JSON data that is not compatible with any other plugin. Therefore it has a proprietary file extension. This keeps people from confusing export files from other widget import/export plugins.
+
 == Screenshots ==
 
 1. Main import/export screen
