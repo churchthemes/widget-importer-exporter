@@ -28,6 +28,7 @@ The following translations are included.
 
 * English (default)
 * Spanish (es_ES) by [Eduardo Larequi](http://www.labitacoradeltigre.com/)
+* Spanish (fr_FR) by [Jose Kost](http://josekost.fr/)
 * Serbo-Croatian (sr_RS) by Borisa Djuraskovic of [Web Hosting Hub](http://www.webhostinghub.com)
 
 = Developers =
