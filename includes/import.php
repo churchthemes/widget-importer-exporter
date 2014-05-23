@@ -95,7 +95,7 @@ function wie_process_import_file( $file ) {
 
 /**
  * Import widget JSON data
- * 
+ *
  * @since 0.4
  * @global array $wp_registered_sidebars
  * @param object $data JSON widget data from .wie file
@@ -201,7 +201,7 @@ function wie_import_data( $data ) {
 						break;
 
 					}
-	
+
 				}
 
 			}

@@ -77,7 +77,7 @@ function wie_import_export_page_content() {
 		</p>
 
 		<form method="post" enctype="multipart/form-data">
-		
+
 			<?php wp_nonce_field( 'wie_import', 'wie_import_nonce' ); ?>
 
 			<input type="file" name="wie_import_file" id="wie-import-file" />
@@ -111,7 +111,7 @@ function wie_import_export_page_content() {
 
 /**
  * Have import results to show?
- * 
+ *
  * @since 0.3
  * @global string $wie_import_results
  * @return bool True if have import results to show

@@ -9,7 +9,7 @@
  * License: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Text Domain: widget-importer-exporter
  * Domain Path: /languages
- * 
+ *
  * @package   Widget_Importer_Exporter
  * @copyright Copyright (c) 2013, DreamDolphin Media, LLC
  * @link      https://github.com/stevengliebe/widget-importer-exporter
@@ -122,7 +122,7 @@ class Widget_Importer_Exporter {
 	 *
 	 * This will load the MO file for the current locale.
 	 * The translation file must be named widget-importer-exporter-$locale.mo.
-	 * 
+	 *
 	 * First it will check to see if the MO file exists in wp-content/languages/plugins.
 	 * If not, then the 'languages' direcory inside the plugin will be used.
 	 * It is ideal to keep translation files outside of the plugin to avoid loss during updates.\
@@ -166,7 +166,7 @@ class Widget_Importer_Exporter {
 
 			// Admin only
 			'admin' => array(
-			
+
 				// Functions
 				WIE_INC_DIR . '/export.php',
 				WIE_INC_DIR . '/import.php',
@@ -182,7 +182,7 @@ class Widget_Importer_Exporter {
 
 	/**
 	 * Load includes
-	 * 
+	 *
  	 * Include files based on whether or not condition is met.
 	 *
 	 * @since 0.1
@@ -195,48 +195,48 @@ class Widget_Importer_Exporter {
 
 		// Loop conditions
 		foreach ( $includes as $condition => $files ) {
-		
+
 			$do_includes = false;
 
 			// Check condition
 			switch( $condition ) {
-				
+
 				// Admin Only
 				case 'admin':
-				
+
 					if ( is_admin() ) {
 						$do_includes = true;
 					}
-					
+
 					break;
-					
+
 				// Frontend Only
 				case 'frontend':
-				
+
 					if ( ! is_admin() ) {
 						$do_includes = true;
 					}
-					
+
 					break;
-					
+
 				// Admin or Frontend (always)
 				default:
-				
+
 					$do_includes = true;
-					
-					break;			
-				
+
+					break;
+
 			}
-		
+
 			// Loop files if condition met
 			if ( $do_includes ) {
-			
-				foreach ( $files as $file ) {			
-					require_once trailingslashit( WIE_PATH ) . $file;				
+
+				foreach ( $files as $file ) {
+					require_once trailingslashit( WIE_PATH ) . $file;
 				}
-				
+
 			}
-			
+
 		}
 
 	}

@@ -39,7 +39,7 @@ function wie_available_widgets() {
 			$available_widgets[$widget['id_base']]['name'] = $widget['name'];
 
 		}
-		
+
 	}
 
 	return apply_filters( 'wie_available_widgets', $available_widgets );
