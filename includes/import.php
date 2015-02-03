@@ -4,7 +4,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013, DreamDolphin Media, LLC
+ * @copyright  Copyright (c) 2013 - 2015, DreamDolphin Media, LLC
  * @link       https://github.com/stevengliebe/widget-importer-exporter
  * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @since      0.3
@@ -176,9 +176,22 @@ function wie_import_data( $data ) {
 				$widget_message = __( 'Site does not support widget', 'widget-importer-exporter' ); // explain why widget not imported
 			}
 
-			// Filter to modify settings before import
+			// Filter to modify settings object before conversion to array and import
+			// Leave this filter here for backwards compatibility with manipulating objects (before conversion to array below)
+			// Ideally the newer wie_widget_settings_array below will be used instead of this
+			$widget = apply_filters( 'wie_widget_settings', $widget ); // object
+
+			// Convert multidimensional objects to multidimensional arrays
+			// Some plugins like Jetpack Widget Visibility store settings as multidimensional arrays
+			// Without this, they are imported as objects and cause fatal error on Widgets page
+			// If this creates problems for plugins that do actually intend settings in objects then may need to consider other approach: https://wordpress.org/support/topic/problem-with-array-of-arrays
+			// It is probably much more likely that arrays are used than objects, however
+			$widget = json_decode( json_encode( $widget ), true );
+
+			// Filter to modify settings array
+			// This is preferred over the older wie_widget_settings filter above
 			// Do before identical check because changes may make it identical to end result (such as URL replacements)
-			$widget = apply_filters( 'wie_widget_settings', $widget );
+			$widget = apply_filters( 'wie_widget_settings_array', $widget );
 
 			// Does widget with identical settings already exist in same sidebar?
 			if ( ! $fail && isset( $widget_instances[$id_base] ) ) {
@@ -212,7 +225,7 @@ function wie_import_data( $data ) {
 				// Add widget instance
 				$single_widget_instances = get_option( 'widget_' . $id_base ); // all instances for that widget ID base, get fresh every time
 				$single_widget_instances = ! empty( $single_widget_instances ) ? $single_widget_instances : array( '_multiwidget' => 1 ); // start fresh if have to
-				$single_widget_instances[] = (array) $widget; // add it
+				$single_widget_instances[] = $widget; // add it
 
 					// Get the key it was given
 					end( $single_widget_instances );
@@ -255,7 +268,7 @@ function wie_import_data( $data ) {
 
 			// Result for widget instance
 			$results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
-			$results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = $widget->title ? $widget->title : __( 'No Title', 'widget-importer-exporter' ); // show "No Title" if widget instance is untitled
+			$results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = $widget['title'] ? $widget['title'] : __( 'No Title', 'widget-importer-exporter' ); // show "No Title" if widget instance is untitled
 			$results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
 			$results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 
