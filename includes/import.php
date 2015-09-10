@@ -255,6 +255,19 @@ function wie_import_data( $data ) {
 				$sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
 				update_option( 'sidebars_widgets', $sidebars_widgets ); // save the amended data
 
+				// After widget import action
+				$after_widget_import = array(
+					'sidebar'           => $use_sidebar_id,
+					'sidebar_old'       => $sidebar_id,
+					'widget'            => $widget,
+					'widget_type'       => $id_base,
+					'widget_id'         => $new_instance_id,
+					'widget_id_old'     => $widget_instance_id,
+					'widget_id_num'     => $new_instance_id_number,
+					'widget_id_num_old' => $instance_id_number
+				);
+				do_action( 'wie_after_widget_import', $after_widget_import );
+
 				// Success message
 				if ( $sidebar_available ) {
 					$widget_message_type = 'success';
