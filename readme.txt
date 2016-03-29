@@ -40,8 +40,7 @@ Please jump on [GitHub](https://github.com/stevengliebe/widget-importer-exporter
 
 = Follow me =
 
-* Find my blog at [stevengliebe.com](http://stevengliebe.com)
-* Follow me on Twitter ([@stevengliebe](https://twitter.com/stevengliebe))
+Find my website at [stevengliebe.com](http://stevengliebe.com).
 
 This project is made possible by [churchthemes.com](http://churchthemes.com) ([@churchthemes](https://twitter.com/churchthemes)).
 
