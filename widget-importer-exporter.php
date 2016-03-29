@@ -3,7 +3,7 @@
  * Plugin Name: Widget Importer & Exporter
  * Plugin URI: https://github.com/stevengliebe/widget-importer-exporter
  * Description: Imports and exports widgets.
- * Version: 1.2.2
+ * Version: 1.2.3
  * Author: Steven Gliebe
  * Author URI: http://stevengliebe.com
  * License: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
