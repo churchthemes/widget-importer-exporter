@@ -30,6 +30,7 @@ The following translations are included.
 * Spanish (es_ES) by [Eduardo Larequi](http://www.labitacoradeltigre.com/)
 * French (fr_FR) by [Jose Kost](http://josekost.fr/)
 * German (de_DE) by [Alexander Kesting](http://alex-dune.de)
+* Dutch (nl_NL) by [Paul Backus](http://backups.nl/)
 * Serbian (sr_RS) by Borisa Djuraskovic of [Web Hosting Hub](http://www.webhostinghub.com)
 
 = Developers =
