@@ -29,7 +29,7 @@ The following translations are included.
 
 * English (default)
 * Spanish (es_ES) by [Eduardo Larequi](http://www.labitacoradeltigre.com/)
-* French (fr_FR) by [Jose Kost](http://josekost.fr/)
+* French (fr_FR) by [French Translation Team](https://make.wordpress.org/polyglots/teams/?locale=fr_FR)
 * German (de_DE) by [Alexander Kesting](http://alex-dune.de)
 * Dutch (nl_NL) by [Paul Backus](http://backups.nl/)
 * Serbian (sr_RS) by Borisa Djuraskovic of [Web Hosting Hub](http://www.webhostinghub.com)
