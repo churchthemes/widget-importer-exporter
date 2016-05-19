@@ -6,4 +6,5 @@ Store your translations at:
 wp-content/languages/plugins/widget-importer-exporter-$locale.mo
 (e.g. widget-importer-exporter-en_US.mo) to keep them safe from loss during updates.
 
-Please feel free to submit your translation to this project.
+Please feel free to contribute your translation to this project with these instructions:
+https://make.wordpress.org/polyglots/handbook/tools/glotpress-translate-wordpress-org/
