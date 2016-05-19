@@ -3,7 +3,7 @@ Contributors: stevengliebe, churchthemes
 Tags: widgets, widget, importer, exporter, import, export, backup
 Requires at least: 3.5
 Tested up to: 4.5.2
-Stable tag: 1.2.4
+Stable tag: 1.3
 Text Domain: widget-importer-exporter
 Domain Path: /languages
 License: GPLv2 or later
