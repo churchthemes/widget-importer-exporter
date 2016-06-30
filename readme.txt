@@ -1,6 +1,6 @@
 === Widget Importer & Exporter ===
 Contributors: stevengliebe, churchthemes
-Tags: widgets, widget, importer, exporter, import, export, backup
+Tags: widgets, widget, importer, exporter, import, export, widget import, widget export, widget importer, widget exporter, backup, migration
 Requires at least: 3.5
 Tested up to: 4.5.2
 Stable tag: 1.3.1
