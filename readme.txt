@@ -2,7 +2,7 @@
 Contributors: stevengliebe, churchthemes
 Tags: widgets, widget, importer, exporter, import, export, widget import, widget export, widget importer, widget exporter, backup, migration
 Requires at least: 3.5
-Tested up to: 4.5.2
+Tested up to: 4.6
 Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -28,11 +28,12 @@ Widget Importer & Exporter can create an export file (in JSON format with .wie e
 The following translations are available.
 
 * English (default)
-* Spanish (es_ES) by [Eduardo Larequi](http://www.labitacoradeltigre.com/)
-* French (fr_FR) by [French Translation Team](https://make.wordpress.org/polyglots/teams/?locale=fr_FR)
-* German (de_DE) by [Alexander Kesting](http://alex-dune.de)
-* Dutch (nl_NL) by [Paul Backus](http://backups.nl/)
-* Serbian (sr_RS) by Borisa Djuraskovic of [Web Hosting Hub](http://www.webhostinghub.com)
+* Spanish by [Eduardo Larequi](http://www.labitacoradeltigre.com/)
+* French by [French Translation Team](https://make.wordpress.org/polyglots/teams/?locale=fr_FR)
+* German by [Alexander Kesting](http://alex-dune.de)
+* Italian by [venerdi](https://profiles.wordpress.org/venerdi/)
+* Dutch by [Paul Backus](http://backups.nl/)
+* Serbian by Borisa Djuraskovic of [Web Hosting Hub](http://www.webhostinghub.com)
 * More at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/widget-importer-exporter)
 
 = Developers =
