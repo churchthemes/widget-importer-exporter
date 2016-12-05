@@ -11,7 +11,7 @@ Import and export your widgets.
 
 == Description ==
 
-Widget Importer & Exporter is useful for moving widgets from one WordPress site to another, backing up widgets and for theme developers to provide users with sample widgets.
+Widget Importer & Exporter is useful for moving widgets from one WordPress site to another, backing up widgets and for theme developers to provide users with sample widgets. See the [Plugin Details](https://churchthemes.com/plugins/widget-importer-exporter/) on churchthemes.com for a tour of features.
 
 = Importing =
 
