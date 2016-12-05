@@ -42,11 +42,11 @@ The ``wie_before_import`` action fires after a file is uploaded but before the d
 
 Please jump on [GitHub](https://github.com/churchthemes/widget-importer-exporter) to report issues and follow development.
 
-= Follow me =
+= Follow us =
 
-Find my website at [stevengliebe.com](http://stevengliebe.com).
-
-This project is made possible by [churchthemes.com](http://churchthemes.com) ([@churchthemes](https://twitter.com/churchthemes)).
+* Visit [churchthemes.com](https://churchthemes.com)
+* We're on [Twitter](https://twitter.com/churchthemes), [Facebook](https://www.facebook.com/churchthemescom) and have a [Newsletter](https://churchthemes.com/newsletter)
+* Lead developer: [stevengliebe.com](http://stevengliebe.com)
 
 == Installation ==
 
