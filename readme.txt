@@ -2,7 +2,7 @@
 Contributors: churchthemes, stevengliebe
 Tags: widgets, widget, importer, exporter, import, export, widget import, widget export, widget importer, widget exporter, backup, migration
 Requires at least: 3.5
-Tested up to: 4.6
+Tested up to: 4.7
 Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
