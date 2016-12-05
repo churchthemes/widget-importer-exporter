@@ -12,7 +12,7 @@
  *
  * @package   Widget_Importer_Exporter
  * @copyright Copyright (c) 2013 - 2016, churchthemes.com
- * @link      https://github.com/churchthemes/widget-importer-exporter
+ * @link      https://churchthemes.com/plugins/widget-importer-exporter
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
