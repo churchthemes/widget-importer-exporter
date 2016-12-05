@@ -34,6 +34,8 @@ The following translations are available.
 * Italian by [venerdi](https://profiles.wordpress.org/venerdi/)
 * Dutch by [Paul Backus](http://backups.nl/)
 * Serbian by Borisa Djuraskovic of [Web Hosting Hub](http://www.webhostinghub.com)
+* Japanese by [miccweb](https://profiles.wordpress.org/miccweb/)
+* Hebrew by [Rami Yushuvaev](https://profiles.wordpress.org/ramiy/)
 * More at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/widget-importer-exporter)
 
 = Developers =

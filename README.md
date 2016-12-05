@@ -1,9 +1,7 @@
 Widget Importer & Exporter
 ========================
 
-A WordPress plugin for importing and exporting widgets.
-
-Widget Importer & Exporter is useful for moving widgets from one WordPress site to another, backing up widgets and for theme developers to provide users with sample widgets.
+The Widget Importer & Exporter WordPress plugin is useful for moving widgets from one website to another, backing up widgets and for WordPress theme developers to provide users with sample widgets.
 
 For more information:
 
