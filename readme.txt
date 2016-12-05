@@ -54,7 +54,7 @@ Please jump on [GitHub](https://github.com/churchthemes/widget-importer-exporter
 
 Please see [Installing Plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins) in the WordPress Codex.
 
-After activation, go to *Tools > Widget Import/Export*
+After activation, go to *Tools > Widget Importer & Exporter*
 
 == Frequently Asked Questions ==
 
