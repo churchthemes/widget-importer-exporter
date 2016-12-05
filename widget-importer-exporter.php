@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name: Widget Importer & Exporter
- * Plugin URI: https://github.com/stevengliebe/widget-importer-exporter
+ * Plugin URI: https://churchthemes.com/plugins/widget-importer-exporter
  * Description: Imports and exports widgets.
  * Version: 1.3.1
- * Author: Steven Gliebe
- * Author URI: http://stevengliebe.com
+ * Author: churchthemes.com
+ * Author URI: https://churchthemes.com
  * License: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Text Domain: widget-importer-exporter
  * Domain Path: /languages
  *
  * @package   Widget_Importer_Exporter
- * @copyright Copyright (c) 2013 - 2016, DreamDolphin Media, LLC
- * @link      https://github.com/stevengliebe/widget-importer-exporter
+ * @copyright Copyright (c) 2013 - 2016, churchthemes.com
+ * @link      https://github.com/churchthemes/widget-importer-exporter
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 

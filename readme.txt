@@ -40,7 +40,7 @@ The following translations are available.
 
 The ``wie_before_import`` action fires after a file is uploaded but before the data is imported. ``wie_after_import`` fires after the data is imported. The ``wie_import_data`` filter can be used to filter data before it is imported. Other filters are used throughout. Submit an issue on GitHub if you need more hooks (pull requests encouraged).
 
-Please jump on [GitHub](https://github.com/stevengliebe/widget-importer-exporter) to report issues and follow development.
+Please jump on [GitHub](https://github.com/churchthemes/widget-importer-exporter) to report issues and follow development.
 
 = Follow me =
 
@@ -67,4 +67,4 @@ The export file contains JSON data that is not compatible with any other plugin.
 
 == Changelog ==
 
-See [releases](https://github.com/stevengliebe/widget-importer-exporter/releases) on GitHub.
+See [releases](https://github.com/churchthemes/widget-importer-exporter/releases) on GitHub.
