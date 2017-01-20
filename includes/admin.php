@@ -26,6 +26,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function wie_add_plugin_action_link( $links ) {
 
+	// If has permission
+	if ( ! current_user_can( 'edit_theme_options' ) ) { // can manage Appearance > Widgets
+		return false;
+	}
+
 	// Have links array?
 	if ( is_array( $links ) ) {
 
