@@ -47,7 +47,7 @@ add_filter( 'upload_mimes', 'wie_add_mime_types' );
 function wie_disable_real_mime_check( $data, $file, $filename, $mimes ) {
 
 	// WordPress 4.7.1 only
-	if ( get_bloginfo( 'version' ) == '4.7.1' ) {
+	if ( get_bloginfo( 'version' ) != '4.7.1' ) {
 		return;
 	}
 
