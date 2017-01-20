@@ -40,3 +40,17 @@
 .wie-import-results-space {
 	height: 8px;
 }
+
+/* Box in footer */
+
+.wie-box {
+	max-width: 560px;
+	margin-top: 18px;
+	padding: 20px;
+	border: 1px solid #e5e5e5;
+	background-color: #fff;
+}
+
+	.wie-box h4 {
+		margin-top: 0;
+	}

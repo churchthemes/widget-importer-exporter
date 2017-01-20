@@ -1,8 +1,9 @@
 === Widget Importer & Exporter ===
-Contributors: churchthemes, stevengliebe
+Contributors: churchthemes, stevengliebe, mauryaratan, wido
+Donate link: https://churchthemes.com/project-support/
 Tags: widgets, widget, importer, exporter, import, export, widget import, widget export, widget importer, widget exporter, backup, migration
 Requires at least: 3.5
-Tested up to: 4.7
+Tested up to: 4.7.1
 Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,9 +16,9 @@ Widget Importer & Exporter is useful for moving widgets from one WordPress site 
 
 = Importing =
 
-Importing is a matter of uploading an export file created by the plugin. The results of an import are shown in a nicely formatted table with an explanation of what happened with each sidebar and widget.
+Importing is a matter of uploading an export file created by the plugin. The results of an import are shown in a nicely formatted table with an explanation of what happened with each widget area (sidebar) and widget.
 
-Importation takes into consideration sidebars not existing in the current theme (widgets imported as *Inactive*), widgets that already exist in the same sidebar (widgets not duplicated) and widgets that are not supported by the site (widgets not imported).
+Importation takes into consideration widget areas not existing in the current theme (widgets imported as *Inactive*), widgets that already exist in the same widget area (widgets not duplicated) and widgets that are not supported by the site (widgets not imported).
 
 = Exporting =
 
