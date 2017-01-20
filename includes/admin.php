@@ -16,9 +16,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Add Plugin Action Link
+ * Add plugin action link
  *
- * This will insert an "Import/Export" link into the plugin's action links (Plugin page's list)
+ * Insert an "Import/Export" link into the plugin's action links (Plugin page's list)
  *
  * @since 1.4
  * @param array $links Existing action links
@@ -44,3 +44,38 @@ function wie_add_plugin_action_link( $links ) {
 }
 
 add_filter( 'plugin_action_links_' . plugin_basename( WIE_FILE ), 'wie_add_plugin_action_link' );
+
+/**
+ * Add link on Widgets page
+ *
+ * Insert an "Import/Export" link on the Widgets screen after 'Manage with Live Preview'.
+ * This is done with JavaScript since there is no hook for this area.
+ *
+ * @since 1.4
+ */
+function wie_add_widgets_screen_link() {
+
+	// Build link with same style as 'Manage with Live Preview'
+	$link_html = sprintf(
+		' <a class="page-title-action" href="%1$s">%2$s</a>',
+		admin_url( 'tools.php?page=widget-importer-exporter' ),
+		__( 'Import/Export', 'widget-importer-exporter' )
+	);
+
+	// Output JavaScript to insert link after 'Manage with Live Preview'
+	?>
+
+	<script type="text/javascript">
+
+	jQuery( document ).ready( function( $ ) {
+		console.log('test');
+	} );
+
+	</script>
+
+	<?php
+
+}
+
+
+add_action( 'admin_print_footer_scripts-widgets.php', 'wie_add_widgets_screen_link' ); // WP 4.6+
