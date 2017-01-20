@@ -26,7 +26,7 @@ function wie_add_import_export_page() {
 	$page_hook = add_management_page(
 		esc_html__( 'Widget Importer & Exporter', 'widget-importer-exporter' ), // page title
 		esc_html__( 'Widget Importer & Exporter', 'widget-importer-exporter' ), // menu title
-		'manage_options', // capability
+		'edit_theme_options', // capability (can manage Appearance > Widgets)
 		'widget-importer-exporter', // menu slug
 		'wie_import_export_page_content' // callback for displaying page content
 	);
