@@ -260,8 +260,35 @@ function wie_footer() {
 
 		</p>
 
-		<a href="https://churchthemes.com/project-support/" class="button" target="_blank"><?php esc_html_e( 'Give $5 or More', 'widget-importer-exporter' ); ?></a>
-		<a href="https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5" class="button" target="_blank"><?php esc_html_e( 'Add Your Review', 'widget-importer-exporter' ); ?></a>
+		<p>
+			<a href="https://churchthemes.com/project-support/" class="button" target="_blank"><?php esc_html_e( 'Give $5 or More', 'widget-importer-exporter' ); ?></a>
+			<a href="https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5" class="button" target="_blank"><?php esc_html_e( 'Add Your Review', 'widget-importer-exporter' ); ?></a>
+		</p>
+
+		<p>
+
+			<i>
+
+				<?php
+				printf(
+					wp_kses(
+						__( 'Visit <a href="%1$s" target="_blank">churchthemes.com</a> and follow us on <a href="%2$s" target="_blank">Twitter</a> and <a href="%3$s" target="_blank">Facebook</a>', 'widget-importer-exporter' ),
+						array(
+							'a' => array(
+								'href' => array(),
+								'target' => array(),
+							),
+						)
+					),
+					'https://churchthemes.com',
+					'https://twitter.com/churchthemes',
+					'https://www.facebook.com/churchthemescom'
+				);
+				?>
+
+			</i>
+
+		</p>
 
 	</div>
 
