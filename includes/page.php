@@ -260,7 +260,7 @@ function wie_footer() {
 
 		</p>
 
-		<a href="https://churchthemes.com/project-support/" class="button" target="_blank"><?php esc_html_e( 'Give to Tip Jar', 'widget-importer-exporter' ); ?></a>
+		<a href="https://churchthemes.com/project-support/" class="button" target="_blank"><?php esc_html_e( 'Give $5 or More', 'widget-importer-exporter' ); ?></a>
 		<a href="https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5" class="button" target="_blank"><?php esc_html_e( 'Add Your Review', 'widget-importer-exporter' ); ?></a>
 
 	</div>
