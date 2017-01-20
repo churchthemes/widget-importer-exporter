@@ -248,7 +248,7 @@ function wie_footer() {
 			<?php
 			printf(
 				wp_kses(
-					__( 'Please be one of the very few to support this plugin with a gift or review. There are costs to cover with more than 1,000,000 free downloads and free support. <b>Thank you!</b>', 'widget-importer-exporter' ),
+					__( 'Please be one of the special few to support this plugin with a gift or review. There are costs to cover with more than 1,000,000 free downloads and free support. <b>Thank you!</b>', 'widget-importer-exporter' ),
 					array(
 						'b' => array(),
 					)
