@@ -57,7 +57,15 @@ function wie_add_widgets_screen_link() {
 
 	// Build link with same style as 'Manage with Live Preview'
 	$link_html = sprintf(
-		' <a class="page-title-action" href="%1$s">%2$s</a>',
+		wp_kses(
+			' <a href="%1$s" class="page-title-action">%2$s</a>',
+			array(
+				'a' => array(  // link tag only
+					'href' => array(),
+					'class' => array()
+				)
+			)
+		),
 		esc_url( admin_url( 'tools.php?page=widget-importer-exporter' ) ),
 		esc_html( __( 'Import/Export', 'widget-importer-exporter' ) )
 	);
@@ -68,7 +76,13 @@ function wie_add_widgets_screen_link() {
 	<script type="text/javascript">
 
 	jQuery( document ).ready( function( $ ) {
-		console.log('test');
+
+		// Encode string for security
+		var link_html = <?php echo wp_json_encode( $link_html ); ?>;
+
+		// Insert after last button by title
+		$( '.page-title-action' ).last().after( link_html );
+
 	} );
 
 	</script>
@@ -76,6 +90,5 @@ function wie_add_widgets_screen_link() {
 	<?php
 
 }
-
 
 add_action( 'admin_print_footer_scripts-widgets.php', 'wie_add_widgets_screen_link' ); // WP 4.6+
