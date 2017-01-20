@@ -260,6 +260,11 @@ function wie_import_data( $data ) {
 
 				// Assign widget instance to sidebar
 				$sidebars_widgets = get_option( 'sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
+				// Avoid rarely fatal error when the option is an empty string.
+				if ( ! $sidebars_widgets ) {
+					$sidebars_widgets = array();
+				}
+
 				$new_instance_id = $id_base . '-' . $new_instance_id_number; // use ID number from new widget instance
 				$sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
 				update_option( 'sidebars_widgets', $sidebars_widgets ); // save the amended data
