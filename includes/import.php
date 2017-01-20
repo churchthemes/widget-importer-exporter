@@ -23,6 +23,10 @@ function wie_upload_import_file() {
 	// Check nonce for security since form was posted
 	if ( ! empty( $_POST ) && ! empty( $_FILES['wie_import_file'] ) && check_admin_referer( 'wie_import', 'wie_import_nonce' ) ) { // check_admin_referer prints fail page and dies
 
+		// Workaround for upload bug in WordPress 4.7.1
+		// This will only be applied for WordPress 4.7.1. Other versions are not affected.
+		add_filter( 'wp_check_filetype_and_ext', 'wie_disable_real_mime_check', 10, 4 );
+
 		// Uploaded file
 		$uploaded_file = $_FILES['wie_import_file'];
 
