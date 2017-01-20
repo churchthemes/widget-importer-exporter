@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Widget Importer & Exporter\n"
-"POT-Creation-Date: 2017-01-20 15:02-0600\n"
+"POT-Creation-Date: 2017-01-20 15:11-0600\n"
 "PO-Revision-Date: 2015-02-23 09:31-0600\n"
 "Last-Translator: churchthemes.com\n"
 "Language-Team: \n"
@@ -109,15 +109,23 @@ msgid ""
 "free support. <b>Thank you!</b>"
 msgstr ""
 
-#: ../includes/page.php:263
+#: ../includes/page.php:264
 msgid "Give $5 or More"
 msgstr ""
 
-#: ../includes/page.php:264
+#: ../includes/page.php:265
 msgid "Add Your Review"
 msgstr ""
 
-#: ../includes/page.php:274
+#: ../includes/page.php:275
+#, php-format
+msgid ""
+"Visit <a href=\"%1$s\" target=\"_blank\">churchthemes.com</a> and follow us "
+"on <a href=\"%2$s\" target=\"_blank\">Twitter</a> and <a href=\"%3$s\" "
+"target=\"_blank\">Facebook</a>"
+msgstr ""
+
+#: ../includes/page.php:301
 #, php-format
 msgid ""
 "<b>Need Help?</b> Post your question in the plugin's <a href=\"%1$s\" target="
