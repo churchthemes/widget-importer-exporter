@@ -169,8 +169,8 @@ function wie_show_import_results() {
 					)
 				)
 			),
-			admin_url( 'widgets.php' ),
-			admin_url( basename( $_SERVER['PHP_SELF'] ) . '?page=' . $_GET['page'] )
+			esc_url( admin_url( 'widgets.php' ) ),
+			esc_url( admin_url( basename( $_SERVER['PHP_SELF'] ) . '?page=' . $_GET['page'] ) )
 		);
 		?>
 	</p>

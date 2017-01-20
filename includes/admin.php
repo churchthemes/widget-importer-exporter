@@ -35,7 +35,7 @@ function wie_add_plugin_action_link( $links ) {
 	if ( is_array( $links ) ) {
 
 		// Append "Settings" link
-		$links[] = '<a href="' . admin_url( 'tools.php?page=widget-importer-exporter' ) . '">' . __( 'Import/Export', 'widget-importer-exporter' ) . '</a>';
+		$links[] = '<a href="' . esc_url( admin_url( 'tools.php?page=widget-importer-exporter' ) ) . '">' . __( 'Import/Export', 'widget-importer-exporter' ) . '</a>';
 
 	}
 
@@ -58,7 +58,7 @@ function wie_add_widgets_screen_link() {
 	// Build link with same style as 'Manage with Live Preview'
 	$link_html = sprintf(
 		' <a class="page-title-action" href="%1$s">%2$s</a>',
-		admin_url( 'tools.php?page=widget-importer-exporter' ),
+		esc_url( admin_url( 'tools.php?page=widget-importer-exporter' ) ),
 		__( 'Import/Export', 'widget-importer-exporter' )
 	);
 
