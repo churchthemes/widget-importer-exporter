@@ -44,8 +44,6 @@
 /* Box in footer */
 
 .wie-box {
-	max-width: 560px;
-	margin-top: 18px;
 	padding: 20px;
 	border: 1px solid #e5e5e5;
 	background-color: #fff;
@@ -53,4 +51,14 @@
 
 	.wie-box h4 {
 		margin-top: 0;
+	}
+
+#wie-support-project {
+	max-width: 560px;
+	margin: 18px 0 24px 0;
+}
+
+	#wie-support-project .button {
+		margin-top: 5px;
+		margin-right: 5px;
 	}

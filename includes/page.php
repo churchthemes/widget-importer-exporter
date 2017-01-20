@@ -65,8 +65,13 @@ function wie_import_export_page_content() {
 		<?php
 		// Show import results if have them
 		if ( wie_have_import_results() ) {
+
 			wie_show_import_results();
+
+			wie_footer();
+
 			return; // don't show content below
+
 		}
 		?>
 
@@ -117,41 +122,11 @@ function wie_import_export_page_content() {
 			<a href="<?php echo esc_url( admin_url( basename( $_SERVER['PHP_SELF'] ) . '?page=' . $_GET['page'] . '&export=1' ) ); ?>" id="wie-export-button" class="button button-primary"><?php echo esc_html_x( 'Export Widgets', 'button', 'widget-importer-exporter' ); ?></a>
 		</p>
 
-		<div class="wie-box">
-
-			<h4>Support This Project</h4>
-
-			<p>
-
-				<?php
-				printf(
-					wp_kses(
-						/* translators: %1$s is donation URL, %1$2 is review URL */
-						__( 'Please be one of the very few to support this plugin with a gift or review. There are costs to cover with more than 1,000,000 free downloads and free support. <b>Thank you!</b>', 'widget-importer-exporter' ),
-						array(
-							'b' => array(),
-							'a' => array(
-								'href' => array(),
-								'target' => array(),
-							)
-						)
-					),
-					'https://churchthemes.com/project-support/',
-					'https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5'
-				);
-				?>
-
-			</p>
-
-			<a href="https://churchthemes.com/project-support/" class="button" target="_blank"><?php _e( 'Give to Tip Jar', 'widget-importer-exporter' ); ?></a>
-			&nbsp;
-			<a href="https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5" class="button" target="_blank"><?php _e( 'Post a Review', 'widget-importer-exporter' ); ?></a>
-
-		</div>
-
 	</div>
 
 	<?php
+
+	wie_footer();
 
 }
 
@@ -250,6 +225,49 @@ function wie_show_import_results() {
 		<?php endforeach; ?>
 
 	</table>
+
+	<?php
+
+}
+
+/**
+ * Show footer
+ *
+ * Outputs information on supporting the project and getting support
+ */
+function wie_footer() {
+
+	?>
+
+	<div id="wie-support-project" class="wie-box">
+
+		<h4>Support This Project</h4>
+
+		<p>
+
+			<?php
+			printf(
+				wp_kses(
+					__( 'Please be one of the very few to support this plugin with a gift or review. There are costs to cover with more than 1,000,000 free downloads and free support. <b>Thank you!</b>', 'widget-importer-exporter' ),
+					array(
+						'b' => array(),
+					)
+				),
+				'https://churchthemes.com/project-support/',
+				'https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5'
+			);
+			?>
+
+		</p>
+
+		<a href="https://churchthemes.com/project-support/" class="button" target="_blank"><?php esc_html_e( 'Give to Tip Jar', 'widget-importer-exporter' ); ?></a>
+		<a href="https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5" class="button" target="_blank"><?php esc_html_e( 'Add Your Review', 'widget-importer-exporter' ); ?></a>
+
+	</div>
+
+	<p id="wie-help">
+		<b>Need Help?</b> Post your question in the plugin's <a href="https://wordpress.org/support/plugin/widget-importer-exporter/" target="_blank"><?php esc_html_e( 'Support Forum', 'widget-importer-exporter' ); ?></a>.
+	</p>
 
 	<?php
 
