@@ -239,6 +239,27 @@ function wie_footer() {
 
 	?>
 
+	<p id="wie-help">
+
+		<?php
+		printf(
+			wp_kses(
+				/* translators: %1$s is URL to support forum */
+				__( '<b>Need Help?</b> Post your question in the plugin\'s <a href="%1$s" target="_blank">Support Forum</a>.', 'widget-importer-exporter' ),
+				array(
+					'b' => array(),
+					'a' => array(
+						'href'	=> array(),
+						'target'	=> array(),
+					),
+				)
+			),
+			'https://wordpress.org/support/plugin/widget-importer-exporter/'
+		);
+		?>
+
+	</p>
+
 	<div id="wie-support-project" class="wie-box">
 
 		<h4>Support This Project</h4>
@@ -291,27 +312,6 @@ function wie_footer() {
 		</p>
 
 	</div>
-
-	<p id="wie-help">
-
-		<?php
-		printf(
-			wp_kses(
-				/* translators: %1$s is URL to support forum */
-				__( '<b>Need Help?</b> Post your question in the plugin\'s <a href="%1$s" target="_blank">Support Forum</a>.', 'widget-importer-exporter' ),
-				array(
-					'b' => array(),
-					'a' => array(
-						'href'	=> array(),
-						'target'	=> array(),
-					),
-				)
-			),
-			'https://wordpress.org/support/plugin/widget-importer-exporter/'
-		);
-		?>
-
-	</p>
 
 	<?php
 
