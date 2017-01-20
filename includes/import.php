@@ -160,7 +160,7 @@ function wie_import_data( $data ) {
 			$sidebar_available = false;
 			$use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
 			$sidebar_message_type = 'error';
-			$sidebar_message = esc_html__( 'Sidebar does not exist in theme (using Inactive)', 'widget-importer-exporter' );
+			$sidebar_message = esc_html__( 'Widget area does not exist in theme (using Inactive)', 'widget-importer-exporter' );
 		}
 
 		// Result for sidebar
