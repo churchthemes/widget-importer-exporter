@@ -33,7 +33,7 @@ function wie_add_mime_types( $mime_types ) {
 add_filter( 'upload_mimes', 'wie_add_mime_types' );
 
 /**
- * Disable real MIME check on WordPress 4.7.1
+ * Disable real MIME check on WordPress 4.7.1 and 4.7.2
  *
  * This is a workaround for a WordPress 4.7.1 bug affecting uploads. Other versions not affected.
  * This workaround will only take effect on installs of 4.7.1 and only during import.
@@ -46,8 +46,11 @@ add_filter( 'upload_mimes', 'wie_add_mime_types' );
  */
 function wie_disable_real_mime_check( $data, $file, $filename, $mimes ) {
 
-	// WordPress 4.7.1 only
-	if ( get_bloginfo( 'version' ) != '4.7.1' ) {
+	$wp_version = get_bloginfo( 'version' );
+
+	// WordPress 4.7.1 and 4.7.2 are affected only
+	// 4.7.2 was rushed out as security update without the upload bug being fixed
+	if ( $wp_version != '4.7.1' && $wp_version != '4.7.2' ) {
 		return;
 	}
 
