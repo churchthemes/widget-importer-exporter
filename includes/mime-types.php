@@ -48,9 +48,9 @@ function wie_disable_real_mime_check( $data, $file, $filename, $mimes ) {
 
 	$wp_version = get_bloginfo( 'version' );
 
-	// WordPress 4.7.1 and 4.7.2 are affected only
-	// 4.7.2 was rushed out as security update without the upload bug being fixed
-	if ( ! in_array( $wp_version, array( '4.7.1', '4.7.2' ) ) ) {
+	// WordPress 4.7.1 - 4.7.3 are affected only
+	// 4.7.2 and 4.7.3 were rushed out as security updates without the upload bug being fixed
+	if ( ! in_array( $wp_version, array( '4.7.1', '4.7.2', '4.7.3' ) ) ) {
 		return $data;
 	}
 
