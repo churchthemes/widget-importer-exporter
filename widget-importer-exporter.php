@@ -6,14 +6,14 @@
  * Version: 1.4.5
  * Author: churchthemes.com
  * Author URI: https://churchthemes.com
- * License: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * License: GPLv2 or later
  * Text Domain: widget-importer-exporter
  * Domain Path: /languages
  *
  * @package   Widget_Importer_Exporter
  * @copyright Copyright (c) 2013 - 2017, churchthemes.com
  * @link      https://churchthemes.com/plugins/widget-importer-exporter
- * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * @license   GPLv2 or later
  */
 
 // No direct access

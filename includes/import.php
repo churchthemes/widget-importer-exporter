@@ -6,7 +6,7 @@
  * @subpackage Functions
  * @copyright  Copyright (c) 2013 - 2017, churchthemes.com
  * @link       https://churchthemes.com/plugins/widget-importer-exporter
- * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * @license    GPLv2 or later
  * @since      0.3
  */
 
