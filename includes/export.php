@@ -83,7 +83,7 @@ function wie_generate_export_data() {
 	$data = apply_filters( 'wie_unencoded_export_data', $sidebars_widget_instances );
 
 	// Encode the data for file contents
-	$encoded_data = json_encode( $data );
+	$encoded_data = addslashes( json_encode( $data ) );
 
 	// Return contents
 	return apply_filters( 'wie_generate_export_data', $encoded_data );
