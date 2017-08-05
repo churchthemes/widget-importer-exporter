@@ -11,7 +11,9 @@
  */
 
 // No direct access
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Generate export data
@@ -39,8 +41,8 @@ function wie_generate_export_data() {
 
 				// Key is ID (not _multiwidget)
 				if ( is_numeric( $instance_id ) ) {
-					$unique_instance_id = $widget_data['id_base'] . '-' . $instance_id;
-					$widget_instances[$unique_instance_id] = $instance_data;
+					$unique_instance_id                      = $widget_data['id_base'] . '-' . $instance_id;
+					$widget_instances[ $unique_instance_id ] = $instance_data;
 				}
 
 			}
@@ -50,7 +52,7 @@ function wie_generate_export_data() {
 	}
 
 	// Gather sidebars with their widget instances
-	$sidebars_widgets = get_option( 'sidebars_widgets' ); // get sidebars and their unique widgets IDs
+	$sidebars_widgets          = get_option( 'sidebars_widgets' ); // get sidebars and their unique widgets IDs
 	$sidebars_widget_instances = array();
 	foreach ( $sidebars_widgets as $sidebar_id => $widget_ids ) {
 
@@ -68,10 +70,10 @@ function wie_generate_export_data() {
 		foreach ( $widget_ids as $widget_id ) {
 
 			// Is there an instance for this widget ID?
-			if ( isset( $widget_instances[$widget_id] ) ) {
+			if ( isset( $widget_instances[ $widget_id ] ) ) {
 
 				// Add to array
-				$sidebars_widget_instances[$sidebar_id][$widget_id] = $widget_instances[$widget_id];
+				$sidebars_widget_instances[ $sidebar_id ][ $widget_id ] = $widget_instances[ $widget_id ];
 
 			}
 
@@ -103,6 +105,8 @@ function wie_send_export_file() {
 
 	// Export requested
 	if ( ! empty( $_GET['export'] ) ) {
+		// Check referer before doing anything else.
+		check_admin_referer( 'wie_export', 'wie_export_nonce' );
 
 		// Build filename
 		// Single Site: yoursite.com-widgets.wie
@@ -116,7 +120,7 @@ function wie_send_export_file() {
 
 		// Generate export file contents
 		$file_contents = wie_generate_export_data();
-		$filesize = strlen( $file_contents );
+		$filesize      = strlen( $file_contents );
 
 		// Headers to prompt "Save As"
 		header( 'Content-Type: application/octet-stream' );
