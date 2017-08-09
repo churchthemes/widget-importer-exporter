@@ -104,6 +104,9 @@ function wie_send_export_file() {
 	// Export requested
 	if ( ! empty( $_GET['export'] ) ) {
 
+		// Check referer before doing anything else.
+		check_admin_referer( 'wie_export', 'wie_export_nonce' );
+
 		// Build filename
 		// Single Site: yoursite.com-widgets.wie
 		// Multisite: site.multisite.com-widgets.wie or multisite.com-site-widgets.wie
