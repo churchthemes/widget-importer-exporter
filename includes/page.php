@@ -119,7 +119,9 @@ function wie_import_export_page_content() {
 		</p>
 
 		<p class="submit">
-			<a href="<?php echo esc_url( admin_url( basename( $_SERVER['PHP_SELF'] ) . '?page=' . $_GET['page'] . '&export=1' ) ); ?>" id="wie-export-button" class="button button-primary"><?php echo esc_html_x( 'Export Widgets', 'button', 'widget-importer-exporter' ); ?></a>
+			<a href="<?php echo esc_url( admin_url( basename( $_SERVER['PHP_SELF'] ) . '?page=' . $_GET['page'] . '&export=1&wie_export_nonce=' . wp_create_nonce( 'wie_export' ) ) ); ?>" id="wie-export-button" class="button button-primary">
+				<?php echo esc_html_x( 'Export Widgets', 'button', 'widget-importer-exporter' ); ?>
+			</a>
 		</p>
 
 	</div>
