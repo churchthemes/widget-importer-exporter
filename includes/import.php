@@ -90,7 +90,7 @@ function wie_process_import_file( $file ) {
 	}
 
 	// Get file contents and decode
-	$data = file_get_contents( $file );
+	$data = implode( '', file( $file ) );
 	$data = json_decode( $data );
 
 	// Delete import file
