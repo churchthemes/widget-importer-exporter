@@ -58,8 +58,6 @@ function wie_import_export_page_content() {
 
 	<div class="wrap">
 
-		<?php screen_icon(); ?>
-
 		<h2><?php esc_html_e( 'Widget Importer & Exporter', 'widget-importer-exporter' ); ?></h2>
 
 		<?php
