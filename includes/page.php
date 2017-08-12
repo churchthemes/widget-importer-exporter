@@ -4,7 +4,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013, churchthemes.com
+ * @copyright  Copyright (c) 2013 - 2017, churchthemes.com
  * @link       https://churchthemes.com/plugins/widget-importer-exporter
  * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @since      0.1
@@ -26,7 +26,7 @@ function wie_add_import_export_page() {
 	$page_hook = add_management_page(
 		esc_html__( 'Widget Importer & Exporter', 'widget-importer-exporter' ), // page title
 		esc_html__( 'Widget Importer & Exporter', 'widget-importer-exporter' ), // menu title
-		'manage_options', // capability
+		'edit_theme_options', // capability (can manage Appearance > Widgets)
 		'widget-importer-exporter', // menu slug
 		'wie_import_export_page_content' // callback for displaying page content
 	);
@@ -65,8 +65,13 @@ function wie_import_export_page_content() {
 		<?php
 		// Show import results if have them
 		if ( wie_have_import_results() ) {
+
 			wie_show_import_results();
+
+			wie_footer();
+
 			return; // don't show content below
+
 		}
 		?>
 
@@ -123,6 +128,8 @@ function wie_import_export_page_content() {
 
 	<?php
 
+	wie_footer();
+
 }
 
 /**
@@ -171,8 +178,8 @@ function wie_show_import_results() {
 					)
 				)
 			),
-			admin_url( 'widgets.php' ),
-			admin_url( basename( $_SERVER['PHP_SELF'] ) . '?page=' . $_GET['page'] )
+			esc_url( admin_url( 'widgets.php' ) ),
+			esc_url( admin_url( basename( $_SERVER['PHP_SELF'] ) . '?page=' . $_GET['page'] ) )
 		);
 		?>
 	</p>
@@ -220,6 +227,93 @@ function wie_show_import_results() {
 		<?php endforeach; ?>
 
 	</table>
+
+	<?php
+
+}
+
+/**
+ * Show footer
+ *
+ * Outputs information on supporting the project and getting support
+ */
+function wie_footer() {
+
+	?>
+
+	<p id="wie-help">
+
+		<?php
+		printf(
+			wp_kses(
+				/* translators: %1$s is URL to support forum */
+				__( '<b>Need Help?</b> Post your question in the plugin\'s <a href="%1$s" target="_blank">Support Forum</a>.', 'widget-importer-exporter' ),
+				array(
+					'b' => array(),
+					'a' => array(
+						'href'	=> array(),
+						'target'	=> array(),
+					),
+				)
+			),
+			'https://wordpress.org/support/plugin/widget-importer-exporter/'
+		);
+		?>
+
+	</p>
+
+	<div id="wie-support-project" class="wie-box">
+
+		<h4>Support This Project</h4>
+
+		<p>
+
+			<?php
+			printf(
+				wp_kses(
+					__( 'Please be one of the special few to support this plugin with a gift or review. There are costs to cover with more than 1,000,000 free downloads and free support. <b>Thank you!</b>', 'widget-importer-exporter' ),
+					array(
+						'b' => array(),
+					)
+				),
+				'https://churchthemes.com/project-support/',
+				'https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5'
+			);
+			?>
+
+		</p>
+
+		<p>
+			<a href="https://churchthemes.com/project-support/" class="button" target="_blank"><?php esc_html_e( 'Give $5 or More', 'widget-importer-exporter' ); ?></a>
+			<a href="https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5" class="button" target="_blank"><?php esc_html_e( 'Add Your Review', 'widget-importer-exporter' ); ?></a>
+		</p>
+
+		<p>
+
+			<i>
+
+				<?php
+				printf(
+					wp_kses(
+						__( 'Visit <a href="%1$s" target="_blank">churchthemes.com</a> and follow us on <a href="%2$s" target="_blank">Twitter</a> and <a href="%3$s" target="_blank">Facebook</a>', 'widget-importer-exporter' ),
+						array(
+							'a' => array(
+								'href' => array(),
+								'target' => array(),
+							),
+						)
+					),
+					'https://churchthemes.com',
+					'https://twitter.com/churchthemes',
+					'https://www.facebook.com/churchthemescom'
+				);
+				?>
+
+			</i>
+
+		</p>
+
+	</div>
 
 	<?php
 

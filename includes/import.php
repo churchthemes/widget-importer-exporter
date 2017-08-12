@@ -4,7 +4,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2015, churchthemes.com
+ * @copyright  Copyright (c) 2013 - 2017, churchthemes.com
  * @link       https://churchthemes.com/plugins/widget-importer-exporter
  * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @since      0.3
@@ -22,6 +22,10 @@ function wie_upload_import_file() {
 
 	// Check nonce for security since form was posted
 	if ( ! empty( $_POST ) && ! empty( $_FILES['wie_import_file'] ) && check_admin_referer( 'wie_import', 'wie_import_nonce' ) ) { // check_admin_referer prints fail page and dies
+
+		// Workaround for upload bug in WordPress 4.7.1
+		// This will only be applied for WordPress 4.7.1. Other versions are not affected.
+		add_filter( 'wp_check_filetype_and_ext', 'wie_disable_real_mime_check', 10, 4 );
 
 		// Uploaded file
 		$uploaded_file = $_FILES['wie_import_file'];
@@ -156,7 +160,7 @@ function wie_import_data( $data ) {
 			$sidebar_available = false;
 			$use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
 			$sidebar_message_type = 'error';
-			$sidebar_message = esc_html__( 'Sidebar does not exist in theme (using Inactive)', 'widget-importer-exporter' );
+			$sidebar_message = esc_html__( 'Widget area does not exist in theme (using Inactive)', 'widget-importer-exporter' );
 		}
 
 		// Result for sidebar
@@ -191,7 +195,7 @@ function wie_import_data( $data ) {
 			// Without this, they are imported as objects and cause fatal error on Widgets page
 			// If this creates problems for plugins that do actually intend settings in objects then may need to consider other approach: https://wordpress.org/support/topic/problem-with-array-of-arrays
 			// It is probably much more likely that arrays are used than objects, however
-			$widget = json_decode( json_encode( $widget ), true );
+			$widget = json_decode( wp_json_encode( $widget ), true );
 
 			// Filter to modify settings array
 			// This is preferred over the older wie_widget_settings filter above
@@ -256,7 +260,9 @@ function wie_import_data( $data ) {
 
 				// Assign widget instance to sidebar
 				$sidebars_widgets = get_option( 'sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
-				// Avoid rarely fatal error when the option is an empty string.
+
+				// Avoid rarely fatal error when the option is an empty string
+				// https://github.com/churchthemes/widget-importer-exporter/pull/11
 				if ( ! $sidebars_widgets ) {
 					$sidebars_widgets = array();
 				}
