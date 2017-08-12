@@ -1,71 +1,70 @@
-
 /* Cell padding */
 
 #wie-import-results td {
-	padding: 2px 30px 2px 0;
+  padding: 2px 30px 2px 0;
 }
 
 /* Sidebar name */
 
 .wie-import-results-sidebar-name {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 /* Widget instance title */
 
 .wie-import-results-widget-title {
-	font-style: italic;
+  font-style: italic;
 }
 
 /* Message (sidebar and widget) */
 
 .wie-import-results-sidebar .wie-import-results-message {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .wie-import-results-message-success {
-	color: #1c8a1f;
+  color: #1c8a1f;
 }
 
 .wie-import-results-message-warning {
-	color: #eb860f;
+  color: #eb860f;
 }
 
 .wie-import-results-message-error {
-	color: #cc2626;
+  color: #cc2626;
 }
 
 /* Empty row after each sidebar/widget set */
 
 .wie-import-results-space {
-	height: 8px;
+  height: 8px;
 }
 
 /* Box in footer */
 
 .wie-box {
-	padding: 25px;
-	border: 1px solid #e5e5e5;
-	background-color: #fff;
+  padding:          25px;
+  border:           1px solid #e5e5e5;
+  background-color: #fff;
 }
 
-	p {
-		margin-bottom: 18px;
-	}
+p {
+  margin-bottom: 18px;
+}
 
-	p:last-child {
-		margin-bottom: 0;
-	}
+p:last-child {
+  margin-bottom: 0;
+}
 
-	.wie-box h4 {
-		margin-top: 0;
-	}
+.wie-box h4 {
+  margin-top: 0;
+}
 
 #wie-support-project {
-	max-width: 560px;
-	margin: 30px 0;
+  max-width: 560px;
+  margin:    30px 0;
 }
 
-	#wie-support-project .button {
-		margin-right: 5px;
-	}
+#wie-support-project .button {
+  margin-right: 5px;
+}

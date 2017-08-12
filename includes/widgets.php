@@ -10,8 +10,10 @@
  * @since      0.4
  */
 
-// No direct access
-if ( ! defined( 'ABSPATH' ) ) exit;
+// No direct access.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Available widgets
@@ -32,16 +34,12 @@ function wie_available_widgets() {
 	$available_widgets = array();
 
 	foreach ( $widget_controls as $widget ) {
-
-		if ( ! empty( $widget['id_base'] ) && ! isset( $available_widgets[$widget['id_base']] ) ) { // no dupes
-
-			$available_widgets[$widget['id_base']]['id_base'] = $widget['id_base'];
-			$available_widgets[$widget['id_base']]['name'] = $widget['name'];
-
+		// No dupes.
+		if ( ! empty( $widget['id_base'] ) && ! isset( $available_widgets[ $widget['id_base'] ] ) ) {
+			$available_widgets[ $widget['id_base'] ]['id_base'] = $widget['id_base'];
+			$available_widgets[ $widget['id_base'] ]['name']    = $widget['name'];
 		}
-
 	}
 
 	return apply_filters( 'wie_available_widgets', $available_widgets );
-
 }
