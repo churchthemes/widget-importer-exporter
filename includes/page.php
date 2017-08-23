@@ -203,13 +203,13 @@ function wie_show_import_results() {
 				<td colspan="2" class="wie-import-results-sidebar-name">
 					<?php
 					// Sidebar name if theme supports it; otherwise ID.
-					echo $sidebar['name'];
+					echo esc_html( $sidebar['name'] );
 					?>
 				</td>
-				<td class="wie-import-results-sidebar-message wie-import-results-message wie-import-results-message-<?php echo $sidebar['message_type']; ?>">
+				<td class="wie-import-results-sidebar-message wie-import-results-message wie-import-results-message-<?php echo esc_attr( $sidebar['message_type'] ); ?>">
 					<?php
 					// Sidebar may not exist in theme.
-					echo $sidebar['message'];
+					echo esc_html( $sidebar['message'] );
 					?>
 				</td>
 			</tr>
@@ -232,7 +232,7 @@ function wie_show_import_results() {
 						echo esc_html( $widget['title'] );
 						?>
 					</td>
-					<td class="wie-import-results-widget-message wie-import-results-message wie-import-results-message-<?php echo $widget['message_type']; ?>">
+					<td class="wie-import-results-widget-message wie-import-results-message wie-import-results-message-<?php echo esc_attr( $widget['message_type'] ); ?>">
 						<?php
 						// Sidebar may not exist in theme.
 						echo esc_html( $widget['message'] );
