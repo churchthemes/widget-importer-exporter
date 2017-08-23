@@ -53,16 +53,22 @@ class Widget_Importer_Exporter {
 	 * @access public
 	 */
 	public function __construct() {
+
 		// Set plugin data.
 		add_action( 'plugins_loaded', array( &$this, 'set_plugin_data' ), 1 );
+
 		// Define constants.
 		add_action( 'plugins_loaded', array( &$this, 'define_constants' ), 1 );
+
 		// Load language file.
 		add_action( 'plugins_loaded', array( &$this, 'load_textdomain' ), 1 );
+
 		// Set includes.
 		add_action( 'plugins_loaded', array( &$this, 'set_includes' ), 1 );
+
 		// Load includes.
 		add_action( 'plugins_loaded', array( &$this, 'load_includes' ), 1 );
+
 	}
 
 	/**
@@ -82,8 +88,10 @@ class Widget_Importer_Exporter {
 
 		// Get path to plugin's directory.
 		$plugin_dir = plugin_basename( dirname( __FILE__ ) );
+
 		// Get plugin data.
 		$plugin_data = current( get_plugins( '/' . $plugin_dir ) );
+
 		// Set plugin data.
 		$this->plugin_data = apply_filters( 'wie_plugin_data', $plugin_data );
 
@@ -97,25 +105,30 @@ class Widget_Importer_Exporter {
 	 */
 	public function define_constants() {
 
-		// Plugin details
 		// Plugin version.
 		define( 'WIE_VERSION', $this->plugin_data['Version'] );
+
 		// Plugin's main file path.
 		define( 'WIE_FILE', __FILE__ );
+
 		// Plugin's directory.
 		define( 'WIE_DIR', dirname( plugin_basename( WIE_FILE ) ) );
+
 		// Plugin's directory path.
 		define( 'WIE_PATH', untrailingslashit( plugin_dir_path( WIE_FILE ) ) );
+
 		// Plugin's directory URL.
 		define( 'WIE_URL', untrailingslashit( plugin_dir_url( WIE_FILE ) ) );
 
-		// Directories.
 		// Includes directory.
 		define( 'WIE_INC_DIR', 'includes' );
+
 		// Stylesheets directory.
 		define( 'WIE_CSS_DIR', 'css' );
+
 		// Languages directory.
 		define( 'WIE_LANG_DIR', 'languages' );
+
 	}
 
 	/**
@@ -135,22 +148,25 @@ class Widget_Importer_Exporter {
 
 		// Text-domain.
 		$domain = 'widget-importer-exporter';
+
 		// WordPress core locale filter.
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
 		// WordPress 3.6 and earlier don't auto-load from wp-content/languages, so check and load manually
 		// http://core.trac.wordpress.org/changeset/22346.
 		$external_mofile = WP_LANG_DIR . '/plugins/' . $domain . '-' . $locale . '.mo';
+
 		// External translation exists.
 		if ( get_bloginfo( 'version' ) <= 3.6 && file_exists( $external_mofile ) ) {
 			load_textdomain( $domain, $external_mofile );
 		} else {
-			// Load normally.
-			// Either using WordPress 3.7+ or older version with external translation.
-			// Ensure trailing slash.
-			$languages_dir = WIE_DIR . '/' . trailingslashit( WIE_LANG_DIR );
+
+			// Load normally. Either using WordPress 3.7+ or older version with external translation.
+			$languages_dir = WIE_DIR . '/' . trailingslashit( WIE_LANG_DIR ); // ensure trailing slash.
 			load_plugin_textdomain( $domain, false, $languages_dir );
+
 		}
+
 	}
 
 	/**
@@ -162,8 +178,10 @@ class Widget_Importer_Exporter {
 	public function set_includes() {
 
 		$this->includes = apply_filters( 'wie_includes', array(
+
 			// Admin only.
 			'admin' => array(
+
 				// Functions.
 				WIE_INC_DIR . '/admin.php',
 				WIE_INC_DIR . '/export.php',
@@ -171,7 +189,9 @@ class Widget_Importer_Exporter {
 				WIE_INC_DIR . '/mime-types.php',
 				WIE_INC_DIR . '/page.php',
 				WIE_INC_DIR . '/widgets.php',
+
 			),
+
 		) );
 	}
 
@@ -189,39 +209,53 @@ class Widget_Importer_Exporter {
 		$includes = $this->includes;
 
 		// Loop conditions.
-		foreach ( $includes as $condition => $files ) :
+		foreach ( $includes as $condition => $files ) {
+
 			$do_includes = false;
 
 			// Check condition.
 			switch ( $condition ) {
+
 				// Admin Only.
 				case 'admin':
+
 					if ( is_admin() ) {
 						$do_includes = true;
 					}
+
 					break;
 
 				// Frontend Only.
 				case 'frontend':
+
 					if ( ! is_admin() ) {
 						$do_includes = true;
 					}
+
 					break;
 
 				// Admin or Frontend (always).
 				default:
+
 					$do_includes = true;
+
 					break;
+
 			}
 
 			// Loop files if condition met.
 			if ( $do_includes ) {
+
 				foreach ( $files as $file ) {
 					require_once trailingslashit( WIE_PATH ) . $file;
 				}
+
 			}
-		endforeach;
+
+		}
+
 	}
+
 }
 
 // Instantiate the main class.

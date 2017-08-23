@@ -21,9 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Make sure the WordPress install will accept .wie uploads.
  *
  * @since 0.1
- *
  * @param array $mime_types Currently uploadable mime types.
- *
  * @return array Mime types with additions
  */
 function wie_add_mime_types( $mime_types ) {

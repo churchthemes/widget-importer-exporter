@@ -23,9 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Insert an "Import/Export" link into the plugin's action links (Plugin page's list)
  *
  * @since 1.4
- *
  * @param array $links Existing action links.
- *
  * @return array Modified action links
  */
 function wie_add_plugin_action_link( $links ) {
@@ -37,12 +35,14 @@ function wie_add_plugin_action_link( $links ) {
 
 	// Have links array?
 	if ( is_array( $links ) ) {
+
 		// Append "Settings" link.
 		$links[] = sprintf(
 			'<a href="%1$s">%2$s</a>',
 			esc_url( admin_url( 'tools.php?page=widget-importer-exporter' ) ),
 			esc_html__( 'Import/Export', 'widget-importer-exporter' )
 		);
+
 	}
 
 	return $links;
@@ -81,14 +81,20 @@ function wie_add_widgets_screen_link() {
 	?>
 
 	<script type="text/javascript">
+
 		jQuery( document ).ready( function ( $ ) {
+
 			// Encode string for security
 			var link_html = <?php echo wp_json_encode( $link_html ); ?>;
+
 			// Insert after last button by title
 			$( '.page-title-action' ).last().after( link_html );
+
 		} );
+
 	</script>
 	<?php
+
 }
 
 // WP 4.6+.

@@ -4,7 +4,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013, churchthemes.com
+ * @copyright  Copyright (c) 2013 - 2017, churchthemes.com
  * @link       https://churchthemes.com/plugins/widget-importer-exporter
  * @license    GPLv2 or later
  * @since      0.4
@@ -34,12 +34,15 @@ function wie_available_widgets() {
 	$available_widgets = array();
 
 	foreach ( $widget_controls as $widget ) {
-		// No dupes.
+
+		// No duplicates.
 		if ( ! empty( $widget['id_base'] ) && ! isset( $available_widgets[ $widget['id_base'] ] ) ) {
 			$available_widgets[ $widget['id_base'] ]['id_base'] = $widget['id_base'];
 			$available_widgets[ $widget['id_base'] ]['name']    = $widget['name'];
 		}
+
 	}
 
 	return apply_filters( 'wie_available_widgets', $available_widgets );
+
 }
