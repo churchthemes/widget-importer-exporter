@@ -66,11 +66,12 @@ function wie_import_export_page_content() {
 
 		<?php
 
+		wie_header();
+
 		// Show import results if have them.
 		if ( wie_have_import_results() ) {
 
 			wie_show_import_results();
-			wie_footer();
 
 			// Don't show content below.
 			return;
@@ -133,8 +134,6 @@ function wie_import_export_page_content() {
 	</div>
 
 	<?php
-
-	wie_footer();
 
 }
 
@@ -253,86 +252,89 @@ function wie_show_import_results() {
 }
 
 /**
- * Show footer
+ * Show header
  *
- * Outputs information on supporting the project and getting support
+ * Outputs information on supporting the project
  */
-function wie_footer() {
+function wie_header() {
 
 	?>
 
-	<p id="wie-help">
-
-		<?php
-		printf(
-			wp_kses(
-				/* translators: %1$s is URL to support forum */
-				__( '<b>Need Help?</b> Post your question in the plugin\'s <a href="%1$s" target="_blank">Support Forum</a>.', 'widget-importer-exporter' ),
-				array(
-					'b' => array(),
-					'a' => array(
-						'href'   => array(),
-						'target' => array(),
-					),
-				)
-			),
-			'https://wordpress.org/support/plugin/widget-importer-exporter/'
-		);
-		?>
-
-	</p>
-
 	<div id="wie-support-project" class="wie-box">
-
-		<h4>Support This Project</h4>
 
 		<p>
 
 			<?php
-			printf(
-				wp_kses(
-					__( 'Please be one of the special few to support this plugin with a gift or review. There are costs to cover with more than 1,000,000 free downloads and free support. <b>Thank you!</b>', 'widget-importer-exporter' ),
-					array(
-						'b' => array(),
-					)
-				),
-				'https://wpultimate.com/project-support/',
-				'https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5'
+			echo wp_kses(
+				__( '<b>Support This Project</b> - There are costs to cover with more than 1,000,000 free downloads and free support. The best way to support this plugin is by trying our WordPress hosting service.</b>', 'widget-importer-exporter' ),
+				array(
+					'b' => array(),
+				)
 			);
 			?>
 
 		</p>
 
-		<p>
-			<a href="https://wpultimate.com/project-support/" class="button" target="_blank"><?php esc_html_e( 'Give $5 or More', 'widget-importer-exporter' ); ?></a>
-			<a href="https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5" class="button" target="_blank"><?php esc_html_e( 'Add Your Review', 'widget-importer-exporter' ); ?></a>
-		</p>
+		<ul>
 
-		<p>
-
-			<i>
-
+			<li id="wie-host-line">
 				<?php
 				printf(
 					wp_kses(
-						/* translators: %1$s is URL to WP Ultimate, %2$s is Twitter URL, %3$s is Facebook URL */
-						__( 'Visit <a href="%1$s" target="_blank">WP Ultimate</a> and follow us on <a href="%2$s" target="_blank">Twitter</a> and <a href="%3$s" target="_blank">Facebook</a>', 'widget-importer-exporter' ),
+						/* translators: %1$s is URL to WP Ultimate */
+						__( '<a href="%1$s" target="_blank">Host with WP Ultimate</a> - Free trial. We will move your website for free to make things easy.', 'widget-importer-exporter' ),
 						array(
+							'b' => array(),
 							'a' => array(
 								'href'   => array(),
 								'target' => array(),
 							),
 						)
 					),
-					'https://wpultimate.com',
-					'https://twitter.com/WPUltimateHQ',
-					'https://www.facebook.com/wpultimate'
+					'https://wpultimate.com/'
 				);
 				?>
+			</li>
 
-			</i>
+			<li>
+				<?php
+				printf(
+					wp_kses(
+						/* translators: %1$s is URL to add a review on WordPress.org */
+						__( '<a href="%1$s" target="_blank">Add Your Review</a> - Share your experience with other users.', 'widget-importer-exporter' ),
+						array(
+							'b' => array(),
+							'a' => array(
+								'href'   => array(),
+								'target' => array(),
+							),
+						)
+					),
+					'https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5'
+				);
+				?>
+			</li>
 
-		</p>
+			<li>
+				<?php
+				printf(
+					wp_kses(
+						/* translators: %1$s is URL to support forum on WordPress.org */
+						__( '<a href="%1$s" target="_blank">Get Support</a> - Need help? Post a question on the support forum.', 'widget-importer-exporter' ),
+						array(
+							'b' => array(),
+							'a' => array(
+								'href'   => array(),
+								'target' => array(),
+							),
+						)
+					),
+					'https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5'
+				);
+				?>
+			</li>
+
+		</ul>
 
 	</div>
 
