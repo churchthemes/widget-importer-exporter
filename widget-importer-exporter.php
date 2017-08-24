@@ -127,7 +127,7 @@ class Widget_Importer_Exporter {
 		define( 'WIE_CSS_DIR', 'css' );
 
 		// Image directory.
-		define( 'WIE_IMG_DIR', 'css' );
+		define( 'WIE_IMG_DIR', 'img' );
 
 		// Languages directory.
 		define( 'WIE_LANG_DIR', 'languages' );

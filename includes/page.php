@@ -258,15 +258,24 @@ function wie_show_import_results() {
  */
 function wie_header() {
 
+	// Logo URLs.
+	$img_dir_url = WIE_URL . '/' . WIE_IMG_DIR;
+	$logo_url = $img_dir_url . '/wp-ultimate-logo.png';
+	$logo_hidpi_url = $img_dir_url . '/wp-ultimate-logo@2x.png';
+
 	?>
 
-	<div id="wie-support-project" class="wie-box">
+	<div id="wie-project" class="wie-box">
+
+		<a href="https://wpultimate.com" target="_blank">
+			<img src="<?php echo esc_url( $logo_url ); ?>" srcset="<?php echo esc_url( $logo_url ); ?> 1x, <?php echo esc_url( $logo_hidpi_url ); ?> 2x" id="wie-project-logo" width="40" height="40" alt="<?php esc_attr_e( 'WP Ultimate Logo', 'widget-importer-exporter' ); ?>">
+		</a>
 
 		<p>
 
 			<?php
 			echo wp_kses(
-				__( '<b>Support This Project</b> - There are costs to cover with more than 1,000,000 free downloads and free support. The best way to support this plugin is by trying our WordPress hosting service.</b>', 'widget-importer-exporter' ),
+				__( '<b>Keep it Free</b> - There are costs to cover with 1,000,000+ downloads and free support. Keep this plugin going by trying our WordPress hosting.</b>', 'widget-importer-exporter' ),
 				array(
 					'b' => array(),
 				)
@@ -282,7 +291,7 @@ function wie_header() {
 				printf(
 					wp_kses(
 						/* translators: %1$s is URL to WP Ultimate */
-						__( '<a href="%1$s" target="_blank">Host with WP Ultimate</a> - Free trial. We will move your website for free to make things easy.', 'widget-importer-exporter' ),
+						__( '<a href="%1$s" target="_blank">Host with WP Ultimate</a> - Free trial. We\'ll move your site for free to make it easy.', 'widget-importer-exporter' ),
 						array(
 							'b' => array(),
 							'a' => array(
