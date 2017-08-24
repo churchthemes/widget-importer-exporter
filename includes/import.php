@@ -4,7 +4,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2017, churchthemes.com
+ * @copyright  Copyright (c) 2013 - 2017, WP Ultimate
  * @link       https://wpultimate.com/widget-importer-exporter
  * @license    GPLv2 or later
  * @since      0.3
@@ -287,7 +287,7 @@ function wie_import_data( $data ) {
 				$sidebars_widgets = get_option( 'sidebars_widgets' );
 
 				// Avoid rarely fatal error when the option is an empty string
-				// https://github.com/churchthemes/widget-importer-exporter/pull/11.
+				// https://github.com/stevengliebe/widget-importer-exporter/pull/11.
 				if ( ! $sidebars_widgets ) {
 					$sidebars_widgets = array();
 				}

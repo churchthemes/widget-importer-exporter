@@ -5,5 +5,5 @@ The Widget Importer & Exporter WordPress plugin is useful for moving widgets fro
 
 For more information:
 
-* [View on churchthemes.com](https://wpultimate.com/widget-importer-exporter)
+* [View on WP Ultimate](https://wpultimate.com/widget-importer-exporter)
 * [View on WordPress.org](http://wordpress.org/plugins/widget-importer-exporter)

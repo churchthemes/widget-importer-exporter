@@ -4,7 +4,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2017, churchthemes.com
+ * @copyright  Copyright (c) 2013 - 2017, WP Ultimate
  * @link       https://wpultimate.com/widget-importer-exporter
  * @license    GPLv2 or later
  * @since      0.1
@@ -296,7 +296,7 @@ function wie_footer() {
 						'b' => array(),
 					)
 				),
-				'https://churchthemes.com/project-support/',
+				'https://wpultimate.com/project-support/',
 				'https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5'
 			);
 			?>
@@ -304,7 +304,7 @@ function wie_footer() {
 		</p>
 
 		<p>
-			<a href="https://churchthemes.com/project-support/" class="button" target="_blank"><?php esc_html_e( 'Give $5 or More', 'widget-importer-exporter' ); ?></a>
+			<a href="https://wpultimate.com/project-support/" class="button" target="_blank"><?php esc_html_e( 'Give $5 or More', 'widget-importer-exporter' ); ?></a>
 			<a href="https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5" class="button" target="_blank"><?php esc_html_e( 'Add Your Review', 'widget-importer-exporter' ); ?></a>
 		</p>
 
@@ -315,8 +315,8 @@ function wie_footer() {
 				<?php
 				printf(
 					wp_kses(
-						/* translators: %1$s is URL to churchthemes.com, %2$s is Twitter URL, %3$s is Facebook URL */
-						__( 'Visit <a href="%1$s" target="_blank">churchthemes.com</a> and follow us on <a href="%2$s" target="_blank">Twitter</a> and <a href="%3$s" target="_blank">Facebook</a>', 'widget-importer-exporter' ),
+						/* translators: %1$s is URL to WP Ultimate, %2$s is Twitter URL, %3$s is Facebook URL */
+						__( 'Visit <a href="%1$s" target="_blank">WP Ultimate</a> and follow us on <a href="%2$s" target="_blank">Twitter</a> and <a href="%3$s" target="_blank">Facebook</a>', 'widget-importer-exporter' ),
 						array(
 							'a' => array(
 								'href'   => array(),
@@ -324,9 +324,9 @@ function wie_footer() {
 							),
 						)
 					),
-					'https://churchthemes.com',
-					'https://twitter.com/churchthemes',
-					'https://www.facebook.com/churchthemescom'
+					'https://wpultimate.com',
+					'https://twitter.com/WPUltimateHQ',
+					'https://www.facebook.com/wpultimate'
 				);
 				?>
 
