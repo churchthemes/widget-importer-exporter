@@ -338,7 +338,7 @@ function wie_header() {
 							),
 						)
 					),
-					'https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5'
+					'https://wordpress.org/support/plugin/widget-importer-exporter/'
 				);
 				?>
 			</li>
