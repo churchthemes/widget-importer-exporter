@@ -15,7 +15,7 @@ Widget Importer & Exporter is useful for moving widgets from one WordPress site 
 
 = Importing =
 
-Importing is a matter of uploading an export file created by the plugin. The results of an import are shown in a nicely formatted table with an explanation of what happened with each widget area (sidebar) and widget.
+Importing is done by uploading an export file created by the plugin. The results of an import are shown in a nicely formatted table with an explanation of what happened with each widget area (sidebar) and widget.
 
 Importation takes into consideration widget areas not existing in the current theme (widgets imported as *Inactive*), widgets that already exist in the same widget area (widgets not duplicated) and widgets that are not supported by the site (widgets not imported).
 
