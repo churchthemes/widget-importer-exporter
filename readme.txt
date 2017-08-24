@@ -1,6 +1,5 @@
 === Widget Importer & Exporter ===
 Contributors: churchthemes, stevengliebe, mauryaratan, wido
-Donate link: https://churchthemes.com/project-support/
 Tags: widgets, widget, importer, exporter, import, export, widget import, widget export, widget importer, widget exporter, backup, migration
 Requires at least: 3.5
 Tested up to: 4.8
