@@ -81,3 +81,9 @@
 #wie-help {
   font-style: italic;
 }
+
+/* Notices */
+
+#wie-notice-remind {
+  float: right;
+}

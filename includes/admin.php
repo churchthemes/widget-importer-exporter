@@ -18,7 +18,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Add plugin action link
+ * Enqueue admin styles.
+ *
+ * @since 1.5
+ */
+function ctc_admin_enqueue_styles() {
+
+	// Get current screen.
+	$screen = get_current_screen();
+
+	// Only on WIE and Dashboard screens.
+	if ( ! in_array( $screen->base, array( 'dashboard', 'tools_page_widget-importer-exporter' ), true ) ) {
+		return;
+	}
+
+	// Enqueue styles
+	wp_enqueue_style( 'wie-main', WIE_URL . '/' . WIE_CSS_DIR . '/style.css', false, WIE_VERSION ); // Bust cache on update.
+
+}
+
+add_action( 'admin_enqueue_scripts', 'ctc_admin_enqueue_styles' ); // admin-end only.
+
+/**
+ * Add plugin action link.
  *
  * Insert an "Import/Export" link into the plugin's action links (Plugin page's list)
  *

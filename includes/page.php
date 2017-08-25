@@ -18,8 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Add import/export page under Tools
  *
- * Also enqueue Stylesheet for this page only.
- *
  * @since 0.1
  */
 function wie_add_import_export_page() {
@@ -33,24 +31,9 @@ function wie_add_import_export_page() {
 		'wie_import_export_page_content' // Callback for displaying page content.
 	);
 
-	// Enqueue stylesheet.
-	add_action( 'admin_print_styles-' . $page_hook, 'wie_enqueue_styles' );
-
 }
 
 add_action( 'admin_menu', 'wie_add_import_export_page' );
-
-/**
- * Enqueue stylesheets for import/export page
- *
- * @since 0.1
- */
-function wie_enqueue_styles() {
-
-	// Bust cache on update.
-	wp_enqueue_style( 'wie-main', WIE_URL . '/' . WIE_CSS_DIR . '/style.css', false, WIE_VERSION );
-
-}
 
 /**
  * Import/export page content
