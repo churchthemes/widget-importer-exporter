@@ -17,16 +17,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-update_option( 'wie_php_notice_reminder', '' );
-update_option( 'wie_php_notice_dismissed', '' );
-update_option( 'wie_http_notice_reminder', '' );
-update_option( 'wie_http_notice_dismissed', '' );
-
 /**
- * Activate security notices
+ * Activate security notices.
+ *
+ * To Do: Make this into a class that other plugins can use similarly.
  *
  * @since 1.5
- * @return array Notices.
  */
 function wie_security_notices() {
 
@@ -41,19 +37,19 @@ function wie_security_notices() {
 	// Filter notices.
 	$notices = apply_filters( 'wie_security_notices', $notices );
 
-	// Loop notices.
+	// Loop notices to activate.
 	foreach ( $notices as $notice ) {
 		add_action( 'admin_notices', $notice );
 	}
 
 }
 
-add_action( 'init', 'wie_security_notices' );
+add_action( 'admin_init', 'wie_security_notices' );
 
 /**
  * Show security notice?
  *
- * The notice should only be shown if certain conditions are met.
+ * Return true or false for a notice type if certain conditions are met.
  *
  * @since 1.5
  * @param string $type php or http.
@@ -86,7 +82,7 @@ function wie_show_security_notice( $type ) {
 
 		// PHP version.
 		$php_version_used = phpversion();
-		$php_version_required = '5.7'; // notice shows if lower than this version.
+		$php_version_required = '5.6'; // notice shows if lower than this version.
 
 		// Only if PHP version is outdated.
 		if ( version_compare( $php_version_used, $php_version_required, '>=' ) ) {
@@ -134,24 +130,21 @@ function wie_show_security_notice( $type ) {
 }
 
 /**
- * Show notice if PHP is outdated
+ * PHP outdated notice
  *
  * @since 1.5
  */
 function wie_php_notice() {
 
-	// Only on WIE and Dashboard screens when user is Administrator and notice has not been dismissed.
+	// Only on certain conditions.
 	if ( ! wie_show_security_notice( 'php' ) ) {
 		return;
 	}
 
-	// URL with instructions for fixing.
-	$fix_url = 'https://wpultimate.com/update-php-wordpress';
-
 	// Output notice.
 	?>
 
-	<div id="ctc-outdated-php-notice" class="notice notice-warning is-dismissible">
+	<div id="wie-security-notice" class="notice notice-warning is-dismissible" data-type="php">
 
 		<p>
 
@@ -171,7 +164,7 @@ function wie_php_notice() {
 					)
 				),
 				esc_html( phpversion() ),
-				esc_url( $fix_url )
+				'https://wpultimate.com/update-php-wordpress'
 			);
 
 			?>
@@ -185,24 +178,21 @@ function wie_php_notice() {
 }
 
 /**
- * Show notice when https not used
+ * HTTP notice
  *
  * @since 1.5
  */
 function wie_http_notice() {
 
-	// Only on WIE and Dashboard screens when user is Administrator and notice has not been dismissed.
+	// Only if showing a notice
 	if ( ! wie_show_security_notice( 'http' ) ) {
 		return;
 	}
 
-	// URL with instructions for fixing.
-	$fix_url = 'https://wpultimate.com/ssl-https-wordpress';
-
 	// Output notice.
 	?>
 
-	<div id="ctc-outdated-http-notice" class="notice notice-warning is-dismissible">
+	<div id="wie-security-notice" class="notice notice-warning is-dismissible" data-type="http">
 
 		<p>
 
@@ -221,7 +211,7 @@ function wie_http_notice() {
 						),
 					)
 				),
-				esc_url( $fix_url )
+				'https://wpultimate.com/ssl-https-wordpress'
 			);
 
 			?>
@@ -242,15 +232,15 @@ function wie_http_notice() {
  *
  * @since 1.5
  */
-function wie_php_dismiss_notice_js() {
+function wie_dismiss_notice_js() {
 
-	// Only on WIE and Dashboard screens when user is Administrator and notice has not been dismissed.
-	if ( ! wie_show_security_notice( 'php' ) ) {
+	// Only when a notice is being shown
+	if ( ! wie_show_security_notice( 'php' ) && ! wie_show_security_notice( 'http' ) ) {
 		return;
 	}
 
 	// Nonce.
-	$ajax_nonce = wp_create_nonce( 'wie_php_dismiss_notice' );
+	$ajax_nonce = wp_create_nonce( 'wie_dismiss_notice' );
 
 	// JavaScript for detecting click on dismiss icon.
 	?>
@@ -260,16 +250,27 @@ function wie_php_dismiss_notice_js() {
 	jQuery( document ).ready( function( $ ) {
 
 		// Dismiss icon
-		$( document ).on( 'click', '#ctc-outdated-php-notice .notice-dismiss', function() {
+		$( document ).on( 'click', '#wie-security-notice .notice-dismiss', function() {
 
-   			// Send request.
-			$.ajax( {
-				url: ajaxurl,
-				data: {
-					action: 'wie_php_dismiss_notice',
-					security: '<?php echo esc_js( $ajax_nonce ); ?>',
-				},
-			} );
+			// Notice container
+			var $container = $( this ).parents( '#wie-security-notice' );
+
+			// Get data-type attribute
+			var type = $container.data( 'type' );
+
+			// Send request.
+			if ( 'php' == type || 'http' == type ) {
+
+				$.ajax( {
+					url: ajaxurl,
+					data: {
+						action: 'wie_dismiss_notice',
+						security: '<?php echo esc_js( $ajax_nonce ); ?>',
+						type: type,
+					},
+				} );
+
+			}
 
 		} );
 
@@ -279,18 +280,29 @@ function wie_php_dismiss_notice_js() {
 			// Stop click to URL.
 			event.preventDefault();
 
-   			// Send request.
-			$.ajax( {
-				url: ajaxurl,
-				data: {
-					action: 'wie_php_dismiss_notice',
-					security: '<?php echo esc_js( $ajax_nonce ); ?>',
-					reminder: true,
-				},
-			} );
+			// Notice container
+			var $container = $( this ).parents( '#wie-security-notice' );
+
+			// Get data-type attribute
+			var type = $container.data( 'type' );
+
+			// Send request.
+			if ( 'php' == type || 'http' == type ) {
+
+				$.ajax( {
+					url: ajaxurl,
+					data: {
+						action: 'wie_dismiss_notice',
+						security: '<?php echo esc_js( $ajax_nonce ); ?>',
+						type: type,
+						reminder: true,
+					},
+				} );
+
+			}
 
 			// Fade out notice.
-			$( '#ctc-outdated-php-notice' ).fadeOut( 'fast' );
+			$container.fadeOut( 'fast' );
 
 		} );
 
@@ -302,16 +314,17 @@ function wie_php_dismiss_notice_js() {
 
 }
 
-add_action( 'admin_print_footer_scripts', 'wie_php_dismiss_notice_js' );
+// JavaScript for remembering notice was dismissed
+add_action( 'admin_print_footer_scripts', 'wie_dismiss_notice_js' );
 
 /**
- * Set option to prevent notice from showing again
+ * Set option to prevent notice from showing again.
  *
- * This is called by AJAX in wie_php_dismiss_notice_js()
+ * This is called by AJAX in wie_dismiss_notice_js()
  *
  * @since 1.5
  */
-function wie_php_dismiss_notice() {
+function wie_dismiss_notice() {
 
 	// Only if is AJAX request.
 	if ( ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
@@ -319,20 +332,30 @@ function wie_php_dismiss_notice() {
 	}
 
 	// Check nonce.
-	check_ajax_referer( 'wie_php_dismiss_notice', 'security' );
+	check_ajax_referer( 'wie_dismiss_notice', 'security' );
 
 	// Only if user is Administrator.
 	if ( ! current_user_can( 'administrator' ) ) {
 		return;
 	}
 
-	// Update option so notice is not shown again.
-	if ( ! empty( $_REQUEST['reminder'] ) ) {
-		update_option( 'wie_php_notice_reminder', current_time( 'timestamp' ) );
+	// Get type.
+	if ( ! empty( $_GET['type'] ) && in_array( $_GET['type'], array( 'php', 'http' ), true ) ) {
+		$type = wp_unslash( $_GET['type'] );
 	} else {
-		update_option( 'wie_php_notice_dismissed', '1' );
+		return;
+	}
+
+	// Option prefix.
+	$option_prefix = 'wie_' . $type . '_notice';
+
+	// Update option so notice is not shown again.
+	if ( ! empty( $_GET['reminder'] ) ) {
+		update_option( $option_prefix . '_reminder', current_time( 'timestamp' ) );
+	} else {
+		update_option( $option_prefix . '_dismissed', '1' );
 	}
 
 }
 
-add_action( 'wp_ajax_wie_php_dismiss_notice', 'wie_php_dismiss_notice' );
+add_action( 'wp_ajax_wie_dismiss_notice', 'wie_dismiss_notice' );
