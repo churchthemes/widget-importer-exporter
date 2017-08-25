@@ -27,11 +27,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function wie_outdated_php_show_notice() {
 
+	// Show unless there is reason not to.
 	$show = true;
 
 	// PHP version.
 	$php_version_used = phpversion();
 	$php_version_required = '5.7'; // notice shows if lower than this version.
+
+	// Prepare for "Remind Later" link.
+	$current_time = current_time( 'timestamp' );
+	$reminder_days = 7; // show notice X days after "Remind Later" is clicked.
 
 	// Get current screen.
 	$screen = get_current_screen();
@@ -54,6 +59,19 @@ function wie_outdated_php_show_notice() {
 	// Only if not already dismissed.
 	if ( get_option( 'wie_outdated_php_notice_dismissed' ) ) {
 		$show = false;
+	}
+
+	// Only if X days has not passed since time "Remind Later" was clicked
+	$reminder_time = get_option( 'wie_outdated_php_notice_reminder' ); // timestamp for moment "Remind Later" was set.
+	if ( $reminder_time ) { // Only check if a reminder was set.
+
+		$reminder_seconds = $reminder_days * DAY_IN_SECONDS; // Seconds to wait until notice shows again.
+		$reminder_time_end = $reminder_time + $reminder_seconds; // Timestamp that must be in past for notice to show again.
+
+		if ( $reminder_time && $current_time < $reminder_time_end ) {
+			$show = false;
+		}
+
 	}
 
 	return $show;
@@ -140,6 +158,7 @@ function wie_outdated_php_dismiss_notice_js() {
 
 	jQuery( document ).ready( function( $ ) {
 
+		// Dismiss icon
 		$( document ).on( 'click', '#ctc-outdated-php-notice .notice-dismiss', function() {
 			$.ajax( {
 				url: ajaxurl,
@@ -148,6 +167,27 @@ function wie_outdated_php_dismiss_notice_js() {
 					security: '<?php echo esc_js( $ajax_nonce ); ?>',
 				},
 			} );
+		} );
+
+		// Remind later link
+		$( document ).on( 'click', '#wie-notice-remind', function() {
+
+			// Stop click to URL.
+			event.preventDefault();
+
+   			// Send request.
+			$.ajax( {
+				url: ajaxurl,
+				data: {
+					action: 'wie_outdated_php_dismiss_notice',
+					security: '<?php echo esc_js( $ajax_nonce ); ?>',
+					reminder: true,
+				},
+			} );
+
+			// Fade out notice.
+			$( '#ctc-outdated-php-notice' ).fadeOut( 'fast' );
+
 		} );
 
 	} );
@@ -183,7 +223,11 @@ function wie_outdated_php_dismiss_notice() {
 	}
 
 	// Update option so notice is not shown again.
-	update_option( 'wie_outdated_php_notice_dismissed', '1' );
+	if ( ! empty( $_REQUEST['reminder'] ) ) {
+		update_option( 'wie_outdated_php_notice_reminder', current_time( 'timestamp' ) );
+	} else {
+		update_option( 'wie_outdated_php_notice_dismissed', '1' );
+	}
 
 }
 
