@@ -160,6 +160,8 @@ function wie_outdated_php_dismiss_notice_js() {
 
 		// Dismiss icon
 		$( document ).on( 'click', '#ctc-outdated-php-notice .notice-dismiss', function() {
+
+   			// Send request.
 			$.ajax( {
 				url: ajaxurl,
 				data: {
@@ -167,6 +169,7 @@ function wie_outdated_php_dismiss_notice_js() {
 					security: '<?php echo esc_js( $ajax_nonce ); ?>',
 				},
 			} );
+
 		} );
 
 		// Remind later link
