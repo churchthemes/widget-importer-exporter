@@ -56,6 +56,8 @@ function wie_outdated_php_show_notice() {
 		$show = false;
 	}
 
+echo "PHP Used: $php_version_used - PHP Required: $php_version_required</p>";
+
 	// Only if not already dismissed.
 	if ( get_option( 'wie_outdated_php_notice_dismissed' ) ) {
 		$show = false;
