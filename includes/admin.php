@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.5
  */
-function ctc_admin_enqueue_styles() {
+function wie_enqueue_styles() {
 
 	// Get current screen.
 	$screen = get_current_screen();
@@ -37,7 +37,7 @@ function ctc_admin_enqueue_styles() {
 
 }
 
-add_action( 'admin_enqueue_scripts', 'ctc_admin_enqueue_styles' ); // admin-end only.
+add_action( 'admin_enqueue_scripts', 'wie_enqueue_styles' ); // admin-end only.
 
 /**
  * Add plugin action link.
