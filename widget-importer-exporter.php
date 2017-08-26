@@ -56,19 +56,14 @@ class Widget_Importer_Exporter {
 
 		// Set plugin data.
 		add_action( 'plugins_loaded', array( &$this, 'set_plugin_data' ), 1 );
-
 		// Define constants.
 		add_action( 'plugins_loaded', array( &$this, 'define_constants' ), 1 );
-
 		// Load language file.
 		add_action( 'plugins_loaded', array( &$this, 'load_textdomain' ), 1 );
-
 		// Set includes.
 		add_action( 'plugins_loaded', array( &$this, 'set_includes' ), 1 );
-
 		// Load includes.
 		add_action( 'plugins_loaded', array( &$this, 'load_includes' ), 1 );
-
 	}
 
 	/**
@@ -94,7 +89,6 @@ class Widget_Importer_Exporter {
 
 		// Set plugin data.
 		$this->plugin_data = apply_filters( 'wie_plugin_data', $plugin_data );
-
 	}
 
 	/**
@@ -107,28 +101,20 @@ class Widget_Importer_Exporter {
 
 		// Plugin version.
 		define( 'WIE_VERSION', $this->plugin_data['Version'] );
-
 		// Plugin's main file path.
 		define( 'WIE_FILE', __FILE__ );
-
 		// Plugin's directory.
 		define( 'WIE_DIR', dirname( plugin_basename( WIE_FILE ) ) );
-
 		// Plugin's directory path.
 		define( 'WIE_PATH', untrailingslashit( plugin_dir_path( WIE_FILE ) ) );
-
 		// Plugin's directory URL.
 		define( 'WIE_URL', untrailingslashit( plugin_dir_url( WIE_FILE ) ) );
-
 		// Includes directory.
 		define( 'WIE_INC_DIR', 'includes' );
-
 		// Stylesheets directory.
 		define( 'WIE_CSS_DIR', 'css' );
-
 		// Image directory.
 		define( 'WIE_IMG_DIR', 'img' );
-
 		// Languages directory.
 		define( 'WIE_LANG_DIR', 'languages' );
 
@@ -181,10 +167,8 @@ class Widget_Importer_Exporter {
 	public function set_includes() {
 
 		$this->includes = apply_filters( 'wie_includes', array(
-
 			// Admin only.
 			'admin' => array(
-
 				// Functions.
 				WIE_INC_DIR . '/admin.php',
 				WIE_INC_DIR . '/export.php',
@@ -193,9 +177,7 @@ class Widget_Importer_Exporter {
 				WIE_INC_DIR . '/notices.php',
 				WIE_INC_DIR . '/page.php',
 				WIE_INC_DIR . '/widgets.php',
-
 			),
-
 		) );
 	}
 
@@ -214,52 +196,38 @@ class Widget_Importer_Exporter {
 
 		// Loop conditions.
 		foreach ( $includes as $condition => $files ) {
-
 			$do_includes = false;
 
 			// Check condition.
 			switch ( $condition ) {
-
 				// Admin Only.
 				case 'admin':
-
 					if ( is_admin() ) {
 						$do_includes = true;
 					}
-
 					break;
 
 				// Frontend Only.
 				case 'frontend':
-
 					if ( ! is_admin() ) {
 						$do_includes = true;
 					}
-
 					break;
 
 				// Admin or Frontend (always).
 				default:
-
 					$do_includes = true;
-
 					break;
-
 			}
 
 			// Loop files if condition met.
 			if ( $do_includes ) {
-
 				foreach ( $files as $file ) {
 					require_once trailingslashit( WIE_PATH ) . $file;
 				}
-
 			}
-
 		}
-
 	}
-
 }
 
 // Instantiate the main class.

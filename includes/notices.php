@@ -27,13 +27,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wie_security_notices() {
 
 	$notices = array();
-
 	// Outdated PHP notice.
 	$notices[] = 'wie_php_notice';
-
 	// HTTP notice.
 	$notices[] = 'wie_http_notice';
-
 	// Filter notices.
 	$notices = apply_filters( 'wie_security_notices', $notices );
 
@@ -41,7 +38,6 @@ function wie_security_notices() {
 	foreach ( $notices as $notice ) {
 		add_action( 'admin_notices', $notice );
 	}
-
 }
 
 add_action( 'admin_init', 'wie_security_notices' );
@@ -52,7 +48,9 @@ add_action( 'admin_init', 'wie_security_notices' );
  * Return true or false for a notice type if certain conditions are met.
  *
  * @since 1.5
+ *
  * @param string $type php or http.
+ *
  * @return bool True if notice should be shown.
  */
 function wie_show_security_notice( $type ) {
@@ -61,7 +59,7 @@ function wie_show_security_notice( $type ) {
 	$show = true;
 
 	// Prepare for "Remind Later" link.
-	$current_time = current_time( 'timestamp' );
+	$current_time  = current_time( 'timestamp' );
 	$reminder_days = 7; // show notice X days after "Remind Later" is clicked.
 
 	// Get current screen.
@@ -79,9 +77,8 @@ function wie_show_security_notice( $type ) {
 
 	// Type of notice.
 	if ( 'php' === $type ) {
-
 		// PHP version.
-		$php_version_used = phpversion();
+		$php_version_used     = phpversion();
 		$php_version_required = '5.6'; // notice shows if lower than this version.
 
 		// Only if PHP version is outdated.
@@ -91,9 +88,7 @@ function wie_show_security_notice( $type ) {
 
 		// Set option prefix.
 		$option_prefix = 'wie_php_notice';
-
 	} elseif ( 'http' === $type ) {
-
 		// Only if HTTPS is not used.
 		// is_ssl() no reliable with load balancers so instead check if Settings > General is using an https URL.
 		if ( preg_match( '/^https:.*/', get_bloginfo( 'url' ) ) ) {
@@ -102,13 +97,14 @@ function wie_show_security_notice( $type ) {
 
 		// Set option prefix.
 		$option_prefix = 'wie_http_notice';
-
 	} else { // invalid type.
 		$show = false;
+		// No option prefix to set.
+		$option_prefix = '';
 	}
 
 	// Only if not already dismissed.
-	if ( get_option( $option_prefix . '_dismissed' ) ) {
+	if ( $option_prefix && get_option( $option_prefix . '_dismissed' ) ) {
 		$show = false;
 	}
 
@@ -116,17 +112,15 @@ function wie_show_security_notice( $type ) {
 	$reminder_time = get_option( $option_prefix . '_reminder' ); // timestamp for moment "Remind Later" was set.
 	if ( $reminder_time ) { // Only check if a reminder was set.
 
-		$reminder_seconds = $reminder_days * DAY_IN_SECONDS; // Seconds to wait until notice shows again.
+		$reminder_seconds  = $reminder_days * DAY_IN_SECONDS; // Seconds to wait until notice shows again.
 		$reminder_time_end = $reminder_time + $reminder_seconds; // Timestamp that must be in past for notice to show again.
 
 		if ( $reminder_time && $current_time < $reminder_time_end ) {
 			$show = false;
 		}
-
 	}
 
 	return $show;
-
 }
 
 /**
@@ -140,27 +134,22 @@ function wie_php_notice() {
 	if ( ! wie_show_security_notice( 'php' ) ) {
 		return;
 	}
-
 	// Output notice.
 	?>
-
 	<div id="wie-security-notice" class="notice notice-warning is-dismissible" data-type="php">
-
 		<p>
-
 			<span id="wie-notice-message">
-
 				<?php
 				printf(
 					wp_kses(
-						/* translators: %1$s is PHP version used, %2$s is URL to guide with instructions for fixing */
+					/* translators: %1$s is PHP version used, %2$s is URL to guide with instructions for fixing */
 						__( '<b>PHP Security Warning:</b> Your version of PHP is %1$s which is outdated and insecure. <b><a href="%2$s" target="_blank">Fix This Now</a></b>', 'widget-importer-exporter' ),
 						array(
 							'b' => array(),
 							'a' => array(
-								'href' => array(),
+								'href'   => array(),
 								'target' => array(),
-								'id' => array(),
+								'id'     => array(),
 							),
 						)
 					),
@@ -168,21 +157,15 @@ function wie_php_notice() {
 					'https://wpultimate.com/update-php-wordpress'
 				);
 				?>
-
 			</span>
-
 			<span id="wie-notice-remind">
 				<a href="#" id="wie-notice-remind-link">
 					<?php esc_html_e( 'Remind Later', 'widget-importer-exporter' ); ?>
 				</a>
 			</span>
-
 		</p>
-
 	</div>
-
 	<?php
-
 }
 
 /**
@@ -196,48 +179,37 @@ function wie_http_notice() {
 	if ( ! wie_show_security_notice( 'http' ) ) {
 		return;
 	}
-
 	// Output notice.
 	?>
-
 	<div id="wie-security-notice" class="notice notice-warning is-dismissible" data-type="http">
-
 		<p>
-
 			<span id="wie-notice-message">
-
 				<?php
 				printf(
 					wp_kses(
-						/* translators: %1$s is URL to guide with instructions for fixing */
+					/* translators: %1$s is URL to guide with instructions for fixing */
 						__( '<b>HTTP Security Warning:</b> Your website is not using HTTPS/SSL. This is a security risk. <b><a href="%1$s" target="_blank">Fix This Now</a></b>', 'widget-importer-exporter' ),
 						array(
 							'b' => array(),
 							'a' => array(
-								'href' => array(),
+								'href'   => array(),
 								'target' => array(),
-								'id' => array(),
+								'id'     => array(),
 							),
 						)
 					),
 					'https://wpultimate.com/ssl-https-wordpress'
 				);
 				?>
-
 			</span>
-
 			<span id="wie-notice-remind">
 				<a href="#" id="wie-notice-remind-link">
 					<?php esc_html_e( 'Remind Later', 'widget-importer-exporter' ); ?>
 				</a>
 			</span>
-
 		</p>
-
 	</div>
-
 	<?php
-
 }
 
 /**
@@ -257,80 +229,58 @@ function wie_dismiss_notice_js() {
 
 	// Nonce.
 	$ajax_nonce = wp_create_nonce( 'wie_dismiss_notice' );
-
 	// JavaScript for detecting click on dismiss icon.
 	?>
-
 	<script type="text/javascript">
+		jQuery( document ).ready( function ( $ ) {
+			// Dismiss icon
+			$( document ).on( 'click', '#wie-security-notice .notice-dismiss', function () {
+				// Notice container
+				var $container = $( this ).parents( '#wie-security-notice' );
+				// Get data-type attribute
+				var type       = $container.data( 'type' );
+				// Send request.
+				if ( 'php' === type || 'http' === type ) {
+					$.ajax( {
+						url : ajaxurl,
+						data: {
+							action  : 'wie_dismiss_notice',
+							security: '<?php echo esc_js( $ajax_nonce ); ?>',
+							type    : type,
+						}
+					} );
+				}
+			} );
 
-	jQuery( document ).ready( function( $ ) {
-
-		// Dismiss icon
-		$( document ).on( 'click', '#wie-security-notice .notice-dismiss', function() {
-
-			// Notice container
-			var $container = $( this ).parents( '#wie-security-notice' );
-
-			// Get data-type attribute
-			var type = $container.data( 'type' );
-
-			// Send request.
-			if ( 'php' == type || 'http' == type ) {
-
-				$.ajax( {
-					url: ajaxurl,
-					data: {
-						action: 'wie_dismiss_notice',
-						security: '<?php echo esc_js( $ajax_nonce ); ?>',
-						type: type,
-					},
-				} );
-
-			}
-
+			// Remind later link
+			$( document ).on( 'click', '#wie-notice-remind-link', function () {
+				// Stop click to URL.
+				event.preventDefault();
+				// Notice container
+				var $container = $( this ).parents( '#wie-security-notice' );
+				// Get data-type attribute
+				var type       = $container.data( 'type' );
+				// Send request.
+				if ( 'php' === type || 'http' === type ) {
+					$.ajax( {
+						url : ajaxurl,
+						data: {
+							action  : 'wie_dismiss_notice',
+							security: '<?php echo esc_js( $ajax_nonce ); ?>',
+							type    : type,
+							reminder: true,
+						}
+					} );
+				}
+				// Fade out notice.
+				$container.fadeOut( 'fast' );
+			} );
 		} );
-
-		// Remind later link
-		$( document ).on( 'click', '#wie-notice-remind-link', function() {
-
-			// Stop click to URL.
-			event.preventDefault();
-
-			// Notice container
-			var $container = $( this ).parents( '#wie-security-notice' );
-
-			// Get data-type attribute
-			var type = $container.data( 'type' );
-
-			// Send request.
-			if ( 'php' == type || 'http' == type ) {
-
-				$.ajax( {
-					url: ajaxurl,
-					data: {
-						action: 'wie_dismiss_notice',
-						security: '<?php echo esc_js( $ajax_nonce ); ?>',
-						type: type,
-						reminder: true,
-					},
-				} );
-
-			}
-
-			// Fade out notice.
-			$container.fadeOut( 'fast' );
-
-		} );
-
-	} );
-
 	</script>
-
 	<?php
-
 }
 
-// JavaScript for remembering notice was dismissed
+// JavaScript for remembering notice was dismissed.
 add_action( 'admin_print_footer_scripts', 'wie_dismiss_notice_js' );
 
 /**
@@ -356,7 +306,9 @@ function wie_dismiss_notice() {
 	}
 
 	// Get type.
+	// @codingStandardsIgnoreLine
 	if ( ! empty( $_GET['type'] ) && in_array( $_GET['type'], array( 'php', 'http' ), true ) ) {
+		// @codingStandardsIgnoreLine
 		$type = wp_unslash( $_GET['type'] );
 	} else {
 		return;
@@ -366,12 +318,12 @@ function wie_dismiss_notice() {
 	$option_prefix = 'wie_' . $type . '_notice';
 
 	// Update option so notice is not shown again.
+	// @codingStandardsIgnoreLine
 	if ( ! empty( $_GET['reminder'] ) ) {
 		update_option( $option_prefix . '_reminder', current_time( 'timestamp' ) );
 	} else {
 		update_option( $option_prefix . '_dismissed', '1' );
 	}
-
 }
 
 add_action( 'wp_ajax_wie_dismiss_notice', 'wie_dismiss_notice' );
