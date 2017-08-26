@@ -29,7 +29,6 @@ function wie_add_mime_types( $mime_types ) {
 	$mime_types['wie'] = 'application/json';
 
 	return $mime_types;
-
 }
 
 add_filter( 'upload_mimes', 'wie_add_mime_types' );
@@ -64,5 +63,4 @@ function wie_disable_real_mime_check( $data, $file, $filename, $mimes ) {
 	$proper_filename = $data['proper_filename'];
 
 	return compact( 'ext', 'type', 'proper_filename' );
-
 }

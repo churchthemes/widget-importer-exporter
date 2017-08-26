@@ -34,7 +34,6 @@ function wie_enqueue_styles() {
 
 	// Enqueue styles
 	wp_enqueue_style( 'wie-main', WIE_URL . '/' . WIE_CSS_DIR . '/style.css', false, WIE_VERSION ); // Bust cache on update.
-
 }
 
 add_action( 'admin_enqueue_scripts', 'wie_enqueue_styles' ); // admin-end only.
@@ -45,7 +44,9 @@ add_action( 'admin_enqueue_scripts', 'wie_enqueue_styles' ); // admin-end only.
  * Insert an "Import/Export" link into the plugin's action links (Plugin page's list)
  *
  * @since 1.4
+ *
  * @param array $links Existing action links.
+ *
  * @return array Modified action links
  */
 function wie_add_plugin_action_link( $links ) {
@@ -57,18 +58,15 @@ function wie_add_plugin_action_link( $links ) {
 
 	// Have links array?
 	if ( is_array( $links ) ) {
-
 		// Append "Settings" link.
 		$links[] = sprintf(
 			'<a href="%1$s">%2$s</a>',
 			esc_url( admin_url( 'tools.php?page=widget-importer-exporter' ) ),
 			esc_html__( 'Import/Export', 'widget-importer-exporter' )
 		);
-
 	}
 
 	return $links;
-
 }
 
 add_filter( 'plugin_action_links_' . plugin_basename( WIE_FILE ), 'wie_add_plugin_action_link' );
@@ -98,7 +96,6 @@ function wie_add_widgets_screen_link() {
 		esc_url( admin_url( 'tools.php?page=widget-importer-exporter' ) ),
 		esc_html__( 'Import/Export', 'widget-importer-exporter' )
 	);
-
 	// Output JavaScript to insert link after 'Manage with Live Preview'.
 	?>
 
