@@ -82,7 +82,7 @@ function wie_show_security_notice( $type ) {
 
 		// PHP version.
 		$php_version_used = phpversion();
-		$php_version_required = '5.7'; // notice shows if lower than this version.
+		$php_version_required = '5.6'; // notice shows if lower than this version.
 
 		// Only if PHP version is outdated.
 		if ( version_compare( $php_version_used, $php_version_required, '>=' ) ) {
