@@ -99,10 +99,12 @@ function wie_show_security_notice( $type ) {
 		$option_prefix = 'wie_http_notice';
 	} else { // invalid type.
 		$show = false;
+		// No option prefix to set.
+		$option_prefix = '';
 	}
 
 	// Only if not already dismissed.
-	if ( get_option( $option_prefix . '_dismissed' ) ) {
+	if ( $option_prefix && get_option( $option_prefix . '_dismissed' ) ) {
 		$show = false;
 	}
 
