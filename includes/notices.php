@@ -82,7 +82,7 @@ function wie_show_security_notice( $type ) {
 
 		// PHP version.
 		$php_version_used = phpversion();
-		$php_version_required = '5.6'; // notice shows if lower than this version.
+		$php_version_required = '5.7'; // notice shows if lower than this version.
 
 		// Only if PHP version is outdated.
 		if ( version_compare( $php_version_used, $php_version_required, '>=' ) ) {
@@ -148,26 +148,34 @@ function wie_php_notice() {
 
 		<p>
 
-			<?php
+			<span id="wie-notice-message">
 
-			printf(
-				wp_kses(
-					/* translators: %1$s is PHP version used, %2$s is URL to guide with instructions for fixing */
-					__( '<b>PHP Security Warning:</b> Your version of PHP is <b>%1$s</b> which is outdated and insecure. <b><a href="%2$s" target="_blank">Fix This Now</a></b> <a href="#" id="wie-notice-remind">Remind Later</a>', 'widget-importer-exporter' ),
-					array(
-						'b' => array(),
-						'a' => array(
-							'href' => array(),
-							'target' => array(),
-							'id' => array(),
-						),
-					)
-				),
-				esc_html( phpversion() ),
-				'https://wpultimate.com/update-php-wordpress'
-			);
+				<?php
+				printf(
+					wp_kses(
+						/* translators: %1$s is PHP version used, %2$s is URL to guide with instructions for fixing */
+						__( '<b>PHP Security Warning:</b> Your version of PHP is %1$s which is outdated and insecure. <b><a href="%2$s" target="_blank">Fix This Now</a></b>', 'widget-importer-exporter' ),
+						array(
+							'b' => array(),
+							'a' => array(
+								'href' => array(),
+								'target' => array(),
+								'id' => array(),
+							),
+						)
+					),
+					esc_html( phpversion() ),
+					'https://wpultimate.com/update-php-wordpress'
+				);
+				?>
 
-			?>
+			</span>
+
+			<span id="wie-notice-remind">
+				<a href="#" id="wie-notice-remind-link">
+					<?php esc_html_e( 'Remind Later', 'widget-importer-exporter' ); ?>
+				</a>
+			</span>
 
 		</p>
 
@@ -184,7 +192,7 @@ function wie_php_notice() {
  */
 function wie_http_notice() {
 
-	// Only if showing a notice
+	// Only if showing a notice.
 	if ( ! wie_show_security_notice( 'http' ) ) {
 		return;
 	}
@@ -196,25 +204,33 @@ function wie_http_notice() {
 
 		<p>
 
-			<?php
+			<span id="wie-notice-message">
 
-			printf(
-				wp_kses(
-					/* translators: %1$s is URL to guide with instructions for fixing */
-					__( '<b>HTTP Security Warning:</b> Your website is not using HTTPS/SSL. This is a security risk. <b><a href="%1$s" target="_blank">Fix This Now</a></b> <a href="#" id="wie-notice-remind">Remind Later</a>', 'widget-importer-exporter' ),
-					array(
-						'b' => array(),
-						'a' => array(
-							'href' => array(),
-							'target' => array(),
-							'id' => array(),
-						),
-					)
-				),
-				'https://wpultimate.com/ssl-https-wordpress'
-			);
+				<?php
+				printf(
+					wp_kses(
+						/* translators: %1$s is URL to guide with instructions for fixing */
+						__( '<b>HTTP Security Warning:</b> Your website is not using HTTPS/SSL. This is a security risk. <b><a href="%1$s" target="_blank">Fix This Now</a></b>', 'widget-importer-exporter' ),
+						array(
+							'b' => array(),
+							'a' => array(
+								'href' => array(),
+								'target' => array(),
+								'id' => array(),
+							),
+						)
+					),
+					'https://wpultimate.com/ssl-https-wordpress'
+				);
+				?>
 
-			?>
+			</span>
+
+			<span id="wie-notice-remind">
+				<a href="#" id="wie-notice-remind-link">
+					<?php esc_html_e( 'Remind Later', 'widget-importer-exporter' ); ?>
+				</a>
+			</span>
 
 		</p>
 
@@ -234,7 +250,7 @@ function wie_http_notice() {
  */
 function wie_dismiss_notice_js() {
 
-	// Only when a notice is being shown
+	// Only when a notice is being shown.
 	if ( ! wie_show_security_notice( 'php' ) && ! wie_show_security_notice( 'http' ) ) {
 		return;
 	}
@@ -275,7 +291,7 @@ function wie_dismiss_notice_js() {
 		} );
 
 		// Remind later link
-		$( document ).on( 'click', '#wie-notice-remind', function() {
+		$( document ).on( 'click', '#wie-notice-remind-link', function() {
 
 			// Stop click to URL.
 			event.preventDefault();

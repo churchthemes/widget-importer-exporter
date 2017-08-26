@@ -84,6 +84,29 @@
 
 /* Notices */
 
+#wie-notice-message {
+  display: inline-block;
+  width: calc( 100% - 125px );
+}
+
+  #wie-notice-message a {
+    white-space: nowrap;
+  }
+
 #wie-notice-remind {
+  display: inline-block;
   float: right;
+}
+
+@media only screen and (max-width: 400px) {
+
+  #wie-notice-message {
+    width: auto;
+    padding-right: 4px;
+  }
+
+  #wie-notice-remind {
+    float: none;
+  }
+
 }
