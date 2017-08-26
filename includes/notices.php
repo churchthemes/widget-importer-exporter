@@ -201,7 +201,7 @@ function wie_http_notice() {
 			printf(
 				wp_kses(
 					/* translators: %1$s is URL to guide with instructions for fixing */
-					__( '<b>HTTP Security Warning:</b> Your website is not using HTTPS/SSL. This creates a security risk. <b><a href="%1$s" target="_blank">Fix This Now</a></b> <a href="#" id="wie-notice-remind">Remind Later</a>', 'widget-importer-exporter' ),
+					__( '<b>HTTP Security Warning:</b> Your website is not using HTTPS/SSL. This is a security risk. <b><a href="%1$s" target="_blank">Fix This Now</a></b> <a href="#" id="wie-notice-remind">Remind Later</a>', 'widget-importer-exporter' ),
 					array(
 						'b' => array(),
 						'a' => array(
