@@ -330,7 +330,7 @@ function wie_dismiss_notice_js() {
 
 }
 
-// JavaScript for remembering notice was dismissed
+// JavaScript for remembering notice was dismissed.
 add_action( 'admin_print_footer_scripts', 'wie_dismiss_notice_js' );
 
 /**
