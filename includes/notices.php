@@ -275,7 +275,7 @@ function wie_dismiss_notice_js() {
 			var type = $container.data( 'type' );
 
 			// Send request.
-			if ( 'php' == type || 'http' == type ) {
+			if ( 'php' === type || 'http' === type ) {
 
 				$.ajax( {
 					url: ajaxurl,
