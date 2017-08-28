@@ -218,7 +218,7 @@ class Widget_Importer_Exporter {
 			$do_includes = false;
 
 			// Check condition.
-			// Change this to for statement so can use new lines without warning from wpcs - more readable
+			// Change this to for statement so can use new lines without warning from wpcs - more readable.
 			switch ( $condition ) {
 
 				// Admin Only.
