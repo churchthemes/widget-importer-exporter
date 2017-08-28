@@ -11,11 +11,11 @@ Import and export your widgets.
 
 == Description ==
 
-Widget Importer & Exporter is useful for moving widgets from one WordPress site to another, backing up widgets and for theme developers to provide users with sample widgets. See the [Plugin Details](https://wpultimate.com/widget-importer-exporter) on WP Ultimate.
+Widget Importer & Exporter is useful for moving widgets from one WordPress site to another, backing up widgets and for theme developers to provide users with sample widgets. See the [details](https://wpultimate.com/widget-importer-exporter) on WP Ultimate.
 
 = Importing =
 
-Importing is done by uploading an export file created by the plugin. The results of an import are shown in a nicely formatted table with an explanation of what happened with each widget area (sidebar) and widget.
+Importing is done by uploading an export file created by the plugin. The results of an import are shown in a nicely formatted table with an explanation of what happened with each widget area and widget.
 
 Importation takes into consideration widget areas not existing in the current theme (widgets imported as *Inactive*), widgets that already exist in the same widget area (widgets not duplicated) and widgets that are not supported by the site (widgets not imported).
 
