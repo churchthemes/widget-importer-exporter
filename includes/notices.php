@@ -78,6 +78,7 @@ function wie_show_security_notice( $type ) {
 	}
 
 	// Type of notice.
+	$option_prefix = '';
 	if ( 'php' === $type ) {
 
 		// PHP version.
@@ -108,7 +109,7 @@ function wie_show_security_notice( $type ) {
 	}
 
 	// Only if not already dismissed.
-	if ( get_option( $option_prefix . '_dismissed' ) ) {
+	if ( $option_prefix && get_option( $option_prefix . '_dismissed' ) ) {
 		$show = false;
 	}
 
