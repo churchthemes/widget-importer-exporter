@@ -223,27 +223,21 @@ class Widget_Importer_Exporter {
 
 				// Admin Only.
 				case 'admin':
-
 					if ( is_admin() ) {
 						$do_includes = true;
 					}
-
 					break;
 
 				// Frontend Only.
 				case 'frontend':
-
 					if ( ! is_admin() ) {
 						$do_includes = true;
 					}
-
 					break;
 
 				// Admin or Frontend (always).
 				default:
-
 					$do_includes = true;
-
 					break;
 
 			}
