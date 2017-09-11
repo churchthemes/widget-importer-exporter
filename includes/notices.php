@@ -101,7 +101,9 @@ function wie_show_security_notice( $type ) {
 		// To avoid a false positive in this case, also check is_ssl() - to keep those users from being confused.
 		// The only false positive now should be user who forgot to update URL settings while behind load balancer.
 		// Basically we check two conditions because neither is totally reliable.
-		if ( preg_match( '/^https:.*/', get_bloginfo( 'url' ) ) || is_ssl() ) {
+		$site_url = get_bloginfo( 'url' );
+		$is_ssl = is_ssl();
+		if ( preg_match( '/^https:.*/', $site_url ) || $is_ssl ) {
 			$show = false;
 		}
 
