@@ -96,8 +96,12 @@ function wie_show_security_notice( $type ) {
 	} elseif ( 'http' === $type ) {
 
 		// Only if HTTPS is not used.
-		// is_ssl() no reliable with load balancers so instead check if Settings > General is using an https URL.
-		if ( preg_match( '/^https:.*/', get_bloginfo( 'url' ) ) ) {
+		// is_ssl() not reliable with load balancers (may return false when using SSL) so instead check if Settings > General is using an https URL.
+		// But, some users will have SSL installed and access via https but forget to update URL settings.
+		// To avoid a false positive in this case, also check is_ssl() - to keep those users from being confused.
+		// The only false positive now should be user who forgot to update URL settings while behind load balancer.
+		// Basically we check two conditions because neither is totally reliable.
+		if ( preg_match( '/^https:.*/', get_bloginfo( 'url' ) ) || is_ssl() ) {
 			$show = false;
 		}
 
