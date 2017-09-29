@@ -258,7 +258,7 @@ function wie_header() {
 
 			<?php
 			echo wp_kses(
-				__( '<b>Keep it Free</b> - There are costs to cover with 1,000,000+ downloads and free support. Keep this plugin going by trying our WordPress hosting.', 'widget-importer-exporter' ),
+				__( '<b>Keep it Free</b> - There are costs to cover with 1,500,000+ downloads and free support. Keep this plugin going by trying our WordPress hosting.', 'widget-importer-exporter' ),
 				array(
 					'b' => array(),
 				)
