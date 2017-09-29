@@ -3,7 +3,7 @@
  * Plugin Name: Widget Importer & Exporter
  * Plugin URI: https://wpultimate.com/widget-importer-exporter
  * Description: Imports and exports widgets.
- * Version: 1.5.1
+ * Version: 1.5.2
  * Author: WP Ultimate
  * Author URI: https://wpultimate.com
  * License: GPLv2 or later
