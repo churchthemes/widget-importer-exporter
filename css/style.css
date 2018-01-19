@@ -40,48 +40,6 @@
   height: 8px;
 }
 
-/* Project support box */
-
-.wie-box {
-  position: relative;
-  padding: 20px 24px;
-  border: 1px solid #e5e5e5;
-  background-color: #fff;
-}
-
-#wie-project {
-  max-width: 520px;
-  margin: 20px 0 30px 0;
-}
-
-  #wie-project-logo {
-    position: relative;
-    top: -1px;
-    right: -1px;
-    margin-left: 20px;
-    margin-bottom: 15px;
-    float: right;
-  }
-
-  #wie-project p {
-    margin-top: 0;
-    margin-bottom: 18px;
-  }
-
-  #wie-project ul {
-    margin-bottom: 0;
-  }
-
-    #wie-host-line a {
-      font-weight: bold;
-    }
-
-/* Help */
-
-#wie-help {
-  font-style: italic;
-}
-
 /* Notices */
 
 #wie-notice-message {

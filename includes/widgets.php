@@ -4,8 +4,8 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2017, WP Ultimate
- * @link       https://wpultimate.com/widget-importer-exporter
+ * @copyright  Copyright (c) 2013 - 2017, churchthemes.com
+ * @link       https://churchthemes.com/plugins/widget-importer-exporter/
  * @license    GPLv2 or later
  * @since      0.4
  */

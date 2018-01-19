@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name: Widget Importer & Exporter
- * Plugin URI: https://wpultimate.com/widget-importer-exporter
+ * Plugin URI: https://churchthemes.com/plugins/widget-importer-exporter/
  * Description: Imports and exports widgets.
  * Version: 1.5.2
- * Author: WP Ultimate
- * Author URI: https://wpultimate.com
+ * Author: churchthemes.com
+ * Author URI: https://churchthemes.com
  * License: GPLv2 or later
  * Text Domain: widget-importer-exporter
  * Domain Path: /languages
  *
  * @package   Widget_Importer_Exporter
- * @copyright Copyright (c) 2013 - 2017, WP Ultimate
- * @link      https://wpultimate.com/widget-importer-exporter
+ * @copyright Copyright (c) 2013 - 2017, churchthemes.com
+ * @link      https://churchthemes.com/plugins/widget-importer-exporter/
  * @license   GPLv2 or later
  */
 

@@ -4,8 +4,8 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2017, WP Ultimate
- * @link       https://wpultimate.com/widget-importer-exporter
+ * @copyright  Copyright (c) 2013 - 2017, churchthemes.com
+ * @link       https://churchthemes.com/plugins/widget-importer-exporter/
  * @license    GPLv2 or later
  * @since      0.1
  */
@@ -48,8 +48,6 @@ function wie_import_export_page_content() {
 		<h2><?php esc_html_e( 'Widget Importer & Exporter', 'widget-importer-exporter' ); ?></h2>
 
 		<?php
-
-		wie_header();
 
 		// Show import results if have them.
 		if ( wie_have_import_results() ) {
@@ -232,104 +230,4 @@ function wie_show_import_results() {
 
 	</table>
 	<?php
-}
-
-/**
- * Show header
- *
- * Outputs information on supporting the project
- */
-function wie_header() {
-
-	// Logo URLs.
-	$img_dir_url = WIE_URL . '/' . WIE_IMG_DIR;
-	$logo_url = $img_dir_url . '/wp-ultimate-logo.png';
-	$logo_hidpi_url = $img_dir_url . '/wp-ultimate-logo@2x.png';
-
-	?>
-
-	<div id="wie-project" class="wie-box">
-
-		<a href="https://wpultimate.com" target="_blank">
-			<img src="<?php echo esc_url( $logo_url ); ?>" srcset="<?php echo esc_url( $logo_url ); ?> 1x, <?php echo esc_url( $logo_hidpi_url ); ?> 2x" id="wie-project-logo" width="40" height="40" alt="<?php esc_attr_e( 'WP Ultimate Logo', 'widget-importer-exporter' ); ?>">
-		</a>
-
-		<p>
-
-			<?php
-			echo wp_kses(
-				__( '<b>Keep it Free</b> - There are costs to cover with 1,500,000+ downloads and free support. Keep this plugin going by trying our WordPress hosting.', 'widget-importer-exporter' ),
-				array(
-					'b' => array(),
-				)
-			);
-			?>
-
-		</p>
-
-		<ul>
-
-			<li id="wie-host-line">
-				<?php
-				printf(
-					wp_kses(
-						/* translators: %1$s is URL to WP Ultimate */
-						__( '<a href="%1$s" target="_blank">Host with WP Ultimate</a> - Free trial. We\'ll move your site for free to make it easy.', 'widget-importer-exporter' ),
-						array(
-							'b' => array(),
-							'a' => array(
-								'href'   => array(),
-								'target' => array(),
-							),
-						)
-					),
-					'https://wpultimate.com/'
-				);
-				?>
-			</li>
-
-			<li>
-				<?php
-				printf(
-					wp_kses(
-						/* translators: %1$s is URL to add a review on WordPress.org */
-						__( '<a href="%1$s" target="_blank">Add Your Review</a> - Share your experience with other users.', 'widget-importer-exporter' ),
-						array(
-							'b' => array(),
-							'a' => array(
-								'href'   => array(),
-								'target' => array(),
-							),
-						)
-					),
-					'https://wordpress.org/support/plugin/widget-importer-exporter/reviews/?filter=5'
-				);
-				?>
-			</li>
-
-			<li>
-				<?php
-				printf(
-					wp_kses(
-						/* translators: %1$s is URL to support forum on WordPress.org */
-						__( '<a href="%1$s" target="_blank">Get Support</a> - Need help? Post a question on the support forum.', 'widget-importer-exporter' ),
-						array(
-							'b' => array(),
-							'a' => array(
-								'href'   => array(),
-								'target' => array(),
-							),
-						)
-					),
-					'https://wordpress.org/support/plugin/widget-importer-exporter/'
-				);
-				?>
-			</li>
-
-		</ul>
-
-	</div>
-
-	<?php
-
 }

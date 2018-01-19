@@ -124,7 +124,7 @@ msgid ""
 msgstr ""
 
 #: ../includes/page.php:254
-msgid "WP Ultimate Logo"
+msgid "churchthemes.com Logo"
 msgstr ""
 
 #: ../includes/page.php:261
@@ -136,7 +136,7 @@ msgstr ""
 #: ../includes/page.php:277
 #, php-format
 msgid ""
-"<a href=\"%1$s\" target=\"_blank\">Host with WP Ultimate</a> - Free trial. "
+"<a href=\"%1$s\" target=\"_blank\">Host with churchthemes.com</a> - Free trial. "
 "We'll move your site for free to make it easy."
 msgstr ""
 
