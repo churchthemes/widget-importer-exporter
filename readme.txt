@@ -49,7 +49,7 @@ Please jump on [GitHub](https://github.com/churchthemes/widget-importer-exporter
 = Follow us =
 
 * Visit [churchthemes.com](https://churchthemes.com)
-* We're on [Twitter](https://twitter.com/churchthemes), [Facebook](https://www.facebook.com/churchthemes) and have a [Newsletter](http://churchthemes.us5.list-manage.com/subscribe?u=a0fec2c146a67b2dc509154d1&id=8e1ec0c774)
+* We're on [Twitter](https://twitter.com/churchthemes), [Facebook](https://www.facebook.com/churchthemescom) and have a [Newsletter](http://churchthemes.us5.list-manage.com/subscribe?u=a0fec2c146a67b2dc509154d1&id=8e1ec0c774)
 * Developer: [stevengliebe.com](http://stevengliebe.com)
 
 == Installation ==
