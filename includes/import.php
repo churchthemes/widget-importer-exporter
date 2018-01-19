@@ -287,7 +287,7 @@ function wie_import_data( $data ) {
 				$sidebars_widgets = get_option( 'sidebars_widgets' );
 
 				// Avoid rarely fatal error when the option is an empty string
-				// https://github.com/stevengliebe/widget-importer-exporter/pull/11.
+				// https://github.com/churchthemes/widget-importer-exporter/pull/11.
 				if ( ! $sidebars_widgets ) {
 					$sidebars_widgets = array();
 				}
