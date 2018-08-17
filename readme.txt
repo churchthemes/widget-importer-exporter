@@ -12,7 +12,7 @@ Import and export your widgets.
 
 == Description ==
 
-Widget Importer & Exporter is useful for moving widgets from one WordPress site to another, backing up widgets and for theme developers to give users sample widgets. See the [details](https://churchthemes.com/plugins/widget-importer-exporter/) on churchthemes.com.
+Widget Importer & Exporter is useful for moving widgets from one WordPress site to another, backing up widgets and for theme developers to give users sample widgets. See the [details](https://churchthemes.com/plugins/widget-importer-exporter/) on ChurchThemes.com.
 
 = Importing =
 
@@ -24,33 +24,11 @@ Importation takes into consideration widget areas not existing in the current th
 
 Widget Importer & Exporter can create an export file (in JSON format with .wie extension) out of currently active widgets. This file can be imported into other sites using this plugin or used to restore widgets to the same site later.
 
-= Translations =
-
-The following translations are available.
-
-* English (default)
-* Spanish by [Eduardo Larequi](http://www.labitacoradeltigre.com/)
-* French by [French Translation Team](https://make.wordpress.org/polyglots/teams/?locale=fr_FR)
-* German by [Alexander Kesting](http://alex-dune.de)
-* Italian by [venerdi](https://profiles.wordpress.org/venerdi/)
-* Dutch by [Paul Backus](http://backups.nl/)
-* Serbian by Borisa Djuraskovic of [Web Hosting Hub](http://www.webhostinghub.com)
-* Japanese by [miccweb](https://profiles.wordpress.org/miccweb/)
-* Hebrew by [Rami Yushuvaev](https://profiles.wordpress.org/ramiy/)
-* Persian by [ekfarshid](https://profiles.wordpress.org/ekfarshid/), [Yousefzadeh](https://profiles.wordpress.org/cg-team/) and [PersianScript](https://profiles.wordpress.org/persianscript/)
-* More at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/widget-importer-exporter)
-
 = Developers =
 
 The ``wie_before_import`` action fires after a file is uploaded but before the data is imported. ``wie_after_import`` fires after the data is imported. The ``wie_import_data`` filter can be used to filter data before it is imported. Other filters are used throughout. Submit an issue on GitHub if you need more hooks (pull requests encouraged).
 
 Please jump on [GitHub](https://github.com/churchthemes/widget-importer-exporter) to report issues and follow development.
-
-= Follow us =
-
-* Visit [churchthemes.com](https://churchthemes.com)
-* We're on [Twitter](https://twitter.com/churchthemes), [Facebook](https://www.facebook.com/churchthemescom) and have a [Newsletter](http://churchthemes.us5.list-manage.com/subscribe?u=a0fec2c146a67b2dc509154d1&id=8e1ec0c774)
-* Developer: [stevengliebe.com](http://stevengliebe.com)
 
 == Installation ==
 
