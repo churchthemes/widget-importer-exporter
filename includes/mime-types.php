@@ -26,7 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function wie_add_mime_types( $mime_types ) {
 
-	$mime_types['wie'] = 'application/json';
+	//$mime_types['wie'] = 'application/json'; // 5.0.1 breaking change: https://make.wordpress.org/core/2018/12/13/backwards-compatibility-breaks-in-5-0-1/
+	$mime_types['wie'] = 'text/plain';
 
 	return $mime_types;
 
