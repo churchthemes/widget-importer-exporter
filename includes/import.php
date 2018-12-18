@@ -4,7 +4,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2017, ChurchThemes.com
+ * @copyright  Copyright (c) 2013 - 2018, ChurchThemes.com
  * @link       https://churchthemes.com/plugins/widget-importer-exporter/
  * @license    GPLv2 or later
  * @since      0.3
@@ -25,6 +25,9 @@ function wie_upload_import_file() {
 	// Check nonce for security since form was posted.
 	// check_admin_referer prints fail page and dies.
 	if ( ! empty( $_POST ) && ! empty( $_FILES['wie_import_file'] ) && check_admin_referer( 'wie_import', 'wie_import_nonce' ) ) {
+
+		// Workaround for .wie upload issue introduced by WordPress 4.9.9 / 5.0.1.
+		add_filter( 'wp_check_filetype_and_ext', 'wie_allow_multiple_mime_types', 10, 4 );
 
 		// Workaround for upload bug in WordPress 4.7.1.
 		// This will only be applied for WordPress 4.7.1. Other versions are not affected.
