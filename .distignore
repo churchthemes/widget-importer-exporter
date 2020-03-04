@@ -1,0 +1,12 @@
+# Prevent files from being deployed to WordPress.org by WP Continuous Development
+# https://github.com/ahmadawais/wp-continuous-deployment
+# https://github.com/marketplace/actions/wordpress-plugin-deploy
+
+/.dev
+/.git
+/.github
+/.wordpress-org
+/node_modules
+
+.distignore
+.gitignore
