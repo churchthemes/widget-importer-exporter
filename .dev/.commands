@@ -1,0 +1,20 @@
+Commands for this project (e.g. ~/.oh-my-zsh/custom/aliases.zsh)
+
+ALIASES
+
+wie
+Change into project's directory
+
+WP CONTINUOUS DEVELOPMENT
+
+Deploy from GitHub to WordPress.org SVN via GitHub Actions
+https://github.com/ahmadawais/wp-continuous-deployment
+
+When on master branch...
+
+git push origin master
+Readme and assets deployed if no other changes made...
+
+git tag -a #.# -m "Message"
+git push origin master --tags
+New version deployed to WordPress.org
