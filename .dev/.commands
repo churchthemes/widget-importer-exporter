@@ -6,7 +6,7 @@ wie
 
 	Change into project's directory
 
-WP CONTINUOUS DEVELOPMENT
+WP CONTINUOUS DEPLOYMENT
 
 Deploy from GitHub to WordPress.org SVN with GitHub Actions
 https://github.com/ahmadawais/wp-continuous-deployment
@@ -15,11 +15,11 @@ Install: npx wp-continuous-deployment (requires npm)
 
 When on master branch...
 
-git push origin master
+git push
 
 	Readme and assets deployed if no other changes made...
 
 git tag -a #.# -m "Message";
-git push origin master --tags;
+git push --tags;
 
 	New version deployed to WordPress.org
