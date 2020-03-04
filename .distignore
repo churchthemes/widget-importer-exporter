@@ -6,7 +6,5 @@
 /.git
 /.github
 /.wordpress-org
-/node_modules
-
 .distignore
 .gitignore
