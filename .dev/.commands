@@ -1,4 +1,0 @@
-# Terminal commands (CMD-SHFT-T) for this project (see ~/.oh-my-zsh/custom/aliases.zsh)
-
-ccp				Change into project's folder
-ccp-archive		Make zip and copy to Releases with .dev/archive.sh
