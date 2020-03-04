@@ -26,7 +26,7 @@ Widget Importer & Exporter can create an export file (in JSON format with .wie e
 
 = Developers =
 
-The ``wie_before_import`` action fires after a file is uploaded but before the data is imported. ``wie_after_import`` fires after the data is imported. The ``wie_import_data`` filter can be used to filter data before it is imported. Other filters are used throughout. Submit an issue on GitHub if you need more hooks (pull requests encouraged).
+The ``wie_before_import`` action fires after a file is uploaded but before the data is imported. ``wie_after_import`` fires after the data is imported. The ``wie_import_data`` filter can be used to filter data before it is imported. Other filters are used throughout.
 
 Please jump on [GitHub](https://github.com/churchthemes/widget-importer-exporter) to report issues and follow development.
 
