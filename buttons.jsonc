@@ -8,7 +8,7 @@
         },
         {
             "name": "Product Folder",
-            "script": "open $CT_WORK'/Products/Plugins/Widget Importer & Exporter';exit",
+            "script": "open $CT_PLUGIN_PRODUCTS'/Widget Importer & Exporter';exit",
             "description": "Supplemental files"
         },
         {
