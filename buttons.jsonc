@@ -2,14 +2,9 @@
 {
     "buttons": [
         {
-            "name": "Deploy (Dry Run)",
+            "name": "Deploy to WP.org",
             "script": "./deploy",
-            "description": "./deploy (WP.org)"
-        },
-        {
-            "name": "Deploy (Production)",
-            "script": "./deploy go",
-            "description": "./deploy go (WP.org)"
+            "description": "./deploy (tag or readme/assets)"
         },
         {
             "name": "Plugin Folder",
@@ -23,12 +18,12 @@
         },
         {
             "name": "WordPress.org",
-            "script": "open https://wordpress.org/plugins/widget-importer-exporter/;exit",
+            "script": "open https://wordpress.org/plugins/widget-importer-exporter/ && exit",
             "description": "widget-importer-exporter"
         },
         {
             "name": "GitHub",
-            "script": "open https://github.com/churchthemes/widget-importer-exporter;exit",
+            "script": "open https://github.com/churchthemes/widget-importer-exporter && exit",
             "description": "widget-importer-exporter"
         }
     ]

@@ -11,7 +11,7 @@
  * Domain Path: /languages
  *
  * @package   Widget_Importer_Exporter
- * @copyright Copyright (c) 2013 - 2018, ChurchThemes.com
+ * @copyright Copyright (c) 2013 - 2020, ChurchThemes.com, LLC
  * @link      https://churchthemes.com/plugins/widget-importer-exporter/
  * @license   GPLv2 or later
  */
