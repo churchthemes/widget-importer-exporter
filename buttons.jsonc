@@ -2,6 +2,16 @@
 {
     "buttons": [
         {
+            "name": "Deploy (Dry Run)",
+            "script": "./deploy",
+            "description": "./deploy (WP.org)"
+        },
+        {
+            "name": "Deploy (Production)",
+            "script": "./deploy go",
+            "description": "./deploy go (WP.org)"
+        },
+        {
             "name": "Plugin Folder",
             "script": "open .;exit",
             "description": "Project Repo"
