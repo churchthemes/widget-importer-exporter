@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Run ./deploy to deploy plugin to WordPress.org plugin directory.
+# This respects .gitignore, .gitignore_global and .gitattributes (export-ignore).
+# WordPress.org assets (icon and screenshots) are stored in .wpo-assets.
+#
+# Also see buttons.jsonc which uses vscode-buttons extension for convenient execution.
+#
+# PREREQUISITES:
+#
+# 1) Set environment variable (see variables.zsh and script commons)
+# 2) Make this script executable: chmod +x deploy
+# 3) Folder must exist at $CT_PLUGIN_PRODUCTS/$NAME/Releases
+# 4) System must have WordPress.org keychain access
+
+source "$CT_SCRIPTS/deploy-wpo.common"
+
+SLUG="widget-importer-exporter" # Plugin folder name in wp-content/plugins
+NAME="Widget Importer & Exporter" # Folder name in Releases folder
+
+ct_deploy_wpo "$SLUG" "$NAME" $1 # first command argument (e.g. ./deploy go)

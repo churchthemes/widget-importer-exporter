@@ -3,13 +3,13 @@
     "buttons": [
         {
             "name": "Deploy (Dry Run)",
-            "script": "./deploy-wpo",
-            "description": "./deploy-wpo (WP.org)"
+            "script": "./deploy",
+            "description": "./deploy (WP.org)"
         },
         {
             "name": "Deploy (Production)",
-            "script": "./deploy-wpo go",
-            "description": "./deploy-wpo go (WP.org)"
+            "script": "./deploy go",
+            "description": "./deploy go (WP.org)"
         },
         {
             "name": "Plugin Folder",
