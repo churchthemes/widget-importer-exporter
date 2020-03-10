@@ -3,5 +3,5 @@
 
 .git* export-ignore
 buttons.jsonc export-ignore
-deploy export-ignore
+deploy* export-ignore
 README.md export-ignore
