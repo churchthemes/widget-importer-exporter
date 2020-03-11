@@ -8,12 +8,12 @@
         },
         {
             "name": "Plugin Folder",
-            "script": "open .;exit",
+            "script": "open . && exit",
             "description": "Project Repo"
         },
         {
             "name": "Product Folder",
-            "script": "open $CT_PLUGIN_PRODUCTS'/Widget Importer & Exporter';exit",
+            "script": "open $CT_PLUGIN_PRODUCTS'/Widget Importer & Exporter' && exit",
             "description": "Supplemental files"
         },
         {
