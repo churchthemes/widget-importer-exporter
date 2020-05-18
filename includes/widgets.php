@@ -4,16 +4,13 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2017, ChurchThemes.com
+ * @copyright  Copyright (c) 2013 - 2020, ChurchThemes.com, LLC
  * @link       https://churchthemes.com/plugins/widget-importer-exporter/
- * @license    GPLv2 or later
+ * @license    https://www.gnu.org/licenses/gpl-2.0.html GPL-2.0-or-later
  * @since      0.4
  */
 
-// No direct access.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit; // No direct access.
 
 /**
  * Available widgets
@@ -26,23 +23,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array Widget information
  */
 function wie_available_widgets() {
-
 	global $wp_registered_widget_controls;
 
 	$widget_controls = $wp_registered_widget_controls;
 
 	$available_widgets = array();
 
-	foreach ( $widget_controls as $widget ) {
-
+	foreach ($widget_controls as $widget) {
 		// No duplicates.
-		if ( ! empty( $widget['id_base'] ) && ! isset( $available_widgets[ $widget['id_base'] ] ) ) {
+		if (! empty( $widget['id_base'] ) && ! isset( $available_widgets[ $widget['id_base'] ] )) {
 			$available_widgets[ $widget['id_base'] ]['id_base'] = $widget['id_base'];
 			$available_widgets[ $widget['id_base'] ]['name']    = $widget['name'];
 		}
-
 	}
 
 	return apply_filters( 'wie_available_widgets', $available_widgets );
-
 }
