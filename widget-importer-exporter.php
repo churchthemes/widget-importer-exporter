@@ -3,7 +3,7 @@
  * Plugin Name: Widget Importer & Exporter
  * Plugin URI: https://churchthemes.com/plugins/widget-importer-exporter/
  * Description: Imports and exports widgets.
- * Version: 1.5.5
+ * Version: 1.6
  * Author: ChurchThemes.com
  * Author URI: https://churchthemes.com
  * License: GPLv2 or later
@@ -15,7 +15,7 @@
  * @link      https://churchthemes.com/plugins/widget-importer-exporter/
  * @license   https://www.gnu.org/licenses/gpl-2.0.html GPL-2.0-or-later
  *
-* TODO: Move from procedural to OOP and require same minimum PHP as WordPress.
+ * TODO: Move from procedural to OOP and require same minimum PHP as WordPress.
  */
 
 defined('ABSPATH') || exit; // No direct access.
