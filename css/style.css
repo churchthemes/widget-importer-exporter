@@ -68,3 +68,9 @@
   }
 
 }
+
+/* Forms */
+
+textarea {
+  max-width: 100%;
+}
