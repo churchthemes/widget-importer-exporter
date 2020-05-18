@@ -18,7 +18,8 @@ defined('ABSPATH') || exit; // No direct access.
  * @since 0.1
  * @return string Export file contents
  */
-function wie_generate_export_data() {
+function wie_generate_export_data()
+{
 	// Get all available widgets site supports.
 	$available_widgets = wie_available_widgets();
 
@@ -86,7 +87,8 @@ function wie_generate_export_data() {
  *
  * @since 0.1
  */
-function wie_send_export_file() {
+function wie_send_export_file()
+{
 	// Export requested.
 	if (! empty($_GET['export'])) {
 		// Check referer before doing anything else.

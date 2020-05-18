@@ -63,7 +63,8 @@ add_action('admin_enqueue_scripts', 'wie_enqueue_scripts'); // admin-end only.
  * @param array $links Existing action links.
  * @return array Modified action links
  */
-function wie_add_plugin_action_link($links) {
+function wie_add_plugin_action_link($links)
+{
 	// If has permission.
 	if (! current_user_can('edit_theme_options')) {
 		return array();
@@ -92,7 +93,8 @@ add_filter('plugin_action_links_' . plugin_basename(WIE_FILE), 'wie_add_plugin_a
  *
  * @since 1.4
  */
-function wie_add_widgets_screen_link() {
+function wie_add_widgets_screen_link()
+{
 	// Build link with same style as 'Manage with Live Preview'.
 	$link_html = sprintf(
 		wp_kses(

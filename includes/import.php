@@ -13,14 +13,92 @@
 defined('ABSPATH') || exit; // No direct access.
 
 /**
+ * Process submit
+ *
+ * Process uploaded file or pasted contents. If both, use pasted content.
+ * If neither, show an error telling to use one or the other method.
+ *
+ * @since 1.6
+ */
+function wie_process_submit()
+{
+	// Form not posted
+	if (empty($_POST)) {
+		return;
+	}
+
+	// Check nonce
+	check_admin_referer('wie_import', 'wie_import_nonce');
+
+	// Content pasted
+	if (! empty($_POST['wie_import_data'])) {
+		wie_submit_import_data();
+	}
+
+	// File uploaded (but not content pasted)
+	else if (! empty($_FILES['wie_import_file']['name'])) {
+		wie_upload_import_file();
+	}
+
+	// Nothing provided
+	else {
+		wp_die(
+			wp_kses(
+				__("You must choose a <b>.wie</b> file to upload or paste its contents.", 'widget-importer-exporter'),
+				array(
+					'b' => array(),
+				)
+			),
+			'',
+			array(
+				'back_link' => true,
+			)
+		);
+	}
+}
+
+add_action('load-tools_page_widget-importer-exporter', 'wie_process_submit');
+
+/**
+ * Submit import data (copy and paste from file)
+ *
+ * If file and content both provided, uses content.
+ *
+ * @since 1.6
+ * @global string $wie_import_results
+ */
+function wie_submit_import_data()
+{
+	global $wie_import_results;
+
+	check_admin_referer('wie_import', 'wie_import_nonce');
+
+	if (! empty($_POST['wie_import_data'])) {
+		$content = '';
+
+		// Get content pasted
+		$content = filter_var(wp_unslash($_POST['wie_import_data']), FILTER_DEFAULT);
+		$content = trim($content);
+
+		// Import the widget data
+		// Make results available for display on import/export page.
+		$data               = json_decode($content);   // Decode file contents to JSON data.
+		$wie_import_results = wie_import_data($data);
+	}
+}
+
+/**
  * Upload import file
+ *
+ * If file and content provided, uses content.
  *
  * @since 0.3
  */
-function wie_upload_import_file() {
-	// Check nonce for security since form was posted.
-	// check_admin_referer prints fail page and dies.
-	if (! empty($_POST) && ! empty($_FILES['wie_import_file']['name']) && check_admin_referer('wie_import', 'wie_import_nonce')) {
+function wie_upload_import_file()
+{
+	check_admin_referer('wie_import', 'wie_import_nonce');
+
+	if (! empty($_FILES['wie_import_file']['name'])) {
 
 		// Workaround for .wie upload issue introduced by WordPress 4.9.9 / 5.0.1.
 		add_filter('wp_check_filetype_and_ext', 'wie_allow_multiple_mime_types', 10, 4);
@@ -81,59 +159,6 @@ function wie_upload_import_file() {
 	}
 }
 
-add_action('load-tools_page_widget-importer-exporter', 'wie_upload_import_file');
-
-/**
- * Submit import data (copy and paste from file)
- *
- * If file and data both provided, uses file.
- *
- * @since 1.6
- * @global string $wie_import_results
- */
-function wie_submit_import_data() {
-	global $wie_import_results;
-
-	// Check nonce for security since form was posted.
-	// check_admin_referer prints fail page and dies.
-	if (! empty($_POST) && empty($_FILES['wie_import_file']['name']) && check_admin_referer('wie_import', 'wie_import_nonce')) {
-		$content = '';
-
-		// Get content pasted
-		if (isset($_POST['wie_import_data'])) {
-			$content = filter_var(wp_unslash($_POST['wie_import_data']), FILTER_DEFAULT);
-		}
-
-		// Trim it
-		$content = trim($content);
-
-		// Error if empty
-		if (empty($content)) {
-			wp_die(
-				wp_kses(
-					__("You must choose a <b>.wie</b> file to upload or paste its contents.", 'widget-importer-exporter'),
-					array(
-						'b' => array(),
-					)
-				),
-				'',
-				array(
-					'back_link' => true,
-				)
-			);
-		}
-
-		// Decode file contents to JSON data.
-		$data = json_decode($content);
-
-		// Import the widget data
-		// Make results available for display on import/export page.
-		$wie_import_results = wie_import_data($data);
-	}
-}
-
-add_action('load-tools_page_widget-importer-exporter', 'wie_submit_import_data');
-
 /**
  * Process import file
  *
@@ -143,7 +168,8 @@ add_action('load-tools_page_widget-importer-exporter', 'wie_submit_import_data')
  * @param string $file Path to .wie file uploaded.
  * @global string $wie_import_results
  */
-function wie_process_import_file($file) {
+function wie_process_import_file($file)
+{
 	global $wie_import_results;
 
 	// File exists?
@@ -177,7 +203,8 @@ function wie_process_import_file($file) {
  * @param object $data JSON widget data from .wie file.
  * @return array Results array
  */
-function wie_import_data($data) {
+function wie_import_data($data)
+{
 	global $wp_registered_sidebars;
 
 	// Have valid data?

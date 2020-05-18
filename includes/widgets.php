@@ -22,7 +22,8 @@ defined('ABSPATH') || exit; // No direct access.
  * @global array $wp_registered_widget_updates
  * @return array Widget information
  */
-function wie_available_widgets() {
+function wie_available_widgets()
+{
 	global $wp_registered_widget_controls;
 
 	$widget_controls = $wp_registered_widget_controls;

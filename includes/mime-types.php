@@ -87,7 +87,8 @@ function wie_allow_multiple_mime_types($values, $file, $filename, $mimes) {
  * https://wordpress.org/support/topic/solution-for-wp-4-7-1-bug-causing-you-must-upload-a-wie-file-generated-by/
  */
 //@phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed
-function wie_disable_real_mime_check($data, $file, $filename, $mimes) {
+function wie_disable_real_mime_check($data, $file, $filename, $mimes)
+{
 	$wp_version = get_bloginfo('version');
 
 	// WordPress 4.7.1 - 4.7.3 are affected only.

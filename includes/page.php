@@ -17,7 +17,8 @@ defined('ABSPATH') || exit; // No direct access.
  *
  * @since 0.1
  */
-function wie_add_import_export_page() {
+function wie_add_import_export_page()
+{
 	// Add page.
 	$page_hook = add_management_page(
 		esc_html__('Widget Importer & Exporter', 'widget-importer-exporter'), // Page title.
@@ -35,7 +36,8 @@ add_action('admin_menu', 'wie_add_import_export_page');
  *
  * @since 0.1
  */
-function wie_import_export_page_content() {
+function wie_import_export_page_content()
+{
 	global $wie_import_results;
 
 	?>
@@ -145,7 +147,8 @@ function wie_import_export_page_content() {
  * @global string $wie_import_results
  * @return bool True if have import results to show
  */
-function wie_have_import_results() {
+function wie_have_import_results()
+{
 	global $wie_import_results;
 
 	if (! empty($wie_import_results)) {
@@ -163,7 +166,8 @@ function wie_have_import_results() {
  * @since 0.3
  * @global string $wie_import_results
  */
-function wie_show_import_results() {
+function wie_show_import_results()
+{
 	global $wie_import_results;
 
 	$self = isset($_SERVER['PHP_SELF']) ? filter_var(wp_unslash($_SERVER['PHP_SELF']), FILTER_SANITIZE_STRING) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended

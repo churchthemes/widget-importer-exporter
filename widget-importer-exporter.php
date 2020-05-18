@@ -25,7 +25,8 @@ defined('ABSPATH') || exit; // No direct access.
  *
  * @since 0.1
  */
-class Widget_Importer_Exporter {
+class Widget_Importer_Exporter
+{
 	/**
 	 * Plugin data from get_plugins()
 	 *
@@ -50,7 +51,8 @@ class Widget_Importer_Exporter {
 	 * @since  0.1
 	 * @access public
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		// Set plugin data.
 		add_action('plugins_loaded', array(&$this, 'setPluginData'), 1);
 
@@ -75,7 +77,8 @@ class Widget_Importer_Exporter {
 	 * @since  0.1
 	 * @access public
 	 */
-	public function setPluginData() {
+	public function setPluginData()
+	{
 		// Load plugin.php if get_plugins() not available.
 		if (! function_exists('get_plugins')) {
 			// @codingStandardsIgnoreLine
@@ -98,7 +101,8 @@ class Widget_Importer_Exporter {
 	 * @since  0.1
 	 * @access public
 	 */
-	public function defineConstants() {
+	public function defineConstants()
+	{
 		// Plugin version.
 		define('WIE_VERSION', $this->plugin_data['Version']);
 
@@ -143,7 +147,8 @@ class Widget_Importer_Exporter {
 	 * @since  0.1
 	 * @access public
 	 */
-	public function loadTextdomain() {
+	public function loadTextdomain()
+	{
 		// Text-domain.
 		$domain = 'widget-importer-exporter';
 
@@ -170,7 +175,8 @@ class Widget_Importer_Exporter {
 	 * @since  0.1
 	 * @access public
 	 */
-	public function setIncludes() {
+	public function setIncludes()
+	{
 		$this->includes = apply_filters('wie_includes', array(
 			// Admin only.
 			'admin' => array(
@@ -192,7 +198,8 @@ class Widget_Importer_Exporter {
 	 * @since  0.1
 	 * @access public
 	 */
-	public function loadIncludes() {
+	public function loadIncludes()
+	{
 		// Get includes.
 		$includes = $this->includes;
 
