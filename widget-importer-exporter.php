@@ -126,6 +126,9 @@ class Widget_Importer_Exporter {
 		// Stylesheets directory.
 		define( 'WIE_CSS_DIR', 'css' );
 
+		// JavaScript directory.
+		define( 'WIE_JS_DIR', 'js' );
+
 		// Image directory.
 		define( 'WIE_IMG_DIR', 'img' );
 

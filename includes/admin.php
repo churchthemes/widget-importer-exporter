@@ -13,7 +13,7 @@
  */
 
 // No direct access.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined( 'ABSPATH' )) {
 	exit;
 }
 
@@ -28,7 +28,7 @@ function wie_enqueue_styles() {
 	$screen = get_current_screen();
 
 	// Only on WIE and Dashboard screens.
-	if ( ! in_array( $screen->base, array( 'dashboard', 'tools_page_widget-importer-exporter' ), true ) ) {
+	if (! in_array( $screen->base, array( 'dashboard', 'tools_page_widget-importer-exporter' ), true )) {
 		return;
 	}
 
@@ -38,6 +38,28 @@ function wie_enqueue_styles() {
 }
 
 add_action( 'admin_enqueue_scripts', 'wie_enqueue_styles' ); // admin-end only.
+
+/**
+ * Enqueue admin scripts.
+ *
+ * @since 1.6
+ */
+function wie_enqueue_scripts() {
+
+	// Get current screen.
+	$screen = get_current_screen();
+
+	// Only on WIE screen.
+	if (! in_array( $screen->base, array( 'dashboard', 'tools_page_widget-importer-exporter' ), true )) {
+		return;
+	}
+
+	// Enqueue script
+	wp_enqueue_script( 'wie-main', WIE_URL . '/' . WIE_JS_DIR . '/main.js', array( 'jquery' ), WIE_VERSION ); // bust cache on update.
+
+}
+
+add_action( 'admin_enqueue_scripts', 'wie_enqueue_scripts' ); // admin-end only.
 
 /**
  * Add plugin action link.
@@ -51,12 +73,12 @@ add_action( 'admin_enqueue_scripts', 'wie_enqueue_styles' ); // admin-end only.
 function wie_add_plugin_action_link( $links ) {
 
 	// If has permission.
-	if ( ! current_user_can( 'edit_theme_options' ) ) {
+	if (! current_user_can( 'edit_theme_options' )) {
 		return array();
 	}
 
 	// Have links array?
-	if ( is_array( $links ) ) {
+	if (is_array( $links )) {
 
 		// Append "Settings" link.
 		$links[] = sprintf(

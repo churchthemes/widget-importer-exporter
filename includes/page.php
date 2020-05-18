@@ -89,9 +89,13 @@ function wie_import_export_page_content() {
 				<?php
 
 				echo wp_kses(
-					__( 'Or, copy and paste the contents of your <b>.wie</b> file below.', 'widget-importer-exporter' ),
+					__( 'Or, <a href="#" id="wie-content-toggle">copy and paste</a> the contents of your <b>.wie</b> file.', 'widget-importer-exporter' ),
 					array(
 						'b' => array(),
+						'a' => array(
+							'href' => array(),
+							'id' => array(),
+						),
 					)
 				);
 
