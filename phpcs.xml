@@ -7,4 +7,9 @@
 	<!-- PHPCompatibility to check 5.2 and newer -->
 	<config name="testVersion" value="5.2-"/>
 
+	<!-- Ignore rules not possible for older versions of PHP-->
+	<rule ref="Generic">
+		<exclude name="Generic.PHP.RequireStrictTypes.MissingDeclaration"/>
+	</rule>
+
 </ruleset>
