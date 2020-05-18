@@ -4,7 +4,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2018, ChurchThemes.com
+ * @copyright  Copyright (c) 2013 - 2020, ChurchThemes.com
  * @link       https://churchthemes.com/plugins/widget-importer-exporter/
  * @license    GPLv2 or later
  * @since      0.3
@@ -24,7 +24,7 @@ function wie_upload_import_file() {
 
 	// Check nonce for security since form was posted.
 	// check_admin_referer prints fail page and dies.
-	if (! empty( $_POST ) && ! empty( $_FILES['wie_import_file'] ) && check_admin_referer( 'wie_import', 'wie_import_nonce' )) {
+	if (! empty( $_POST ) && ! empty( $_FILES['wie_import_file']['name'] ) && check_admin_referer( 'wie_import', 'wie_import_nonce' )) {
 
 		// Workaround for .wie upload issue introduced by WordPress 4.9.9 / 5.0.1.
 		add_filter( 'wp_check_filetype_and_ext', 'wie_allow_multiple_mime_types', 10, 4 );
@@ -80,6 +80,60 @@ function wie_upload_import_file() {
 }
 
 add_action( 'load-tools_page_widget-importer-exporter', 'wie_upload_import_file' );
+
+/**
+ * Submit import data (copy and paste from file)
+ *
+ * If file and data both provided, uses file.
+ *
+ * @since 1.6
+ */
+function wie_submit_import_data() {
+
+	global $wie_import_results;
+
+	// Check nonce for security since form was posted.
+	// check_admin_referer prints fail page and dies.
+	if (! empty( $_POST ) && empty( $_FILES['wie_import_file']['name'] ) && check_admin_referer( 'wie_import', 'wie_import_nonce' )) {
+
+		$content = '';
+
+		// Get content pasted
+		if (isset($_POST['wie_import_data'])) {
+			$content = filter_var(wp_unslash($_POST['wie_import_data']), FILTER_DEFAULT);
+		}
+
+		// Trim it
+		$content = trim($content);
+
+		// Error if empty
+		if (empty($content)) {
+			wp_die(
+				wp_kses(
+					__( "You must choose a <b>.wie</b> file to upload or paste its contents.", 'widget-importer-exporter' ),
+					array(
+						'b' => array(),
+					)
+				),
+				'',
+				array(
+					'back_link' => true,
+				)
+			);
+		}
+
+		// Decode file contents to JSON data.
+		$data = json_decode( $content );
+
+		// Import the widget data
+		// Make results available for display on import/export page.
+		$wie_import_results = wie_import_data($data);
+
+	}
+
+}
+
+add_action( 'load-tools_page_widget-importer-exporter', 'wie_submit_import_data' );
 
 /**
  * Process import file

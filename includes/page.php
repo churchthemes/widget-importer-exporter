@@ -4,7 +4,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2017, ChurchThemes.com
+ * @copyright  Copyright (c) 2013 - 2020, ChurchThemes.com
  * @link       https://churchthemes.com/plugins/widget-importer-exporter/
  * @license    GPLv2 or later
  * @since      0.1
@@ -99,7 +99,7 @@ function wie_import_export_page_content() {
 
 			</p>
 
-			<textarea name="wie_import_contents" id="wie-import-contents" cols="80" rows="6"></textarea>
+			<textarea name="wie_import_data" id="wie-import-data" cols="80" rows="6"></textarea>
 
 			<?php submit_button( esc_html_x( 'Import Widgets', 'button', 'widget-importer-exporter' ) ); ?>
 
