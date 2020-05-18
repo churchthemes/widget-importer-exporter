@@ -11,7 +11,7 @@
  */
 
 // No direct access.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined( 'ABSPATH' )) {
 	exit;
 }
 
@@ -24,7 +24,7 @@ function wie_upload_import_file() {
 
 	// Check nonce for security since form was posted.
 	// check_admin_referer prints fail page and dies.
-	if ( ! empty( $_POST ) && ! empty( $_FILES['wie_import_file'] ) && check_admin_referer( 'wie_import', 'wie_import_nonce' ) ) {
+	if (! empty( $_POST ) && ! empty( $_FILES['wie_import_file'] ) && check_admin_referer( 'wie_import', 'wie_import_nonce' )) {
 
 		// Workaround for .wie upload issue introduced by WordPress 4.9.9 / 5.0.1.
 		add_filter( 'wp_check_filetype_and_ext', 'wie_allow_multiple_mime_types', 10, 4 );
@@ -39,7 +39,7 @@ function wie_upload_import_file() {
 		// Check file type.
 		// This will also fire if no file uploaded.
 		$wp_filetype = wp_check_filetype_and_ext( $uploaded_file['tmp_name'], $uploaded_file['name'], false );
-		if ( 'wie' !== $wp_filetype['ext'] && ! wp_match_mime_types( 'wie', $wp_filetype['type'] ) ) {
+		if ('wie' !== $wp_filetype['ext'] && ! wp_match_mime_types( 'wie', $wp_filetype['type'] )) {
 
 			wp_die(
 				wp_kses(
@@ -62,7 +62,7 @@ function wie_upload_import_file() {
 			'test_form' => false,
 		) );
 
-		if ( isset( $file_data['error'] ) ) {
+		if (isset( $file_data['error'] )) {
 			wp_die(
 				esc_html( $file_data['error'] ),
 				'',
@@ -95,7 +95,7 @@ function wie_process_import_file( $file ) {
 	global $wie_import_results;
 
 	// File exists?
-	if ( ! file_exists( $file ) ) {
+	if (! file_exists( $file )) {
 
 		wp_die(
 			esc_html__( 'Import file could not be found. Please try again.', 'widget-importer-exporter' ),
@@ -134,7 +134,7 @@ function wie_import_data( $data ) {
 
 	// Have valid data?
 	// If no data or could not decode.
-	if ( empty( $data ) || ! is_object( $data ) ) {
+	if (empty( $data ) || ! is_object( $data )) {
 
 		wp_die(
 			esc_html__( 'Import data could not be read. Please try a different file.', 'widget-importer-exporter' ),
@@ -155,7 +155,7 @@ function wie_import_data( $data ) {
 
 	// Get all existing widget instances.
 	$widget_instances = array();
-	foreach ( $available_widgets as $widget_data ) {
+	foreach ($available_widgets as $widget_data) {
 		$widget_instances[ $widget_data['id_base'] ] = get_option( 'widget_' . $widget_data['id_base'] );
 	}
 
@@ -163,16 +163,16 @@ function wie_import_data( $data ) {
 	$results = array();
 
 	// Loop import data's sidebars.
-	foreach ( $data as $sidebar_id => $widgets ) {
+	foreach ($data as $sidebar_id => $widgets) {
 
 		// Skip inactive widgets (should not be in export file).
-		if ( 'wp_inactive_widgets' === $sidebar_id ) {
+		if ('wp_inactive_widgets' === $sidebar_id) {
 			continue;
 		}
 
 		// Check if sidebar is available on this site.
 		// Otherwise add widgets to inactive, and say so.
-		if ( isset( $wp_registered_sidebars[ $sidebar_id ] ) ) {
+		if (isset( $wp_registered_sidebars[ $sidebar_id ] )) {
 			$sidebar_available    = true;
 			$use_sidebar_id       = $sidebar_id;
 			$sidebar_message_type = 'success';
@@ -192,7 +192,7 @@ function wie_import_data( $data ) {
 		$results[ $sidebar_id ]['widgets']      = array();
 
 		// Loop widgets.
-		foreach ( $widgets as $widget_instance_id => $widget ) {
+		foreach ($widgets as $widget_instance_id => $widget) {
 
 			$fail = false;
 
@@ -201,7 +201,7 @@ function wie_import_data( $data ) {
 			$instance_id_number = str_replace( $id_base . '-', '', $widget_instance_id );
 
 			// Does site support this widget?
-			if ( ! $fail && ! isset( $available_widgets[ $id_base ] ) ) {
+			if (! $fail && ! isset( $available_widgets[ $id_base ] )) {
 				$fail                = true;
 				$widget_message_type = 'error';
 				$widget_message = esc_html__( 'Site does not support widget', 'widget-importer-exporter' ); // Explain why widget not imported.
@@ -225,7 +225,7 @@ function wie_import_data( $data ) {
 			$widget = apply_filters( 'wie_widget_settings_array', $widget );
 
 			// Does widget with identical settings already exist in same sidebar?
-			if ( ! $fail && isset( $widget_instances[ $id_base ] ) ) {
+			if (! $fail && isset( $widget_instances[ $id_base ] )) {
 
 				// Get existing widgets in this sidebar.
 				$sidebars_widgets = get_option( 'sidebars_widgets' );
@@ -233,10 +233,10 @@ function wie_import_data( $data ) {
 
 				// Loop widgets with ID base.
 				$single_widget_instances = ! empty( $widget_instances[ $id_base ] ) ? $widget_instances[ $id_base ] : array();
-				foreach ( $single_widget_instances as $check_id => $check_widget ) {
+				foreach ($single_widget_instances as $check_id => $check_widget) {
 
 					// Is widget in same sidebar and has identical settings?
-					if ( in_array( "$id_base-$check_id", $sidebar_widgets, true ) && (array) $widget === $check_widget ) {
+					if (in_array( "$id_base-$check_id", $sidebar_widgets, true ) && (array) $widget === $check_widget) {
 
 						$fail = true;
 						$widget_message_type = 'warning';
@@ -253,7 +253,7 @@ function wie_import_data( $data ) {
 			}
 
 			// No failure.
-			if ( ! $fail ) {
+			if (! $fail) {
 
 				// Add widget instance
 				$single_widget_instances = get_option( 'widget_' . $id_base ); // All instances for that widget ID base, get fresh every time.
@@ -269,14 +269,14 @@ function wie_import_data( $data ) {
 				// If key is 0, make it 1
 				// When 0, an issue can occur where adding a widget causes data from other widget to load,
 				// and the widget doesn't stick (reload wipes it).
-				if ( '0' === strval( $new_instance_id_number ) ) {
+				if ('0' === strval( $new_instance_id_number )) {
 					$new_instance_id_number = 1;
 					$single_widget_instances[ $new_instance_id_number ] = $single_widget_instances[0];
 					unset( $single_widget_instances[0] );
 				}
 
 				// Move _multiwidget to end of array for uniformity.
-				if ( isset( $single_widget_instances['_multiwidget'] ) ) {
+				if (isset( $single_widget_instances['_multiwidget'] )) {
 					$multiwidget = $single_widget_instances['_multiwidget'];
 					unset( $single_widget_instances['_multiwidget'] );
 					$single_widget_instances['_multiwidget'] = $multiwidget;
@@ -291,7 +291,7 @@ function wie_import_data( $data ) {
 
 				// Avoid rarely fatal error when the option is an empty string
 				// https://github.com/churchthemes/widget-importer-exporter/pull/11.
-				if ( ! $sidebars_widgets ) {
+				if (! $sidebars_widgets) {
 					$sidebars_widgets = array();
 				}
 
@@ -318,7 +318,7 @@ function wie_import_data( $data ) {
 				do_action( 'wie_after_widget_import', $after_widget_import );
 
 				// Success message.
-				if ( $sidebar_available ) {
+				if ($sidebar_available) {
 					$widget_message_type = 'success';
 					$widget_message      = esc_html__( 'Imported', 'widget-importer-exporter' );
 				} else {

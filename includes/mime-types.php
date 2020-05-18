@@ -11,7 +11,7 @@
  */
 
 // No direct access.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined( 'ABSPATH' )) {
 	exit;
 }
 
@@ -55,21 +55,21 @@ add_filter( 'upload_mimes', 'wie_add_mime_types' );
  */
 function wie_allow_multiple_mime_types( $values, $file, $filename, $mimes ) {
 
-	if ( extension_loaded( 'fileinfo' ) ) {
+	if (extension_loaded( 'fileinfo' )) {
 
 		$finfo     = finfo_open( FILEINFO_MIME_TYPE );
 		$real_mime = finfo_file( $finfo, $file );
 
 		finfo_close( $finfo );
 
-		if ( 'text/html' === $real_mime && preg_match( '/\.(wie)$/i', $filename ) ) {
+		if ('text/html' === $real_mime && preg_match( '/\.(wie)$/i', $filename )) {
 			$values['ext']  = 'wie';
 			$values['type'] = 'text/plain';
 		}
 
 	} else {
 
-		if ( preg_match( '/\.(wie)$/i', $filename ) ) {
+		if (preg_match( '/\.(wie)$/i', $filename )) {
 			$values['ext']  = 'wie';
 			$values['type'] = 'text/plain';
 		}
@@ -99,7 +99,7 @@ function wie_disable_real_mime_check( $data, $file, $filename, $mimes ) {
 
 	// WordPress 4.7.1 - 4.7.3 are affected only.
 	// 4.7.2 and 4.7.3 were rushed out as security updates without the upload bug being fixed.
-	if ( ! in_array( $wp_version, array( '4.7.1', '4.7.2', '4.7.3' ), true ) ) {
+	if (! in_array( $wp_version, array( '4.7.1', '4.7.2', '4.7.3' ), true )) {
 		return $data;
 	}
 

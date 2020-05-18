@@ -17,7 +17,7 @@
  */
 
 // No direct access.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined( 'ABSPATH' )) {
 	exit;
 }
 
@@ -82,7 +82,7 @@ class Widget_Importer_Exporter {
 	public function set_plugin_data() {
 
 		// Load plugin.php if get_plugins() not available.
-		if ( ! function_exists( 'get_plugins' ) ) {
+		if (! function_exists( 'get_plugins' )) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
@@ -160,7 +160,7 @@ class Widget_Importer_Exporter {
 		$external_mofile = WP_LANG_DIR . '/plugins/' . $domain . '-' . $locale . '.mo';
 
 		// External translation exists.
-		if ( get_bloginfo( 'version' ) <= 3.6 && file_exists( $external_mofile ) ) {
+		if (get_bloginfo( 'version' ) <= 3.6 && file_exists( $external_mofile )) {
 			load_textdomain( $domain, $external_mofile );
 		} else {
 
@@ -212,24 +212,24 @@ class Widget_Importer_Exporter {
 		$includes = $this->includes;
 
 		// Loop conditions.
-		foreach ( $includes as $condition => $files ) {
+		foreach ($includes as $condition => $files) {
 
 			$do_includes = false;
 
 			// Check condition.
 			// Change this to for statement so can use new lines without warning from wpcs - more readable.
-			switch ( $condition ) {
+			switch ($condition) {
 
 				// Admin Only.
 				case 'admin':
-					if ( is_admin() ) {
+					if (is_admin()) {
 						$do_includes = true;
 					}
 					break;
 
 				// Frontend Only.
 				case 'frontend':
-					if ( ! is_admin() ) {
+					if (! is_admin()) {
 						$do_includes = true;
 					}
 					break;
@@ -242,9 +242,9 @@ class Widget_Importer_Exporter {
 			}
 
 			// Loop files if condition met.
-			if ( $do_includes ) {
+			if ($do_includes) {
 
-				foreach ( $files as $file ) {
+				foreach ($files as $file) {
 					require_once trailingslashit( WIE_PATH ) . $file;
 				}
 
