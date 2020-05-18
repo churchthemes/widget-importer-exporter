@@ -137,7 +137,7 @@ function wie_import_data( $data ) {
 	if (empty( $data ) || ! is_object( $data )) {
 
 		wp_die(
-			esc_html__( 'Import data could not be read. Please try a different file.', 'widget-importer-exporter' ),
+			esc_html__( 'Import data is invalid or empty.', 'widget-importer-exporter' ),
 			'',
 			array(
 				'back_link' => true,
