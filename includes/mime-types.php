@@ -61,7 +61,10 @@ function wie_allow_multiple_mime_types($values, $file, $filename, $mimes) {
 		if ('text/html' === $real_mime && preg_match('/\.(wie)$/i', $filename)) {
 			$values['ext']  = 'wie';
 			$values['type'] = 'text/plain';
-		}
+        } elseif ('application/json' === $real_mime && preg_match('/\.(wie)$/i', $filename)) {
+            $values['ext']  = 'wie';
+            $values['type'] = 'application/json';
+        }
 
 	} else {
 		if (preg_match('/\.(wie)$/i', $filename)) {
