@@ -3,7 +3,7 @@
  * Plugin Name: Widget Importer & Exporter
  * Plugin URI: https://churchthemes.com/plugins/widget-importer-exporter/
  * Description: Imports and exports widgets.
- * Version: 1.6
+ * Version: 1.6.1
  * Author: ChurchThemes.com
  * Author URI: https://churchthemes.com
  * License: GPLv2 or later
@@ -11,7 +11,7 @@
  * Domain Path: /languages
  *
  * @package   Widget_Importer_Exporter
- * @copyright Copyright (c) 2013 - 2021, ChurchThemes.com, LLC
+ * @copyright Copyright (c) 2013 - 2023, ChurchThemes.com, LLC
  * @link      https://churchthemes.com/plugins/widget-importer-exporter/
  * @license   https://www.gnu.org/licenses/gpl-2.0.html GPL-2.0-or-later
  *

@@ -1,10 +1,10 @@
 === Widget Importer & Exporter ===
-Contributors: churchthemes, stevengliebe, mauryaratan, wido
+Contributors: churchthemes, stevengliebe, mauryaratan, wido, zodiac1978
 Tags: widgets, widget, importer, exporter, import, export, widget import, widget export, widget importer, widget exporter, backup, migration
 Requires at least: 3.5
-Tested up to: 5.9
+Tested up to: 6.2
 Requires PHP: 5.2.4
-Stable tag: 1.6
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
