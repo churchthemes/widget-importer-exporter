@@ -188,8 +188,6 @@ function wie_process_import_file($file)
 	$data = json_decode($data);
 
 	// Delete import file.
-	echo $file;
-	exit;
 	unlink($file);
 
 	// Import the widget data
