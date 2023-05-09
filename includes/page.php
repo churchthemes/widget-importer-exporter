@@ -54,9 +54,8 @@ function wie_import_export_page_content()
 			// Don't show content below.
 			return;
 		}
-
-		$self = isset($_SERVER['PHP_SELF']) ? filter_var(wp_unslash($_SERVER['PHP_SELF']), FILTER_SANITIZE_STRING) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$page = isset($_GET['page']) ? filter_var(wp_unslash($_GET['page']), FILTER_SANITIZE_STRING) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$self = isset($_SERVER['PHP_SELF']) ? wp_unslash(filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL)) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$page = isset($_GET['page']) ? wp_unslash(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_URL)) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		?>
 
@@ -170,8 +169,8 @@ function wie_show_import_results()
 {
 	global $wie_import_results;
 
-	$self = isset($_SERVER['PHP_SELF']) ? filter_var(wp_unslash($_SERVER['PHP_SELF']), FILTER_SANITIZE_STRING) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	$page = isset($_GET['page']) ? filter_var(wp_unslash($_GET['page']), FILTER_SANITIZE_STRING) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$self = isset($_SERVER['PHP_SELF']) ? wp_unslash(filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL)) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$page = isset($_GET['page']) ? wp_unslash(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_URL)) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 	?>
 
