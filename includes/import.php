@@ -109,8 +109,8 @@ function wie_upload_import_file()
 
 		// Uploaded file.
 		$uploaded_file          = wp_unslash($_FILES['wie_import_file']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$uploaded_file_name     = isset($uploaded_file['name']) ? filter_var($uploaded_file['name'], FILTER_SANITIZE_STRING) : '';
-		$uploaded_file_tmp_name = isset($uploaded_file['tmp_name']) ? filter_var($uploaded_file['tmp_name'], FILTER_SANITIZE_STRING) : '';
+		$uploaded_file_name     = isset($uploaded_file['name']) ? sanitize_file_name($uploaded_file['name']) : '';
+		$uploaded_file_tmp_name = isset($uploaded_file['tmp_name']) ? sanitize_file_name($uploaded_file['tmp_name']) : '';
 
 		// Check file type.
 		// This will also fire if no file uploaded.
@@ -188,6 +188,8 @@ function wie_process_import_file($file)
 	$data = json_decode($data);
 
 	// Delete import file.
+	echo $file;
+	exit;
 	unlink($file);
 
 	// Import the widget data
