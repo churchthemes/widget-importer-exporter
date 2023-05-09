@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Widget Importer & Exporter
- * Plugin URI: https://churchthemes.com/plugins/widget-importer-exporter/
+ * Plugin URI: https://churchthemes.coqm/plugins/widget-importer-exporter/
  * Description: Imports and exports widgets.
  * Version: 1.6.1
  * Author: ChurchThemes.com
