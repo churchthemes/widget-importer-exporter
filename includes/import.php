@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Import Functions
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2013 - 2020, ChurchThemes.com, LLC
+ * @copyright  Copyright (c) 2013 - 2026, Sunday Pixels, LLC
  * @link       https://churchthemes.com/plugins/widget-importer-exporter/
  * @license    https://www.gnu.org/licenses/gpl-2.0.html GPL-2.0-or-later
  * @since      0.3
@@ -115,7 +116,7 @@ function wie_upload_import_file()
 		// Check file type.
 		// This will also fire if no file uploaded.
 		$wp_filetype = wp_check_filetype_and_ext($uploaded_file_tmp_name, $uploaded_file_name, false);
-		if ('wie' !== $wp_filetype['ext'] && ! wp_match_mime_types( 'wie', $wp_filetype['type'] )) {
+		if ('wie' !== $wp_filetype['ext'] && ! wp_match_mime_types('wie', $wp_filetype['type'])) {
 			wp_die(
 				wp_kses(
 					sprintf(
