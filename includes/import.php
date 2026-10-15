@@ -189,7 +189,7 @@ function wie_process_import_file($file)
 	$data = json_decode($data);
 
 	// Delete import file.
-	unlink($file);
+	wp_delete_file($file);
 
 	// Import the widget data
 	// Make results available for display on import/export page.

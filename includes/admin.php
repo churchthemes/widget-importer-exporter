@@ -6,7 +6,7 @@
  *
  * @package    Widget_Importer_Exporter
  * @subpackage Functions
- * @copyright  Copyright (c) 2017 - 2020, ChurchThemes.com, LLC
+ * @copyright  Copyright (c) 2017 - 2026, Sunday Pixels, LLC
  * @link       https://churchthemes.com/plugins/widget-importer-exporter/
  * @license    https://www.gnu.org/licenses/gpl-2.0.html GPL-2.0-or-later
  * @since      1.4
